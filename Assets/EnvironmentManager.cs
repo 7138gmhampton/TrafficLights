@@ -18,22 +18,27 @@ public class EnvironmentManager : MonoBehaviour
     private const int LEFT = 4;
     private const int JUNCTION = 5;
 
+    public int xSize;
+    public int ySize;
     public GameObject terrainTile;
     public GameObject roadTile;
     public GameObject junctionTile;
 
-    private readonly int[][] roadLocations = new int[][]
-        {
-            new int[] { 0,0,1,3,0,0 },
-            new int[] { 0,0,1,3,0,0 },
-            new int[] { 2,2,5,5,2,2 },
-            new int[] { 4,4,5,5,4,4 },
-            new int[] { 0,0,1,3,0,0 },
-            new int[] { 0,0,1,3,0,0 }
-        };
+    //private readonly int[][] roadLocations = new int[][]
+    //    {
+    //        new int[] { 0,0,1,3,0,0 },
+    //        new int[] { 0,0,1,3,0,0 },
+    //        new int[] { 2,2,5,5,2,2 },
+    //        new int[] { 4,4,5,5,4,4 },
+    //        new int[] { 0,0,1,3,0,0 },
+    //        new int[] { 0,0,1,3,0,0 }
+    //    };
+    private int[,] environment;
 
     void Awake()
     {
+        initialiseEnviroment();
+
         layTiles();
     }
 
@@ -49,9 +54,9 @@ public class EnvironmentManager : MonoBehaviour
 
     private void layTiles()
     {
-        for (int row = 0; row < roadLocations.Length; ++row)
-            for (int column = 0; column < roadLocations[row].Length; ++column)
-                switch (roadLocations[row][column]) {
+        for (int row = 0; row < ySize; ++row)
+            for (int column = 0; column < xSize; ++column)
+                switch (environment[row,column]) {
                     case UP:
                         Instantiate(roadTile, new Vector2(column, row), Quaternion.identity);
                         break;
@@ -95,14 +100,25 @@ public class EnvironmentManager : MonoBehaviour
 
     private Corner determineCorner(Vector2 locus)
     {
-        int above = roadLocations[(int)locus.y + 1][(int)locus.x];
-        int after = roadLocations[(int)locus.y][(int)locus.x + 1];
-        int below = roadLocations[(int)locus.y - 1][(int)locus.x];
-        int before = roadLocations[(int)locus.y][(int)locus.x - 1];
+        int above = environment[(int)locus.y + 1,(int)locus.x];
+        int after = environment[(int)locus.y,(int)locus.x + 1];
+        int below = environment[(int)locus.y - 1,(int)locus.x];
+        int before = environment[(int)locus.y,(int)locus.x - 1];
 
         if (after == 5 && below == 5) return Corner.TOP_LEFT;
         else if (before == 5 && below == 5) return Corner.TOP_RIGHT;
         else if (after == 5) return Corner.BOTTOM_LEFT;
         else return Corner.BOTTOM_RIGHT;
+    }
+
+    private int[,] initialiseEnviroment()
+    {
+        environment = new int[ySize, xSize];
+
+        for (int row = 0; row < ySize; ++row)
+            for (int column = 0; column < xSize; ++column)
+                environment[row,column] = 0;
+
+        return environment;
     }
 }
