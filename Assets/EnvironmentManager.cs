@@ -12,11 +12,12 @@ public class EnvironmentManager : MonoBehaviour
         BOTTOM_RIGHT
     }
 
-    private const int UP = 1;
-    private const int RIGHT = 2;
-    private const int DOWN = 3;
-    private const int LEFT = 4;
-    private const int JUNCTION = 5;
+    private const int TERRAIN = 0;
+    private const int UP = 6;
+    private const int RIGHT = 7;
+    private const int DOWN = 8;
+    private const int LEFT = 9;
+    //private const int JUNCTION = 5;
 
     public int xSize;
     public int ySize;
@@ -38,8 +39,11 @@ public class EnvironmentManager : MonoBehaviour
     void Awake()
     {
         initialiseEnviroment();
+        drawAllRoads();
 
         layTiles();
+        Debug.Log(environment[3, 3].ToString());
+        Debug.Log(environment[4, 3].ToString());
     }
 
     void Start()
@@ -69,11 +73,14 @@ public class EnvironmentManager : MonoBehaviour
                     case RIGHT:
                         Instantiate(roadTile, new Vector2(column, row), Quaternion.Euler(0, 0, 90f));
                         break;
-                    case JUNCTION:
-                        layJunctionTile(new Vector2(column, row));
+                    //case JUNCTION:
+                    //    layJunctionTile(new Vector2(column, row));
+                    //    break;
+                    case TERRAIN:
+                        Instantiate(terrainTile, new Vector2(column, row), Quaternion.identity);
                         break;
                     default:
-                        Instantiate(terrainTile, new Vector2(column, row), Quaternion.identity);
+                        layJunctionTile(new Vector2(column, row));
                         break;
                 }
     }
@@ -105,9 +112,9 @@ public class EnvironmentManager : MonoBehaviour
         int below = environment[(int)locus.y - 1,(int)locus.x];
         int before = environment[(int)locus.y,(int)locus.x - 1];
 
-        if (after == 5 && below == 5) return Corner.TOP_LEFT;
-        else if (before == 5 && below == 5) return Corner.TOP_RIGHT;
-        else if (after == 5) return Corner.BOTTOM_LEFT;
+        if (after > LEFT && below > LEFT) return Corner.TOP_LEFT;
+        else if (before > LEFT  && below > LEFT) return Corner.TOP_RIGHT;
+        else if (after > LEFT) return Corner.BOTTOM_LEFT;
         else return Corner.BOTTOM_RIGHT;
     }
 
@@ -120,5 +127,38 @@ public class EnvironmentManager : MonoBehaviour
                 environment[row,column] = 0;
 
         return environment;
+    }
+
+    private void drawAllRoads()
+    {
+        for (int column = 0; column < xSize; ++column)
+            if ((column + 1) % 6 == 0) drawRoad(drawVerticalRoadSide, column - 3, UP);
+
+        for (int row = 0; row < ySize; ++row)
+            if ((row + 1) % 6 == 0) drawRoad(drawHorizontalRoadSide, row - 3, RIGHT);
+    }
+
+    //private void drawVerticalRoad(int upColumn)
+    //{
+    //    drawVerticalRoadSide(upColumn, UP);
+    //    drawVerticalRoadSide(upColumn + 1, DOWN);
+    //}
+
+    private void drawRoad(System.Action<int, int> drawFunction, int earlierIndex, int firstDirection)
+    {
+        drawFunction(earlierIndex, firstDirection);
+        drawFunction(earlierIndex + 1, firstDirection + 2);
+    }
+
+    private void drawVerticalRoadSide(int column, int direction)
+    {
+        for (int row = 0; row < ySize; ++row)
+            environment[row, column] += direction;
+    }
+
+    private void drawHorizontalRoadSide(int row, int direction)
+    {
+        for (int column = 0; column < xSize; ++column)
+            environment[row, column] += direction;
     }
 }
