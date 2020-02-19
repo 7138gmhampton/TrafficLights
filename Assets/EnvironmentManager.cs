@@ -26,8 +26,8 @@ public class EnvironmentManager : MonoBehaviour
         {
             new int[] { 0,0,1,3,0,0 },
             new int[] { 0,0,1,3,0,0 },
-            new int[] { 0,0,5,5,0,0 },
-            new int[] { 0,0,5,5,0,0 },
+            new int[] { 2,2,5,5,2,2 },
+            new int[] { 4,4,5,5,4,4 },
             new int[] { 0,0,1,3,0,0 },
             new int[] { 0,0,1,3,0,0 }
         };
@@ -57,6 +57,12 @@ public class EnvironmentManager : MonoBehaviour
                         break;
                     case DOWN:
                         Instantiate(roadTile, new Vector2(column, row), Quaternion.Euler(0,0,180f));
+                        break;
+                    case LEFT:
+                        Instantiate(roadTile, new Vector2(column, row), Quaternion.Euler(0, 0, 270f));
+                        break;
+                    case RIGHT:
+                        Instantiate(roadTile, new Vector2(column, row), Quaternion.Euler(0, 0, 90f));
                         break;
                     case JUNCTION:
                         layJunctionTile(new Vector2(column, row));
