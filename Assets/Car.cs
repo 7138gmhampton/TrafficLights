@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    private enum Direction
+    public enum Direction
     {
         NORTH,
         EAST,
@@ -16,20 +16,45 @@ public class Car : MonoBehaviour
 
     private Rigidbody2D carRigidbody;
     private float inverseMoveTime;
-    private Direction direction;
+    public Direction direction;
 
     void Start()
     {
         carRigidbody = GetComponent<Rigidbody2D>();
         inverseMoveTime = 1f / moveTime;
+        //direction = Direction.EAST;
     }
 
     void Update()
     {
-        var nextTile = transform.position;
-        nextTile.y += 1.0f;
+        //var nextTile = transform.position;
+        //nextTile.y += 1.0f;
 
-        StartCoroutine(smoothMovement(nextTile));
+        //StartCoroutine(smoothMovement(nextTile));
+        moveCar();
+    }
+
+    private void moveCar()
+    {
+        Vector2 end;
+        switch (direction) {
+            case Direction.NORTH:
+                end = (Vector2)transform.position + new Vector2(0.0f, 1.0f);
+                StartCoroutine(smoothMovement(end));
+                break;
+            case Direction.EAST:
+                end = (Vector2)transform.position + new Vector2(1.0f, 0.0f);
+                StartCoroutine(smoothMovement(end));
+                break;
+            case Direction.SOUTH:
+                end = (Vector2)transform.position + new Vector2(0.0f, -1.0f);
+                StartCoroutine(smoothMovement(end));
+                break;
+            case Direction.WEST:
+                end = (Vector2)transform.position + new Vector2(-1.0f, 0.0f);
+                StartCoroutine(smoothMovement(end));
+                break;
+        }
     }
 
     private IEnumerator smoothMovement(Vector3 end)
@@ -49,6 +74,7 @@ public class Car : MonoBehaviour
     {
         if (collision.tag == "Road") {
             float roadDirection = collision.transform.rotation.z;
+            Debug.Log(roadDirection.ToString());
             if (roadDirection > -45 && roadDirection < 45) direction = Direction.NORTH;
             else if (roadDirection > 45 && roadDirection < 135) direction = Direction.EAST;
             else if (roadDirection > 135 && roadDirection < 225) direction = Direction.SOUTH;
