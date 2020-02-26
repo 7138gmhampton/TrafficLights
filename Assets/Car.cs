@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
+    private enum Direction
+    {
+        NORTH,
+        EAST,
+        SOUTH,
+        WEST
+    }
+
     public float moveTime;
 
     private Rigidbody2D carRigidbody;
     private float inverseMoveTime;
+    private Direction direction;
 
     void Start()
     {
@@ -33,6 +42,17 @@ public class Car : MonoBehaviour
             sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 
             yield return null;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Road") {
+            float roadDirection = collision.transform.rotation.z;
+            if (roadDirection > -45 && roadDirection < 45) direction = Direction.NORTH;
+            else if (roadDirection > 45 && roadDirection < 135) direction = Direction.EAST;
+            else if (roadDirection > 135 && roadDirection < 225) direction = Direction.SOUTH;
+            else direction = Direction.WEST;
         }
     }
 }

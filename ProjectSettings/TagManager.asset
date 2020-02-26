@@ -8,6 +8,8 @@ TagManager:
   - Traversible
   - Movable
   - Stationary
+  - Road
+  - Junction
   layers:
   - Default
   - TransparentFX
