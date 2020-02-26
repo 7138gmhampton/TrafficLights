@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1796021003606576384}
   - component: {fileID: 4308650043919622172}
   - component: {fileID: 8980740247620868469}
+  - component: {fileID: 8273361157563214237}
   m_Layer: 10
   m_Name: Car
   m_TagString: Movable
@@ -128,3 +129,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8273361157563214237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2746189903399458891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac9fc90d5cdaa364893561a6370a876c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTime: 0.5
