@@ -9,7 +9,8 @@ public class Car : MonoBehaviour
         NORTH,
         EAST,
         SOUTH,
-        WEST
+        WEST,
+        NONE
     }
 
     private enum Corner
@@ -37,11 +38,12 @@ public class Car : MonoBehaviour
         carRigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         inverseMoveTime = 1f / moveTime;
+        driveDirection = Direction.NONE;
     }
 
     void Update()
     {
-        if (!moving) moveCar();
+        if (!moving && driveDirection != Direction.NONE) moveCar();
     }
 
     private void moveCar()
@@ -113,7 +115,7 @@ public class Car : MonoBehaviour
         else if (collision.tag == "Junction") {
             if (!turning) {
                 turnDirection = pickAnotherDirection(driveDirection);
-                Debug.Log("Turning " + turnDirection.ToString());
+                //Debug.Log("Turning " + turnDirection.ToString());
                 turning = true;
             }
 
