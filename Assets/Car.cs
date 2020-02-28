@@ -107,25 +107,9 @@ public class Car : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.tag) {
-            case "Road":
-                turning = false;
-                float roadDirection = collision.transform.rotation.eulerAngles.z;
-
-                travelAlongRoad(roadDirection);
-                break;
-            case "Junction":
-                if (!turning) {
-                    turnDirection = pickAnotherDirection(driveDirection);
-                    turning = true;
-                }
-
-                var corner = determineCorner(collision.transform.eulerAngles.z);
-
-                traverseJunction(corner);
-                break;
-            case "Despawner":
-                Destroy(gameObject);
-                break;
+            case "Road": joinRoad(collision); break;
+            case "Junction": joinJunction(collision); break;
+            case "Despawner": Destroy(gameObject); break;
         }
 
         //if (collision.tag == "Road") {
@@ -146,6 +130,26 @@ public class Car : MonoBehaviour
         //}
         //else if (collision.tag == "Despawner")
         //    Destroy(gameObject);
+    }
+
+    private void joinJunction(Collider2D collision)
+    {
+        if (!turning) {
+            turnDirection = pickAnotherDirection(driveDirection);
+            turning = true;
+        }
+
+        var corner = determineCorner(collision.transform.eulerAngles.z);
+
+        traverseJunction(corner);
+    }
+
+    private void joinRoad(Collider2D collision)
+    {
+        turning = false;
+        float roadDirection = collision.transform.rotation.eulerAngles.z;
+
+        travelAlongRoad(roadDirection);
     }
 
     private void travelAlongRoad(float roadDirection)
