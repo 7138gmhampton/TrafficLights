@@ -73,6 +73,8 @@ public class CarManager : MonoBehaviour
     public void placeZones()
     {
         placeZonesHorizontal(spawner, 0, 2, 0);
+        placeZonesHorizontal(spawner, yEnd, 3, 180);
+        placeZonesVertical(spawner, 0, 3, 270);
         placeZonesVertical(spawner, xEnd, 2, 90);
     }
 
