@@ -115,17 +115,12 @@ public class Car : MonoBehaviour
         else if (collision.tag == "Junction") {
             if (!turning) {
                 turnDirection = pickAnotherDirection(driveDirection);
-                //Debug.Log("Turning " + turnDirection.ToString());
                 turning = true;
             }
 
             var corner = determineCorner(collision.transform.eulerAngles.z);
-            //Debug.Log(corner.ToString());
-            //Debug.Log(turning.ToString());
 
             traverseJunction(corner);
-
-            //Debug.Log("Going " + driveDirection.ToString());
         }
         else if (collision.tag == "Despawner")
             Destroy(gameObject);
