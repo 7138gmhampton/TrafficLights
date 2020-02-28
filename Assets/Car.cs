@@ -197,6 +197,8 @@ public class Car : MonoBehaviour
 
             Debug.Log("Going " + direction.ToString());
         }
+        else if (collision.tag == "Despawner")
+            Destroy(gameObject);
     }
 
     private Corner determineCorner(float cornerRotation)
