@@ -10,6 +10,9 @@ TagManager:
   - Stationary
   - Road
   - Junction
+  - Spawner
+  - Despawner
+  - TrafficLight
   layers:
   - Default
   - TransparentFX

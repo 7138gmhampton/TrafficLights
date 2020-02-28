@@ -73,6 +73,7 @@ public class CarManager : MonoBehaviour
     public void placeZones()
     {
         placeZonesHorizontal(spawner, 0, 2, 0);
+        placeZonesVertical(spawner, xEnd, 2, 90);
     }
 
     private void placeSpawnersVertical(int xAxis, int row)
@@ -101,9 +102,16 @@ public class CarManager : MonoBehaviour
             }
     }
 
-    private void placeZonesVertical(GameObject zoneTile, int xAxis, int row, int rotation)
+    private void placeZonesVertical(GameObject zoneTile, int xAxis, int row, int azimuth)
     {
-
+        for (int y = 0; y < yEnd; ++y)
+            if (y % 6 == row) {
+                var locus = new Vector3(xAxis, y, 0f);
+                var rotation = Quaternion.Euler(0, 0, azimuth);
+                if (zoneTile.tag == "Spawner")
+                    spawners.Add(Instantiate(zoneTile, locus, rotation));
+                else despawners.Add(Instantiate(zoneTile, locus, rotation));
+            }
     }
     //private void placeZones(GameObject zoneTile, int axialPosition, bool vertical)
     //{
