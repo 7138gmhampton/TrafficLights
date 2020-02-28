@@ -90,6 +90,17 @@ public class Car : MonoBehaviour
         }
     }
 
+    private Direction pickAnotherDirection()
+    {
+        Direction anotherDirection;
+
+        do {
+            anotherDirection = (Direction)Random.Range(0, 3);
+        } while (anotherDirection == direction);
+
+        return anotherDirection;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Road") {
