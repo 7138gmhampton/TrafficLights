@@ -33,11 +33,19 @@ public class CarManager : MonoBehaviour
     {
         placeSpawnersHorizontal(0, 2);
         placeSpawnersHorizontal(yEnd, 3);
+        placeSpawnersVertical(0, 3);
+        placeSpawnersVertical(xEnd, 2);
     }
 
     private void placeSpawnersHorizontal(int yAxis, int column)
     {
         for (int x = 0; x < xEnd; ++x)
             if (x % 6 == column) Instantiate(spawner, new Vector3(x, yAxis, 0f), Quaternion.identity);
+    }
+
+    private void placeSpawnersVertical(int xAxis, int row)
+    {
+        for (int y = 0; y < yEnd; ++y)
+            if (y % 6 == row) Instantiate(spawner, new Vector3(xAxis, y, 0f), Quaternion.identity);
     }
 }
