@@ -45,3 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   car: {fileID: 2746189903399458891, guid: 72135e8fdae729341bf0606e98fd7238, type: 3}
   spawner: {fileID: 1635436736284724278, guid: 07d401000c7a22a4d854f6c69b55067c, type: 3}
+  despawner: {fileID: 3050371042420371482, guid: a11f4f9a6a0b8194d9165f095bb68545,
+    type: 3}

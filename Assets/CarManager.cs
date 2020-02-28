@@ -31,6 +31,7 @@ public class CarManager : MonoBehaviour
 
     public GameObject car;
     public GameObject spawner;
+    public GameObject despawner;
 
     private int xStart;
     private int xEnd;
@@ -100,7 +101,12 @@ public class CarManager : MonoBehaviour
             new Rule(placeZonesHorizontal, spawner, 0, 2, 0),
             new Rule(placeZonesHorizontal, spawner, yEnd, 3, 180),
             new Rule(placeZonesVertical, spawner, 0, 3, 270),
-            new Rule(placeZonesVertical, spawner, xEnd, 2, 90)
+            new Rule(placeZonesVertical, spawner, xEnd, 2, 90),
+
+            new Rule(placeZonesHorizontal, despawner, 0, 3, 0),
+            new Rule(placeZonesHorizontal, despawner, yEnd, 2, 180),
+            new Rule(placeZonesVertical, despawner, 0, 2, 270),
+            new Rule(placeZonesVertical, despawner, xEnd, 3, 90)
         };
 
         //placeZonesHorizontal(spawner, 0, 2, 0);

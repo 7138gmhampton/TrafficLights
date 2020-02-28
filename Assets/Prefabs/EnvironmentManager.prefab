@@ -43,8 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e978258202fdf4ca6292d84cad1ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xSize: 12
+  ySize: 12
   terrainTile: {fileID: 569814929482680121, guid: ebc0b15c2ee9c324181c17f951691311,
     type: 3}
   roadTile: {fileID: 485455877, guid: b7a063bebdc69f44aa966091ba8a6a8c, type: 3}
   junctionTile: {fileID: 5237723133511134016, guid: 9c31d28dacb90844192c4c7329bbf8f1,
     type: 3}
+  carManager: {fileID: 0}
