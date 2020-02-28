@@ -73,7 +73,7 @@ public class Car : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Road") {
-            float roadDirection = collision.transform.rotation.z;
+            float roadDirection = collision.transform.rotation.eulerAngles.z;
             Debug.Log(roadDirection.ToString());
             if (roadDirection > -45 && roadDirection < 45) direction = Direction.NORTH;
             else if (roadDirection > 45 && roadDirection < 135) direction = Direction.EAST;
