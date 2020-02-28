@@ -106,24 +106,46 @@ public class Car : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Road") {
-            turning = false;
-            float roadDirection = collision.transform.rotation.eulerAngles.z;
+        switch (collision.tag) {
+            case "Road":
+                turning = false;
+                float roadDirection = collision.transform.rotation.eulerAngles.z;
 
-            travelAlongRoad(roadDirection);
+                travelAlongRoad(roadDirection);
+                break;
+            case "Junction":
+                if (!turning) {
+                    turnDirection = pickAnotherDirection(driveDirection);
+                    turning = true;
+                }
+
+                var corner = determineCorner(collision.transform.eulerAngles.z);
+
+                traverseJunction(corner);
+                break;
+            case "Despawner":
+                Destroy(gameObject);
+                break;
         }
-        else if (collision.tag == "Junction") {
-            if (!turning) {
-                turnDirection = pickAnotherDirection(driveDirection);
-                turning = true;
-            }
 
-            var corner = determineCorner(collision.transform.eulerAngles.z);
+        //if (collision.tag == "Road") {
+        //    turning = false;
+        //    float roadDirection = collision.transform.rotation.eulerAngles.z;
 
-            traverseJunction(corner);
-        }
-        else if (collision.tag == "Despawner")
-            Destroy(gameObject);
+        //    travelAlongRoad(roadDirection);
+        //}
+        //else if (collision.tag == "Junction") {
+        //    if (!turning) {
+        //        turnDirection = pickAnotherDirection(driveDirection);
+        //        turning = true;
+        //    }
+
+        //    var corner = determineCorner(collision.transform.eulerAngles.z);
+
+        //    traverseJunction(corner);
+        //}
+        //else if (collision.tag == "Despawner")
+        //    Destroy(gameObject);
     }
 
     private void travelAlongRoad(float roadDirection)
