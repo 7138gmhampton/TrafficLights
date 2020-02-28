@@ -6,6 +6,29 @@ using Random = UnityEngine.Random;
 
 public class CarManager : MonoBehaviour
 {
+    private struct Rule
+    {
+        public Action<GameObject,int,int,int> Method { get; set; }
+        public GameObject ZoneTile { get; set; }
+        public int Axis { get; set; }
+        public int Position { get; set; }
+        public int Azimuth { get; set; }
+
+        internal Rule(
+            Action<GameObject, int, int, int> method, 
+            GameObject zoneTile, 
+            int axis,
+            int position,
+            int azimuth)
+        {
+            Method = method;
+            ZoneTile = zoneTile;
+            Axis = axis;
+            Position = position;
+            Azimuth = azimuth;
+        }
+    }
+
     public GameObject car;
     public GameObject spawner;
 
@@ -15,19 +38,19 @@ public class CarManager : MonoBehaviour
     private int yEnd;
     private List<GameObject> spawners = new List<GameObject>();
     private List<GameObject> despawners = new List<GameObject>();
-    private static readonly Dictionary<Tuple<string, bool, bool>, Tuple<int, int>> zoneDeploymentRules = 
-        new Dictionary<Tuple<string, bool, bool>, Tuple<int, int>>()
-    {
-            { new Tuple<string, bool, bool>("Spawner", false, false), new Tuple<int, int>(2, 0) },
-            { new Tuple<string, bool, bool>("Spawner", false, true), new Tuple<int, int>(3, 180) },
-            { new Tuple<string, bool, bool>("Spawner", true, false), new Tuple<int, int>(3, 90) },
-            { new Tuple<string, bool, bool>("Spawner", true, true), new Tuple<int, int>(2, 270) },
+    //private static readonly Dictionary<Tuple<string, bool, bool>, Tuple<int, int>> zoneDeploymentRules = 
+    //    new Dictionary<Tuple<string, bool, bool>, Tuple<int, int>>()
+    //{
+    //        { new Tuple<string, bool, bool>("Spawner", false, false), new Tuple<int, int>(2, 0) },
+    //        { new Tuple<string, bool, bool>("Spawner", false, true), new Tuple<int, int>(3, 180) },
+    //        { new Tuple<string, bool, bool>("Spawner", true, false), new Tuple<int, int>(3, 90) },
+    //        { new Tuple<string, bool, bool>("Spawner", true, true), new Tuple<int, int>(2, 270) },
 
-            { new Tuple<string, bool, bool>("Despawner", false, false), new Tuple<int, int>(3, 0) },
-            { new Tuple<string, bool, bool>("Despawner", false, true), new Tuple<int, int>(2, 180) },
-            { new Tuple<string, bool, bool>("Despawner", true, false), new Tuple<int, int>(2, 90) },
-            { new Tuple<string, bool, bool>("Despawner", true, true), new Tuple<int, int>(3, 270) }
-    };
+    //        { new Tuple<string, bool, bool>("Despawner", false, false), new Tuple<int, int>(3, 0) },
+    //        { new Tuple<string, bool, bool>("Despawner", false, true), new Tuple<int, int>(2, 180) },
+    //        { new Tuple<string, bool, bool>("Despawner", true, false), new Tuple<int, int>(2, 90) },
+    //        { new Tuple<string, bool, bool>("Despawner", true, true), new Tuple<int, int>(3, 270) }
+    //};
 
     public int XStart { set { xStart = value; } }
     public int XEnd { set { xEnd = value; } }
@@ -72,10 +95,21 @@ public class CarManager : MonoBehaviour
 
     public void placeZones()
     {
-        placeZonesHorizontal(spawner, 0, 2, 0);
-        placeZonesHorizontal(spawner, yEnd, 3, 180);
-        placeZonesVertical(spawner, 0, 3, 270);
-        placeZonesVertical(spawner, xEnd, 2, 90);
+        var deploymentRules = new List<Rule>()
+        {
+            new Rule(placeZonesHorizontal, spawner, 0, 2, 0),
+            new Rule(placeZonesHorizontal, spawner, yEnd, 3, 180),
+            new Rule(placeZonesVertical, spawner, 0, 3, 270),
+            new Rule(placeZonesVertical, spawner, xEnd, 2, 90)
+        };
+
+        //placeZonesHorizontal(spawner, 0, 2, 0);
+        //placeZonesHorizontal(spawner, yEnd, 3, 180);
+        //placeZonesVertical(spawner, 0, 3, 270);
+        //placeZonesVertical(spawner, xEnd, 2, 90);
+
+        foreach (var rule in deploymentRules)
+            rule.Method(rule.ZoneTile, rule.Axis, rule.Position, rule.Azimuth);
     }
 
     private void placeSpawnersVertical(int xAxis, int row)
