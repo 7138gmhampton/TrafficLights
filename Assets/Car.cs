@@ -37,15 +37,10 @@ public class Car : MonoBehaviour
         carRigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         inverseMoveTime = 1f / moveTime;
-        //direction = Direction.EAST;
     }
 
     void Update()
     {
-        //var nextTile = transform.position;
-        //nextTile.y += 1.0f;
-
-        //StartCoroutine(smoothMovement(nextTile));
         if (!moving) moveCar();
     }
 
@@ -54,23 +49,15 @@ public class Car : MonoBehaviour
         Vector2 end;
         switch (driveDirection) {
             case Direction.NORTH:
-                //end = (Vector2)transform.position + new Vector2(0.0f, 1.0f);
-                //StartCoroutine(smoothMovement(end));
                 AttemptMove(0, 1);
                 break;
             case Direction.EAST:
-                //end = (Vector2)transform.position + new Vector2(1.0f, 0.0f);
-                //StartCoroutine(smoothMovement(end));
                 AttemptMove(1, 0);
                 break;
             case Direction.SOUTH:
-                //end = (Vector2)transform.position + new Vector2(0.0f, -1.0f);
-                //StartCoroutine(smoothMovement(end));
                 AttemptMove(0, -1);
                 break;
             case Direction.WEST:
-                //end = (Vector2)transform.position + new Vector2(-1.0f, 0.0f);
-                //StartCoroutine(smoothMovement(end));
                 AttemptMove(-1, 0);
                 break;
         }
@@ -87,7 +74,6 @@ public class Car : MonoBehaviour
 
         if (blocked.transform == null)
             StartCoroutine(smoothMovement(end));
-            //directMove(end);
     }
 
     private IEnumerator smoothMovement(Vector3 end)
@@ -124,22 +110,19 @@ public class Car : MonoBehaviour
         do {
             anotherDirection = (Direction)Random.Range(0, 4);
         } while (anotherDirection == getOpposite(previousDirection));
-        //Debug.Log(anotherDirection.ToString());
         return anotherDirection;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Road") {
-            //turnDirection = null;
             turning = false;
             float roadDirection = collision.transform.rotation.eulerAngles.z;
-            //Debug.Log(roadDirection.ToString());
+            
             if (roadDirection > -45 && roadDirection < 45) driveDirection = Direction.NORTH;
             else if (roadDirection > 45 && roadDirection < 135) driveDirection = Direction.WEST;
             else if (roadDirection > 135 && roadDirection < 225) driveDirection = Direction.SOUTH;
             else driveDirection = Direction.EAST;
-            //moveCar();
         }
         else if (collision.tag == "Junction") {
             if (!turning) {
@@ -148,30 +131,6 @@ public class Car : MonoBehaviour
                 turning = true;
             }
 
-            //float junctionCornerRotation = collision.transform.rotation.eulerAngles.z;
-            //Debug.Log("Angle for Corner " + junctionCornerRotation.ToString());
-            //Debug.Log("Corner Rot: " + collision.transform.eulerAngles.z.ToString());
-
-            //if (junctionCornerRotation > 225 && junctionCornerRotation < 315) {
-            //    Debug.Log("Top Left");
-            //    if (turnDirection == Direction.NORTH) direction = Direction.NORTH;
-            //    else direction = Direction.EAST;
-            //}
-            //if (junctionCornerRotation > 135 && junctionCornerRotation < 225) {
-            //    if (turnDirection == Direction.EAST) direction = Direction.EAST;
-            //    else direction = Direction.SOUTH;
-            //}
-            //if (junctionCornerRotation > 45 && junctionCornerRotation < 135) {
-            //    if (turnDirection == Direction.SOUTH) direction = Direction.SOUTH;
-            //    else direction = Direction.WEST;
-            //}
-            //else {
-            //    if (turnDirection == Direction.WEST) direction = Direction.WEST;
-            //    else direction = Direction.NORTH;
-            //}
-            //Debug.Log("Going" + direction.ToString());
-
-            //moveCar();
             var corner = determineCorner(collision.transform.eulerAngles.z);
             Debug.Log(corner.ToString());
             Debug.Log(turning.ToString());
