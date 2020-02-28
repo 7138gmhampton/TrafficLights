@@ -46,7 +46,6 @@ public class Car : MonoBehaviour
 
     private void moveCar()
     {
-        Vector2 end;
         switch (driveDirection) {
             case Direction.NORTH:
                 AttemptMove(0, 1);
