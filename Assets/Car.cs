@@ -91,17 +91,6 @@ public class Car : MonoBehaviour
         moving = false;
     }
 
-    private void directMove(Vector3 end)
-    {
-        float sqrRemainingDistance = (transform.position - end).sqrMagnitude;
-
-        while (sqrRemainingDistance > float.Epsilon) {
-            Vector3 nextPosition = Vector3.MoveTowards(carRigidbody.position, end, inverseMoveTime * Time.deltaTime);
-            carRigidbody.MovePosition(nextPosition);
-            sqrRemainingDistance = (transform.position - end).sqrMagnitude;
-        }
-    }
-
     private Direction pickAnotherDirection(Direction previousDirection)
     {
         Direction anotherDirection;
