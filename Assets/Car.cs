@@ -70,7 +70,7 @@ public class Car : MonoBehaviour
         Vector2 end = start + new Vector2(deltaX, deltaY);
 
         boxCollider.enabled = false;
-        var blocked = Physics2D.Linecast(start, end, blockingLayer);
+        RaycastHit2D blocked = Physics2D.Linecast(start, end, blockingLayer);
         boxCollider.enabled = true;
 
         if (blocked.transform == null)
@@ -83,8 +83,8 @@ public class Car : MonoBehaviour
 
         while (sqrRemainingDistance > float.Epsilon) {
             moving = true;
-            Vector3 nextPosition = Vector3.MoveTowards(carRigidbody.position, end, inverseMoveTime * Time.deltaTime);
-            carRigidbody.MovePosition(nextPosition);
+            carRigidbody.MovePosition(Vector3.MoveTowards(carRigidbody.position, end, 
+                inverseMoveTime * Time.deltaTime));
             sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 
             yield return null;
