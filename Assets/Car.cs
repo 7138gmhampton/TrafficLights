@@ -27,7 +27,7 @@ public class Car : MonoBehaviour
     private Rigidbody2D carRigidbody;
     private BoxCollider2D boxCollider;
     private float inverseMoveTime;
-    public Direction direction;
+    private Direction driveDirection;
     private Direction turnDirection;
     private bool moving;
     private bool turning;
@@ -52,7 +52,7 @@ public class Car : MonoBehaviour
     private void moveCar()
     {
         Vector2 end;
-        switch (direction) {
+        switch (driveDirection) {
             case Direction.NORTH:
                 //end = (Vector2)transform.position + new Vector2(0.0f, 1.0f);
                 //StartCoroutine(smoothMovement(end));
@@ -135,15 +135,15 @@ public class Car : MonoBehaviour
             turning = false;
             float roadDirection = collision.transform.rotation.eulerAngles.z;
             //Debug.Log(roadDirection.ToString());
-            if (roadDirection > -45 && roadDirection < 45) direction = Direction.NORTH;
-            else if (roadDirection > 45 && roadDirection < 135) direction = Direction.WEST;
-            else if (roadDirection > 135 && roadDirection < 225) direction = Direction.SOUTH;
-            else direction = Direction.EAST;
+            if (roadDirection > -45 && roadDirection < 45) driveDirection = Direction.NORTH;
+            else if (roadDirection > 45 && roadDirection < 135) driveDirection = Direction.WEST;
+            else if (roadDirection > 135 && roadDirection < 225) driveDirection = Direction.SOUTH;
+            else driveDirection = Direction.EAST;
             //moveCar();
         }
         else if (collision.tag == "Junction") {
             if (!turning) {
-                turnDirection = pickAnotherDirection(direction);
+                turnDirection = pickAnotherDirection(driveDirection);
                 Debug.Log("Turning " + turnDirection.ToString());
                 turning = true;
             }
@@ -178,24 +178,24 @@ public class Car : MonoBehaviour
 
             switch (corner) {
                 case Corner.TOP_LEFT:
-                    if (turnDirection == Direction.NORTH) direction = Direction.NORTH;
-                    else direction = Direction.EAST;
+                    if (turnDirection == Direction.NORTH) driveDirection = Direction.NORTH;
+                    else driveDirection = Direction.EAST;
                     break;
                 case Corner.TOP_RIGHT:
-                    if (turnDirection == Direction.EAST) direction = Direction.EAST;
-                    else direction = Direction.SOUTH;
+                    if (turnDirection == Direction.EAST) driveDirection = Direction.EAST;
+                    else driveDirection = Direction.SOUTH;
                     break;
                 case Corner.BOTTOM_RIGHT:
-                    if (turnDirection == Direction.SOUTH) direction = Direction.SOUTH;
-                    else direction = Direction.WEST;
+                    if (turnDirection == Direction.SOUTH) driveDirection = Direction.SOUTH;
+                    else driveDirection = Direction.WEST;
                     break;
                 case Corner.BOTTOM_LEFT:
-                    if (turnDirection == Direction.WEST) direction = Direction.WEST;
-                    else direction = Direction.NORTH;
+                    if (turnDirection == Direction.WEST) driveDirection = Direction.WEST;
+                    else driveDirection = Direction.NORTH;
                     break;
             }
 
-            Debug.Log("Going " + direction.ToString());
+            Debug.Log("Going " + driveDirection.ToString());
         }
         else if (collision.tag == "Despawner")
             Destroy(gameObject);
