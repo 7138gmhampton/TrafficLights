@@ -13,14 +13,17 @@ public class Car : MonoBehaviour
     }
 
     public float moveTime;
+    public LayerMask blockingLayer;
 
     private Rigidbody2D carRigidbody;
+    private BoxCollider2D boxCollider;
     private float inverseMoveTime;
     public Direction direction;
 
     void Start()
     {
         carRigidbody = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
         inverseMoveTime = 1f / moveTime;
         //direction = Direction.EAST;
     }
@@ -39,22 +42,39 @@ public class Car : MonoBehaviour
         Vector2 end;
         switch (direction) {
             case Direction.NORTH:
-                end = (Vector2)transform.position + new Vector2(0.0f, 1.0f);
-                StartCoroutine(smoothMovement(end));
+                //end = (Vector2)transform.position + new Vector2(0.0f, 1.0f);
+                //StartCoroutine(smoothMovement(end));
+                AttemptMove(0, 1);
                 break;
             case Direction.EAST:
-                end = (Vector2)transform.position + new Vector2(1.0f, 0.0f);
-                StartCoroutine(smoothMovement(end));
+                //end = (Vector2)transform.position + new Vector2(1.0f, 0.0f);
+                //StartCoroutine(smoothMovement(end));
+                AttemptMove(1, 0);
                 break;
             case Direction.SOUTH:
-                end = (Vector2)transform.position + new Vector2(0.0f, -1.0f);
-                StartCoroutine(smoothMovement(end));
+                //end = (Vector2)transform.position + new Vector2(0.0f, -1.0f);
+                //StartCoroutine(smoothMovement(end));
+                AttemptMove(0, -1);
                 break;
             case Direction.WEST:
-                end = (Vector2)transform.position + new Vector2(-1.0f, 0.0f);
-                StartCoroutine(smoothMovement(end));
+                //end = (Vector2)transform.position + new Vector2(-1.0f, 0.0f);
+                //StartCoroutine(smoothMovement(end));
+                AttemptMove(-1, 0);
                 break;
         }
+    }
+
+    private void AttemptMove(int deltaX, int deltaY)
+    {
+        Vector2 start = transform.position;
+        Vector2 end = start + new Vector2(deltaX, deltaY);
+
+        boxCollider.enabled = false;
+        var blocked = Physics2D.Linecast(start, end, blockingLayer);
+        boxCollider.enabled = true;
+
+        if (blocked.transform == null)
+            StartCoroutine(smoothMovement(end));
     }
 
     private IEnumerator smoothMovement(Vector3 end)
@@ -76,9 +96,9 @@ public class Car : MonoBehaviour
             float roadDirection = collision.transform.rotation.eulerAngles.z;
             Debug.Log(roadDirection.ToString());
             if (roadDirection > -45 && roadDirection < 45) direction = Direction.NORTH;
-            else if (roadDirection > 45 && roadDirection < 135) direction = Direction.EAST;
+            else if (roadDirection > 45 && roadDirection < 135) direction = Direction.WEST;
             else if (roadDirection > 135 && roadDirection < 225) direction = Direction.SOUTH;
-            else direction = Direction.WEST;
+            else direction = Direction.EAST;
         }
     }
 }

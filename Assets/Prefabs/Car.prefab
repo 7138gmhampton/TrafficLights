@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4308650043919622172}
   - component: {fileID: 8980740247620868469}
   - component: {fileID: 8273361157563214237}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Car
   m_TagString: Movable
   m_Icon: {fileID: 0}
@@ -142,3 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTime: 0.2
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  direction: 0
