@@ -24,6 +24,7 @@ public class EnvironmentManager : MonoBehaviour
     public GameObject terrainTile;
     public GameObject roadTile;
     public GameObject junctionTile;
+    public CarManager carManager;
 
     //private readonly int[][] roadLocations = new int[][]
     //    {
@@ -42,8 +43,11 @@ public class EnvironmentManager : MonoBehaviour
         drawAllRoads();
 
         layTiles();
-        Debug.Log(environment[3, 3].ToString());
-        Debug.Log(environment[4, 3].ToString());
+        //Debug.Log(environment[3, 3].ToString());
+        //Debug.Log(environment[4, 3].ToString());
+        carManager.XEnd = xSize - 1;
+        carManager.YEnd = ySize - 1;
+        carManager.placeSpawnersAll();
     }
 
     void Start()
