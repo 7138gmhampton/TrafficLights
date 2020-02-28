@@ -98,6 +98,7 @@ public class Car : MonoBehaviour
         do {
             anotherDirection = (Direction)Random.Range(0, 4);
         } while (anotherDirection == getOpposite(previousDirection));
+
         return anotherDirection;
     }
 
@@ -106,11 +107,8 @@ public class Car : MonoBehaviour
         if (collision.tag == "Road") {
             turning = false;
             float roadDirection = collision.transform.rotation.eulerAngles.z;
-            
-            if (roadDirection > -45 && roadDirection < 45) driveDirection = Direction.NORTH;
-            else if (roadDirection > 45 && roadDirection < 135) driveDirection = Direction.WEST;
-            else if (roadDirection > 135 && roadDirection < 225) driveDirection = Direction.SOUTH;
-            else driveDirection = Direction.EAST;
+
+            travelAlongRoad(roadDirection);
         }
         else if (collision.tag == "Junction") {
             if (!turning) {
@@ -120,32 +118,45 @@ public class Car : MonoBehaviour
             }
 
             var corner = determineCorner(collision.transform.eulerAngles.z);
-            Debug.Log(corner.ToString());
-            Debug.Log(turning.ToString());
+            //Debug.Log(corner.ToString());
+            //Debug.Log(turning.ToString());
 
-            switch (corner) {
-                case Corner.TOP_LEFT:
-                    if (turnDirection == Direction.NORTH) driveDirection = Direction.NORTH;
-                    else driveDirection = Direction.EAST;
-                    break;
-                case Corner.TOP_RIGHT:
-                    if (turnDirection == Direction.EAST) driveDirection = Direction.EAST;
-                    else driveDirection = Direction.SOUTH;
-                    break;
-                case Corner.BOTTOM_RIGHT:
-                    if (turnDirection == Direction.SOUTH) driveDirection = Direction.SOUTH;
-                    else driveDirection = Direction.WEST;
-                    break;
-                case Corner.BOTTOM_LEFT:
-                    if (turnDirection == Direction.WEST) driveDirection = Direction.WEST;
-                    else driveDirection = Direction.NORTH;
-                    break;
-            }
+            traverseJunction(corner);
 
-            Debug.Log("Going " + driveDirection.ToString());
+            //Debug.Log("Going " + driveDirection.ToString());
         }
         else if (collision.tag == "Despawner")
             Destroy(gameObject);
+    }
+
+    private void travelAlongRoad(float roadDirection)
+    {
+        if (roadDirection > -45 && roadDirection < 45) driveDirection = Direction.NORTH;
+        else if (roadDirection > 45 && roadDirection < 135) driveDirection = Direction.WEST;
+        else if (roadDirection > 135 && roadDirection < 225) driveDirection = Direction.SOUTH;
+        else driveDirection = Direction.EAST;
+    }
+
+    private void traverseJunction(Corner corner)
+    {
+        switch (corner) {
+            case Corner.TOP_LEFT:
+                if (turnDirection == Direction.NORTH) driveDirection = Direction.NORTH;
+                else driveDirection = Direction.EAST;
+                break;
+            case Corner.TOP_RIGHT:
+                if (turnDirection == Direction.EAST) driveDirection = Direction.EAST;
+                else driveDirection = Direction.SOUTH;
+                break;
+            case Corner.BOTTOM_RIGHT:
+                if (turnDirection == Direction.SOUTH) driveDirection = Direction.SOUTH;
+                else driveDirection = Direction.WEST;
+                break;
+            case Corner.BOTTOM_LEFT:
+                if (turnDirection == Direction.WEST) driveDirection = Direction.WEST;
+                else driveDirection = Direction.NORTH;
+                break;
+        }
     }
 
     private Corner determineCorner(float cornerRotation)
