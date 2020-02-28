@@ -7,11 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1635436736284724278, guid: 07d401000c7a22a4d854f6c69b55067c,
-        type: 3}
-      propertyPath: m_Name
-      value: ExitZone
-      objectReference: {fileID: 0}
     - target: {fileID: 1552849069027207953, guid: 07d401000c7a22a4d854f6c69b55067c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -66,6 +61,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635436736284724278, guid: 07d401000c7a22a4d854f6c69b55067c,
+        type: 3}
+      propertyPath: m_Name
+      value: ExitZone Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635436736284724278, guid: 07d401000c7a22a4d854f6c69b55067c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Despawner
       objectReference: {fileID: 0}
     - target: {fileID: 4212154119433201950, guid: 07d401000c7a22a4d854f6c69b55067c,
         type: 3}
