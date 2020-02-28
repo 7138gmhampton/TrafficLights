@@ -53,3 +53,6 @@ TagManager:
   - name: Entity
     uniqueID: 4091164795
     locked: 0
+  - name: Vehicle
+    uniqueID: 3704348581
+    locked: 0
