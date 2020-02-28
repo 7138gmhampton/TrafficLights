@@ -111,25 +111,6 @@ public class Car : MonoBehaviour
             case "Junction": joinJunction(collision); break;
             case "Despawner": Destroy(gameObject); break;
         }
-
-        //if (collision.tag == "Road") {
-        //    turning = false;
-        //    float roadDirection = collision.transform.rotation.eulerAngles.z;
-
-        //    travelAlongRoad(roadDirection);
-        //}
-        //else if (collision.tag == "Junction") {
-        //    if (!turning) {
-        //        turnDirection = pickAnotherDirection(driveDirection);
-        //        turning = true;
-        //    }
-
-        //    var corner = determineCorner(collision.transform.eulerAngles.z);
-
-        //    traverseJunction(corner);
-        //}
-        //else if (collision.tag == "Despawner")
-        //    Destroy(gameObject);
     }
 
     private void joinJunction(Collider2D collision)
