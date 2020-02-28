@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1552849069027207953}
   - component: {fileID: 4212154119433201950}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: EntryZone
   m_TagString: Stationary
   m_Icon: {fileID: 0}
