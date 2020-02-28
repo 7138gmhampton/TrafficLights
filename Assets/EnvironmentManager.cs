@@ -47,7 +47,8 @@ public class EnvironmentManager : MonoBehaviour
         //Debug.Log(environment[4, 3].ToString());
         carManager.XEnd = xSize - 1;
         carManager.YEnd = ySize - 1;
-        carManager.placeSpawnersAll();
+        //carManager.placeSpawnersAll();
+        carManager.placeZones();
     }
 
     void Start()

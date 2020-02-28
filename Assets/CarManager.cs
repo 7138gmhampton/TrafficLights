@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CarManager : MonoBehaviour
 {
@@ -12,6 +14,20 @@ public class CarManager : MonoBehaviour
     private int yStart;
     private int yEnd;
     private List<GameObject> spawners = new List<GameObject>();
+    private List<GameObject> despawners = new List<GameObject>();
+    private static readonly Dictionary<Tuple<string, bool, bool>, Tuple<int, int>> zoneDeploymentRules = 
+        new Dictionary<Tuple<string, bool, bool>, Tuple<int, int>>()
+    {
+            { new Tuple<string, bool, bool>("Spawner", false, false), new Tuple<int, int>(2, 0) },
+            { new Tuple<string, bool, bool>("Spawner", false, true), new Tuple<int, int>(3, 180) },
+            { new Tuple<string, bool, bool>("Spawner", true, false), new Tuple<int, int>(3, 90) },
+            { new Tuple<string, bool, bool>("Spawner", true, true), new Tuple<int, int>(2, 270) },
+
+            { new Tuple<string, bool, bool>("Despawner", false, false), new Tuple<int, int>(3, 0) },
+            { new Tuple<string, bool, bool>("Despawner", false, true), new Tuple<int, int>(2, 180) },
+            { new Tuple<string, bool, bool>("Despawner", true, false), new Tuple<int, int>(2, 90) },
+            { new Tuple<string, bool, bool>("Despawner", true, true), new Tuple<int, int>(3, 270) }
+    };
 
     public int XStart { set { xStart = value; } }
     public int XEnd { set { xEnd = value; } }
@@ -54,6 +70,11 @@ public class CarManager : MonoBehaviour
         }
     }
 
+    public void placeZones()
+    {
+        placeZonesHorizontal(spawner, 0, 2, 0);
+    }
+
     private void placeSpawnersVertical(int xAxis, int row)
     {
         for (int y = 0; y < yEnd; ++y)
@@ -62,6 +83,40 @@ public class CarManager : MonoBehaviour
                 spawners.Add(Instantiate(spawner, new Vector3(xAxis, y, 0f), Quaternion.identity));
             }
     }
+
+    private void placeZonesHorizontal(GameObject zoneTile, int yAxis, int column, int rotation)
+    {
+        //if (zoneTile.tag == "Spawners") var 
+        //List<GameObject>
+        //switch (zoneTile.tag) {
+        //    case "Spawner": var collection = spawners; break;
+        //    case "Despawner": var collection = despawners; break;
+        //}
+
+        for (int x = 0; x < xEnd; ++x)
+            if (x % 6 == column) {
+                if (zoneTile.tag == "Spawner")
+                    spawners.Add(Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation)));
+                else despawners.Add(Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation)));
+            }
+    }
+
+    private void placeZonesVertical(GameObject zoneTile, int xAxis, int row, int rotation)
+    {
+
+    }
+    //private void placeZones(GameObject zoneTile, int axialPosition, bool vertical)
+    //{
+    //    var axisEnd = vertical ? yEnd : xEnd;
+    //    var placingInx = zoneDeploymentRules[new Tuple<string, bool, bool>(zoneTile.tag, axialPosition > 0, vertical)];
+
+    //    for (int axis = 0; axis < axisEnd; ++axis)
+    //        if (axis % 6 == placingInx.Item1)
+    //            switch (zoneTile.tag) {
+    //                case "Spawner":
+    //                    spawners.Add(Instantiate(zoneTile, new Vector3()))
+    //            }
+    //}
 
     private void spawnCar()
     {
