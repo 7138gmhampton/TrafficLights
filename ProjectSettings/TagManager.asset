@@ -19,9 +19,9 @@ TagManager:
   - UI
   - 
   - 
-  - Terrain
-  - Road
-  - Vehicle
+  - Blocking
+  - Traversible
+  - 
   - 
   - 
   - 
