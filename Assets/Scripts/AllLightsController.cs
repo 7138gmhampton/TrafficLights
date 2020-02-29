@@ -15,7 +15,7 @@ public class AllLightsController : MonoBehaviour
         else if (instance != this) Destroy(gameObject);
     }
 
-    void Start() => setupJunctionControllers();
+    private void Start() => setupJunctionControllers();
 
     public void switchNS(int x, int y) => findJunction(x, y).Controller.goGreenNorthSouth(true);
 
