@@ -23,11 +23,12 @@ public class EnvironmentManager : MonoBehaviour
     public GameObject roadTile;
     public GameObject junctionTile;
     public CarManager carManager;
-    public GameObject junctionController;
-    public AllLightsController allLightsController;
+    //public GameObject junctionController;
+    //public AllLightsController allLightsController;
+    //[HideInInspector] public List<Junction> junctionControllers = new List<Junction>();
 
     private int[,] environment;
-    private List<GameObject> junctions = new List<GameObject>();
+    [HideInInspector] public List<GameObject> junctions = new List<GameObject>();
 
     private void Awake()
     {
@@ -35,8 +36,8 @@ public class EnvironmentManager : MonoBehaviour
         drawAllRoads();
 
         layTiles();
-        createJunctionControllers();
-        allLightsController.junctions = collateJunctions();
+        //createJunctionControllers();
+        //allLightsController.junctions = collateJunctions();
     }
 
     private void Start()
@@ -79,6 +80,7 @@ public class EnvironmentManager : MonoBehaviour
         switch (corner) {
             case Corner.TOP_LEFT:
                 junctions.Add(Instantiate(junctionTile, locus, Quaternion.Euler(0, 0, 270)));
+                //createJunctionController(locus);
                 break;
             case Corner.TOP_RIGHT:
                 Instantiate(junctionTile, locus, Quaternion.Euler(0, 0, 180));
@@ -91,6 +93,18 @@ public class EnvironmentManager : MonoBehaviour
                 break;
         }
     }
+
+    //private void createJunctionController(Vector2 locus)
+    //{
+    //    var nextObject = Instantiate(junctionController, locus, Quaternion.identity);
+    //    var nextJunction = new Junction(
+    //        (int)locus.x,
+    //        (int)locus.y,
+    //        nextObject,
+    //        nextObject.GetComponent<JunctionController>());
+
+    //    junctionControllers.Add(nextJunction);
+    //}
 
     private Corner determineCorner(Vector2 locus)
     {
@@ -143,22 +157,22 @@ public class EnvironmentManager : MonoBehaviour
             environment[row, column] += direction;
     }
 
-    private void createJunctionControllers()
-    {
-        foreach (var junction in junctions)
-            Instantiate(junctionController, junction.transform.position, Quaternion.identity);
-    }
+    //private void createJunctionControllers()
+    //{
+    //    foreach (var junction in junctions)
+    //        Instantiate(junctionController, junction.transform.position, Quaternion.identity);
+    //}
 
-    private List<Junction> collateJunctions()
-    {
-        var allJunctions = new List<Junction>();
+    //private List<Junction> collateJunctions()
+    //{
+    //    var allJunctions = new List<Junction>();
 
-        foreach (var junctionController in junctions)
-            allJunctions.Add(new Junction(
-                ((int)junctionController.transform.position.x) / 6,
-                ((int)junctionController.transform.position.y) / 6,
-                junctionController.GetComponent<JunctionController>()));
+    //    foreach (var junctionController in junctions)
+    //        allJunctions.Add(new Junction(
+    //            ((int)junctionController.transform.position.x) / 6,
+    //            ((int)junctionController.transform.position.y) / 6,
+    //            junctionController.gameObject));
 
-        return allJunctions;
-    }
+    //    return allJunctions;
+    //}
 }
