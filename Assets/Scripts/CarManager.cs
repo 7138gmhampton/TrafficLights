@@ -1,33 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class CarManager : MonoBehaviour
+public partial class CarManager : MonoBehaviour
 {
-    private struct Rule
-    {
-        public Action<GameObject,int,int,int> Method { get; set; }
-        public GameObject ZoneTile { get; set; }
-        public int Axis { get; set; }
-        public int Position { get; set; }
-        public int Azimuth { get; set; }
-
-        internal Rule(
-            Action<GameObject, int, int, int> method, 
-            GameObject zoneTile, 
-            int axis,
-            int position,
-            int azimuth)
-        {
-            Method = method;
-            ZoneTile = zoneTile;
-            Axis = axis;
-            Position = position;
-            Azimuth = azimuth;
-        }
-    }
 
     public GameObject car;
     public GameObject spawner;
