@@ -38,7 +38,8 @@ public class AllLightsController : MonoBehaviour
             //Debug.Log(environmentManager.junctionControllers.Count);
             //environmentManager.junctionControllers[0].Object.GetComponent<JunctionController>().goGreenNorthSouth(false);
             //environmentManager.junctionControllers[0].Controller.goGreenNorthSouth(false);
-            junctions[0].Controller.goGreenNorthSouth(false);
+            //junctions[0].Controller.goGreenNorthSouth(false);
+            switchEW(0, 1);
             Debug.Log(checkAlignment(0, 0));
             Debug.Log(checkAlignment(0, 1));
         }
@@ -48,14 +49,14 @@ public class AllLightsController : MonoBehaviour
     {
         var junction = findJunction(x, y);
 
-        //junction.Controller.goGreenNorthSouth(true);
+        junction.Controller.goGreenNorthSouth(true);
     }
 
     public void switchEW(int x, int y)
     {
         var junction = findJunction(x, y);
 
-        //junction.Controller.goGreenNorthSouth(false);
+        junction.Controller.goGreenNorthSouth(false);
     }
 
     public int reportHighestX()
