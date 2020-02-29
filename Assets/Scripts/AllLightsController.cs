@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AllLightsController : MonoBehaviour
@@ -8,8 +8,6 @@ public class AllLightsController : MonoBehaviour
     public EnvironmentManager environmentManager;
     public GameObject junctionController;
     [HideInInspector] public List<Junction> junctions = new List<Junction>();
-
-    private bool reported = false;
 
     private void Awake()
     {
@@ -20,6 +18,8 @@ public class AllLightsController : MonoBehaviour
     void Start()
     {
         setupJunctionControllers();
+        Debug.Log(reportHighestX());
+        Debug.Log(reportHighestY());
     }
 
     public void switchNS(int x, int y)
@@ -36,25 +36,9 @@ public class AllLightsController : MonoBehaviour
         junction.Controller.goGreenNorthSouth(false);
     }
 
-    public int reportHighestX()
-    {
-        int xValue = 0;
+    public int reportHighestX() => junctions.Max(x => x.XLocus);
 
-        foreach (var junction in junctions)
-            if (junction.XLocus > xValue) xValue = junction.XLocus;
-
-        return xValue;
-    }
-
-    public int reportHighestY()
-    {
-        int yValue = 0;
-
-        foreach (var junction in junctions)
-            if (junction.YLocus > yValue) yValue = junction.YLocus;
-
-        return yValue;
-    }
+    public int reportHighestY() => junctions.Max(x => x.YLocus);
 
     public bool checkAlignment(int x, int y)
     {
