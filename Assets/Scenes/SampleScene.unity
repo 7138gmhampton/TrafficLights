@@ -211,6 +211,16 @@ PrefabInstance:
       propertyPath: carManager
       value: 
       objectReference: {fileID: 1904356579}
+    - target: {fileID: 4932003814706730739, guid: fcfb427a71b33474c824beea1345de29,
+        type: 3}
+      propertyPath: xSize
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4932003814706730739, guid: fcfb427a71b33474c824beea1345de29,
+        type: 3}
+      propertyPath: ySize
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4932003814706730748, guid: fcfb427a71b33474c824beea1345de29,
         type: 3}
       propertyPath: m_LocalPosition.x
