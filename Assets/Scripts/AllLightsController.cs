@@ -40,12 +40,7 @@ public class AllLightsController : MonoBehaviour
 
     public int reportHighestY() => junctions.Max(x => x.YLocus);
 
-    public bool checkAlignment(int x, int y)
-    {
-        var junction = findJunction(x, y);
-
-        return junction.Controller.northSouthAlign;
-    }
+    public bool checkAlignment(int x, int y) => findJunction(x, y).Controller.northSouthAlign;
 
     private Junction findJunction(int x, int y)
     {
