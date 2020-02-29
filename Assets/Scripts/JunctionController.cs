@@ -10,7 +10,6 @@ public class JunctionController : MonoBehaviour
     public GameObject trafficLightSouth;
     public GameObject trafficLightWest;
 
-    //private List<GameObject> trafficLights = new List<GameObject>();
     private GameObject westLight;
     private TrafficLight westControl;
     private GameObject eastLight;
@@ -42,13 +41,6 @@ public class JunctionController : MonoBehaviour
 
     private void createTrafficLights()
     {
-        //var lightOffsets = new List<Tuple<Vector3, GameObject, GameObject>>()
-        //{
-        //    new Tuple<Vector3, GameObject>(new Vector3(0,0,0), trafficLightWest, westLight),
-        //    new Tuple<Vector3, GameObject>(new Vector3(1,0,0), trafficLightNorth, northLight),
-        //    new Tuple<Vector3, GameObject>(new Vector3(1,1,0), trafficLightEast, eastLight),
-        //    new Tuple<Vector3, GameObject>(new Vector3(0,1,0), trafficLightSouth, )
-        //};
         var origin = transform.position;
 
         westLight = Instantiate(trafficLightWest, origin, Quaternion.identity);
