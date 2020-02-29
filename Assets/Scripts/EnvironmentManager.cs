@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class EnvironmentManager : MonoBehaviour
@@ -29,7 +28,7 @@ public class EnvironmentManager : MonoBehaviour
     private int[,] environment;
     private List<GameObject> junctions = new List<GameObject>();
 
-    void Awake()
+    private void Awake()
     {
         initialiseEnviroment();
         drawAllRoads();
@@ -38,16 +37,11 @@ public class EnvironmentManager : MonoBehaviour
         createJunctionControllers();
     }
 
-    void Start()
+    private void Start()
     {
         carManager.XEnd = xSize - 1;
         carManager.YEnd = ySize - 1;
         carManager.placeZones();
-    }
-
-    void Update()
-    {
-        
     }
 
     private void layTiles()
@@ -78,7 +72,7 @@ public class EnvironmentManager : MonoBehaviour
 
     private void layJunctionTile(Vector2 locus)
     {
-        Corner corner = determineCorner(locus);
+        var corner = determineCorner(locus);
 
         switch (corner) {
             case Corner.TOP_LEFT:
