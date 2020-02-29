@@ -24,6 +24,7 @@ public class EnvironmentManager : MonoBehaviour
     public GameObject junctionTile;
     public CarManager carManager;
     public GameObject junctionController;
+    public AllLightsController allLightsController;
 
     private int[,] environment;
     private List<GameObject> junctions = new List<GameObject>();
@@ -35,6 +36,7 @@ public class EnvironmentManager : MonoBehaviour
 
         layTiles();
         createJunctionControllers();
+        allLightsController.junctions = collateJunctions();
     }
 
     private void Start()
@@ -145,5 +147,16 @@ public class EnvironmentManager : MonoBehaviour
     {
         foreach (var junction in junctions)
             Instantiate(junctionController, junction.transform.position, Quaternion.identity);
+    }
+
+    private List<Junction> collateJunctions()
+    {
+        var allJunctions = new List<Junction>();
+
+        foreach (var junctionController in junctions)
+            allJunctions.Add(new Junction(((int)junctionController.transform.position.x) / 6,
+                ((int)junctionController.transform.position.y) / 6));
+
+        return allJunctions;
     }
 }
