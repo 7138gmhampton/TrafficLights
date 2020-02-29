@@ -56,24 +56,6 @@ public class CarManager : MonoBehaviour
         spawnCar();
     }
 
-    public void placeSpawnersAll()
-    {
-        placeSpawnersHorizontal(0, 2);
-        placeSpawnersHorizontal(yEnd, 3);
-        placeSpawnersVertical(0, 3);
-        placeSpawnersVertical(xEnd, 2);
-    }
-
-    private void placeSpawnersHorizontal(int yAxis, int column)
-    {
-        for (int x = 0; x < xEnd; ++x) {
-            if (x % 6 == column) {
-                var nextSpawner = Instantiate(spawner, new Vector3(x, yAxis, 0f), Quaternion.identity);
-                spawners.Add(nextSpawner);
-            }
-        }
-    }
-
     public void placeZones()
     {
         var deploymentRules = new List<Rule>()
@@ -91,14 +73,6 @@ public class CarManager : MonoBehaviour
 
         foreach (var rule in deploymentRules)
             rule.Method(rule.ZoneTile, rule.Axis, rule.Position, rule.Azimuth);
-    }
-
-    private void placeSpawnersVertical(int xAxis, int row)
-    {
-        for (int y = 0; y < yEnd; ++y)
-            if (y % 6 == row) {
-                spawners.Add(Instantiate(spawner, new Vector3(xAxis, y, 0f), Quaternion.identity));
-            }
     }
 
     private void placeZonesHorizontal(GameObject zoneTile, int yAxis, int column, int rotation)
@@ -130,14 +104,6 @@ public class CarManager : MonoBehaviour
             return;
 
         Instantiate(car, spawnPoint, Quaternion.identity);
-    }
-
-    private void checkThis()
-    {
-        Debug.Log(Physics.OverlapBox(new Vector3(0, 0, 0), new Vector3(0.4f, 0.4f, 0.4f)).Length);
-        Debug.Log(Physics.OverlapBox(new Vector3(-1, -1, 0), new Vector3(0.4f, 0.4f, 0.4f)).Length);
-        Debug.Log(Physics2D.OverlapBox(new Vector2(0, 0), new Vector2(0.4f, 0.4f), 0).gameObject.tag);
-        Debug.Log(Physics2D.OverlapBox(new Vector2(-1, -1), new Vector2(0.4f, 0.4f), 0).gameObject.tag);
     }
 
     private Vector3 selectRandomSpawner()
