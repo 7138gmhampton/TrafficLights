@@ -6,6 +6,7 @@ public class JunctionController : MonoBehaviour
     public GameObject trafficLightEast;
     public GameObject trafficLightSouth;
     public GameObject trafficLightWest;
+    [HideInInspector] public bool northSouthAlign;
 
     private GameObject westLight;
     private TrafficLight westControl;
@@ -40,6 +41,8 @@ public class JunctionController : MonoBehaviour
 
     public void goGreenNorthSouth(bool northSouth)
     {
+        northSouthAlign = northSouth;
+
         northControl.goGreen(northSouth);
         southControl.goGreen(northSouth);
         eastControl.goGreen(!northSouth);
