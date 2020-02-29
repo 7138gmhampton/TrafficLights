@@ -26,7 +26,7 @@ public class TrafficLight : MonoBehaviour
         
     }
 
-    private void goGreen(bool green)
+    public void goGreen(bool green)
     {
         if (green) {
             spriteRenderer.sprite = greenLight;
