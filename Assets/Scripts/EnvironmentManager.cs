@@ -36,14 +36,13 @@ public class EnvironmentManager : MonoBehaviour
 
         layTiles();
         createJunctionControllers();
-        carManager.XEnd = xSize - 1;
-        carManager.YEnd = ySize - 1;
-        carManager.placeZones();
     }
 
     void Start()
     {
-        
+        carManager.XEnd = xSize - 1;
+        carManager.YEnd = ySize - 1;
+        carManager.placeZones();
     }
 
     void Update()
