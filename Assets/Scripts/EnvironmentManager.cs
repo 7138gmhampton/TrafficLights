@@ -17,7 +17,6 @@ public class EnvironmentManager : MonoBehaviour
     private const int RIGHT = 7;
     private const int DOWN = 8;
     private const int LEFT = 9;
-    //private const int JUNCTION = 5;
 
     public int xSize;
     public int ySize;
@@ -27,15 +26,6 @@ public class EnvironmentManager : MonoBehaviour
     public CarManager carManager;
     public GameObject junctionController;
 
-    //private readonly int[][] roadLocations = new int[][]
-    //    {
-    //        new int[] { 0,0,1,3,0,0 },
-    //        new int[] { 0,0,1,3,0,0 },
-    //        new int[] { 2,2,5,5,2,2 },
-    //        new int[] { 4,4,5,5,4,4 },
-    //        new int[] { 0,0,1,3,0,0 },
-    //        new int[] { 0,0,1,3,0,0 }
-    //    };
     private int[,] environment;
     private List<GameObject> junctions = new List<GameObject>();
 
@@ -46,11 +36,8 @@ public class EnvironmentManager : MonoBehaviour
 
         layTiles();
         createJunctionControllers();
-        //Debug.Log(environment[3, 3].ToString());
-        //Debug.Log(environment[4, 3].ToString());
         carManager.XEnd = xSize - 1;
         carManager.YEnd = ySize - 1;
-        //carManager.placeSpawnersAll();
         carManager.placeZones();
     }
 
@@ -81,9 +68,6 @@ public class EnvironmentManager : MonoBehaviour
                     case RIGHT:
                         Instantiate(roadTile, new Vector2(column, row), Quaternion.Euler(0, 0, 90f));
                         break;
-                    //case JUNCTION:
-                    //    layJunctionTile(new Vector2(column, row));
-                    //    break;
                     case TERRAIN:
                         Instantiate(terrainTile, new Vector2(column, row), Quaternion.identity);
                         break;
@@ -145,12 +129,6 @@ public class EnvironmentManager : MonoBehaviour
         for (int row = 0; row < ySize; ++row)
             if ((row + 1) % 6 == 0) drawRoad(drawHorizontalRoadSide, row - 3, RIGHT);
     }
-
-    //private void drawVerticalRoad(int upColumn)
-    //{
-    //    drawVerticalRoadSide(upColumn, UP);
-    //    drawVerticalRoadSide(upColumn + 1, DOWN);
-    //}
 
     private void drawRoad(System.Action<int, int> drawFunction, int earlierIndex, int firstDirection)
     {
