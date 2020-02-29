@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8346146093462822192}
+  - component: {fileID: 114288589558553118}
   m_Layer: 0
   m_Name: JunctionController
   m_TagString: TrafficControl
@@ -30,3 +31,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114288589558553118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3536279243814288196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 188b79eb31af46348a971184ec64fe65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trafficLightNorth: {fileID: 3155646146310356735, guid: 41dfebdb6392dac4daf3d66668e96b34,
+    type: 3}
+  trafficLightEast: {fileID: 9047444777266494991, guid: d2a423dbe07a72b478919d060acd78c0,
+    type: 3}
+  trafficLightSouth: {fileID: 8641342681639043176, guid: e3dcb62bfcb3d5642a087dc0f87e6e3f,
+    type: 3}
+  trafficLightWest: {fileID: 1860362127515620239, guid: 7422be34360fb6345b25861d7c20f238,
+    type: 3}
