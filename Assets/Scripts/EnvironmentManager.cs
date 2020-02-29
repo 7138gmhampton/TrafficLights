@@ -154,8 +154,10 @@ public class EnvironmentManager : MonoBehaviour
         var allJunctions = new List<Junction>();
 
         foreach (var junctionController in junctions)
-            allJunctions.Add(new Junction(((int)junctionController.transform.position.x) / 6,
-                ((int)junctionController.transform.position.y) / 6));
+            allJunctions.Add(new Junction(
+                ((int)junctionController.transform.position.x) / 6,
+                ((int)junctionController.transform.position.y) / 6,
+                junctionController.GetComponent<JunctionController>()));
 
         return allJunctions;
     }
