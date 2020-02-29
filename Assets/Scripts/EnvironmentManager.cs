@@ -36,6 +36,7 @@ public class EnvironmentManager : MonoBehaviour
     //        new int[] { 0,0,1,3,0,0 }
     //    };
     private int[,] environment;
+    private List<GameObject> junctions = new List<GameObject>();
 
     void Awake()
     {
@@ -96,7 +97,7 @@ public class EnvironmentManager : MonoBehaviour
 
         switch (corner) {
             case Corner.TOP_LEFT:
-                Instantiate(junctionTile, locus, Quaternion.Euler(0, 0, 270));
+                junctions.Add(Instantiate(junctionTile, locus, Quaternion.Euler(0, 0, 270)));
                 break;
             case Corner.TOP_RIGHT:
                 Instantiate(junctionTile, locus, Quaternion.Euler(0, 0, 180));
