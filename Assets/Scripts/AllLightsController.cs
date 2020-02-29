@@ -39,6 +39,8 @@ public class AllLightsController : MonoBehaviour
             //environmentManager.junctionControllers[0].Object.GetComponent<JunctionController>().goGreenNorthSouth(false);
             //environmentManager.junctionControllers[0].Controller.goGreenNorthSouth(false);
             junctions[0].Controller.goGreenNorthSouth(false);
+            Debug.Log(checkAlignment(0, 0));
+            Debug.Log(checkAlignment(0, 1));
         }
     }
 
@@ -74,6 +76,13 @@ public class AllLightsController : MonoBehaviour
         //    if (junction.YLocus > yValue) yValue = junction.YLocus;
 
         return yValue;
+    }
+
+    public bool checkAlignment(int x, int y)
+    {
+        var junction = findJunction(x, y);
+
+        return junction.Controller.northSouthAlign;
     }
 
     private Junction findJunction(int x, int y)
