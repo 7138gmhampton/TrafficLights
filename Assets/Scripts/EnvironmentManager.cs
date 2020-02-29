@@ -23,9 +23,6 @@ public class EnvironmentManager : MonoBehaviour
     public GameObject roadTile;
     public GameObject junctionTile;
     public CarManager carManager;
-    //public GameObject junctionController;
-    //public AllLightsController allLightsController;
-    //[HideInInspector] public List<Junction> junctionControllers = new List<Junction>();
 
     private int[,] environment;
     [HideInInspector] public List<GameObject> junctions = new List<GameObject>();
@@ -36,8 +33,6 @@ public class EnvironmentManager : MonoBehaviour
         drawAllRoads();
 
         layTiles();
-        //createJunctionControllers();
-        //allLightsController.junctions = collateJunctions();
     }
 
     private void Start()
@@ -94,18 +89,6 @@ public class EnvironmentManager : MonoBehaviour
         }
     }
 
-    //private void createJunctionController(Vector2 locus)
-    //{
-    //    var nextObject = Instantiate(junctionController, locus, Quaternion.identity);
-    //    var nextJunction = new Junction(
-    //        (int)locus.x,
-    //        (int)locus.y,
-    //        nextObject,
-    //        nextObject.GetComponent<JunctionController>());
-
-    //    junctionControllers.Add(nextJunction);
-    //}
-
     private Corner determineCorner(Vector2 locus)
     {
         int above = environment[(int)locus.y + 1,(int)locus.x];
@@ -156,23 +139,4 @@ public class EnvironmentManager : MonoBehaviour
         for (int column = 0; column < xSize; ++column)
             environment[row, column] += direction;
     }
-
-    //private void createJunctionControllers()
-    //{
-    //    foreach (var junction in junctions)
-    //        Instantiate(junctionController, junction.transform.position, Quaternion.identity);
-    //}
-
-    //private List<Junction> collateJunctions()
-    //{
-    //    var allJunctions = new List<Junction>();
-
-    //    foreach (var junctionController in junctions)
-    //        allJunctions.Add(new Junction(
-    //            ((int)junctionController.transform.position.x) / 6,
-    //            ((int)junctionController.transform.position.y) / 6,
-    //            junctionController.gameObject));
-
-    //    return allJunctions;
-    //}
 }
