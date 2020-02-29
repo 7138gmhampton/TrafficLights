@@ -45,27 +45,17 @@ public class EnvironmentManager : MonoBehaviour
     private void layTiles()
     {
         for (int row = 0; row < ySize; ++row)
-            for (int column = 0; column < xSize; ++column)
-                switch (environment[row,column]) {
-                    case UP:
-                        Instantiate(roadTile, new Vector2(column, row), Quaternion.identity);
-                        break;
-                    case DOWN:
-                        Instantiate(roadTile, new Vector2(column, row), Quaternion.Euler(0,0,180f));
-                        break;
-                    case LEFT:
-                        Instantiate(roadTile, new Vector2(column, row), Quaternion.Euler(0, 0, 270f));
-                        break;
-                    case RIGHT:
-                        Instantiate(roadTile, new Vector2(column, row), Quaternion.Euler(0, 0, 90f));
-                        break;
-                    case TERRAIN:
-                        Instantiate(terrainTile, new Vector2(column, row), Quaternion.identity);
-                        break;
-                    default:
-                        layJunctionTile(new Vector2(column, row));
-                        break;
+            for (int column = 0; column < xSize; ++column) {
+                var locus = new Vector2(column, row);
+                switch (environment[row, column]) {
+                    case UP: Instantiate(roadTile, locus, Quaternion.identity); break;
+                    case DOWN: Instantiate(roadTile, locus, Quaternion.Euler(0, 0, 180f)); break;
+                    case LEFT: Instantiate(roadTile, locus, Quaternion.Euler(0, 0, 270f)); break;
+                    case RIGHT: Instantiate(roadTile, locus, Quaternion.Euler(0, 0, 90f)); break;
+                    case TERRAIN: Instantiate(terrainTile, locus, Quaternion.identity); break;
+                    default: layJunctionTile(locus); break;
                 }
+            }
     }
 
     private void layJunctionTile(Vector2 locus)
@@ -75,7 +65,6 @@ public class EnvironmentManager : MonoBehaviour
         switch (corner) {
             case Corner.TOP_LEFT:
                 junctions.Add(Instantiate(junctionTile, locus, Quaternion.Euler(0, 0, 270)));
-                //createJunctionController(locus);
                 break;
             case Corner.TOP_RIGHT:
                 Instantiate(junctionTile, locus, Quaternion.Euler(0, 0, 180));
