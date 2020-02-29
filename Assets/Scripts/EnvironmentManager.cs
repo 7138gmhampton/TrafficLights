@@ -25,6 +25,7 @@ public class EnvironmentManager : MonoBehaviour
     public GameObject roadTile;
     public GameObject junctionTile;
     public CarManager carManager;
+    public GameObject junctionController;
 
     //private readonly int[][] roadLocations = new int[][]
     //    {
@@ -44,6 +45,7 @@ public class EnvironmentManager : MonoBehaviour
         drawAllRoads();
 
         layTiles();
+        createJunctionControllers();
         //Debug.Log(environment[3, 3].ToString());
         //Debug.Log(environment[4, 3].ToString());
         carManager.XEnd = xSize - 1;
@@ -166,5 +168,11 @@ public class EnvironmentManager : MonoBehaviour
     {
         for (int column = 0; column < xSize; ++column)
             environment[row, column] += direction;
+    }
+
+    private void createJunctionControllers()
+    {
+        foreach (var junction in junctions)
+            Instantiate(junctionController, junction.transform.position, Quaternion.identity);
     }
 }

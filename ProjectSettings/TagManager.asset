@@ -13,6 +13,7 @@ TagManager:
   - Spawner
   - Despawner
   - TrafficLight
+  - TrafficControl
   layers:
   - Default
   - TransparentFX
