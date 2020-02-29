@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public partial class CarManager : MonoBehaviour
 {
-
     public GameObject car;
     public GameObject spawner;
     public GameObject despawner;
@@ -22,16 +20,13 @@ public partial class CarManager : MonoBehaviour
     public int YStart { set { yStart = value; } }
     public int YEnd { set { yEnd = value; } }
 
-    void Start()
+    private void Start()
     {
         xStart = 0;
         yStart = 0;
     }
 
-    void Update()
-    {
-        spawnCar();
-    }
+    void Update() => spawnCar();
 
     public void placeZones()
     {
