@@ -43,9 +43,9 @@ public class JunctionController : MonoBehaviour
     {
         northSouthAlign = northSouth;
 
-        northControl.goGreen(northSouth);
-        southControl.goGreen(northSouth);
-        eastControl.goGreen(!northSouth);
-        westControl.goGreen(!northSouth);
+        northControl.setLightMode(northSouth);
+        southControl.setLightMode(northSouth);
+        eastControl.setLightMode(!northSouth);
+        westControl.setLightMode(!northSouth);
     }
 }

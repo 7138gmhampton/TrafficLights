@@ -14,7 +14,7 @@ public class TrafficLight : MonoBehaviour
         boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
-    public void goGreen(bool green)
+    public void setLightMode(bool green)
     {
         if (green) {
             spriteRenderer.sprite = greenLight;
