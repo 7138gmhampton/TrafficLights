@@ -42,13 +42,8 @@ public class AllLightsController : MonoBehaviour
 
     public bool checkAlignment(int x, int y) => findJunction(x, y).Controller.northSouthAlign;
 
-    private Junction findJunction(int x, int y)
-    {
-        foreach (var junction in junctions)
-            if (x == junction.XLocus && y == junction.YLocus) return junction;
-
-        throw new System.ArgumentOutOfRangeException("loci", "Loci do not match junction");
-    }
+    private Junction findJunction(int x, int y) =>
+        junctions.Single(a => a.XLocus == x && a.YLocus == y);
 
     private void setupJunctionControllers()
     {
