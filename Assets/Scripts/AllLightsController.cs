@@ -5,7 +5,6 @@ using UnityEngine;
 public class AllLightsController : MonoBehaviour
 {
     [HideInInspector] public AllLightsController instance = null;
-    //[HideInInspector] public List<Junction> junctions = new List<Junction>();
     public EnvironmentManager environmentManager;
     public GameObject junctionController;
     [HideInInspector] public List<Junction> junctions = new List<Junction>();
@@ -21,29 +20,6 @@ public class AllLightsController : MonoBehaviour
     void Start()
     {
         setupJunctionControllers();
-    }
-
-    void Update()
-    {
-        if (!reported) {
-            //foreach (var junction in junctions)
-            //    Debug.Log("(" + junction.XLocus + "," + junction.YLocus + ")");
-            reported = true;
-
-            //Debug.Log(reportHighestX() + " by " + reportHighestY());
-            //switchEW(0, 0);
-            //junctions[0].Controller.goGreenNorthSouth(false);
-            //var controller = junctions[0].Controller.gameObject.GetComponent<JunctionController>();
-            //controller.goGreenNorthSouth(false);
-            //Debug.Log(environmentManager.junctionControllers.Count);
-            //environmentManager.junctionControllers[0].Object.GetComponent<JunctionController>().goGreenNorthSouth(false);
-            //environmentManager.junctionControllers[0].Controller.goGreenNorthSouth(false);
-            //junctions[0].Controller.goGreenNorthSouth(false);
-            //switchEW(0, 1);
-            //Debug.Log(checkAlignment(0, 0));
-            //Debug.Log(checkAlignment(0, 1));
-            //Debug.Log()
-        }
     }
 
     public void switchNS(int x, int y)
