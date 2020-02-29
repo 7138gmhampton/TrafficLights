@@ -63,8 +63,8 @@ public class AllLightsController : MonoBehaviour
     {
         int xValue = 0;
 
-        //foreach (var junction in junctions)
-        //    if (junction.XLocus > xValue) xValue = junction.XLocus;
+        foreach (var junction in junctions)
+            if (junction.XLocus > xValue) xValue = junction.XLocus;
 
         return xValue;
     }
@@ -73,8 +73,8 @@ public class AllLightsController : MonoBehaviour
     {
         int yValue = 0;
 
-        //foreach (var junction in junctions)
-        //    if (junction.YLocus > yValue) yValue = junction.YLocus;
+        foreach (var junction in junctions)
+            if (junction.YLocus > yValue) yValue = junction.YLocus;
 
         return yValue;
     }
