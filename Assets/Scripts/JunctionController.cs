@@ -38,7 +38,7 @@ public class JunctionController : MonoBehaviour
         southLight = Instantiate(trafficLightSouth, origin + new Vector3(0, -1, 0), Quaternion.identity);
     }
 
-    private void goGreenNorthSouth(bool northSouth)
+    public void goGreenNorthSouth(bool northSouth)
     {
         northControl.goGreen(northSouth);
         southControl.goGreen(northSouth);
