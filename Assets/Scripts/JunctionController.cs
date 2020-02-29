@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using UnityEngine;
 
 public class JunctionController : MonoBehaviour
 {
@@ -19,12 +16,9 @@ public class JunctionController : MonoBehaviour
     private GameObject southLight;
     private TrafficLight southControl;
 
-    private void Awake()
-    {
-        createTrafficLights();
-    }
+    private void Awake() => createTrafficLights();
 
-    void Start()
+    private void Start()
     {
         westControl = westLight.GetComponent<TrafficLight>();
         eastControl = eastLight.GetComponent<TrafficLight>();
@@ -32,11 +26,6 @@ public class JunctionController : MonoBehaviour
         southControl = southLight.GetComponent<TrafficLight>();
 
         goGreenNorthSouth(true);
-    }
-
-    void Update()
-    {
-        
     }
 
     private void createTrafficLights()
