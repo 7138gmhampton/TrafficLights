@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5848586773491914582}
   - component: {fileID: 7161108808675433869}
   - component: {fileID: 2890961912883318912}
+  - component: {fileID: 114884849736003270}
   m_Layer: 8
   m_Name: TrafficLightWest
   m_TagString: TrafficLight
@@ -106,3 +107,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.01, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114884849736003270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860362127515620239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 078d3a74ea458fe43a1722887e8760c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  greenLight: {fileID: 21300000, guid: 888e31d6cf2e79348aa5be17c0b86f8c, type: 3}
+  redLight: {fileID: 21300000, guid: c31f0a8329ae3644ba44f65f99922d3e, type: 3}
