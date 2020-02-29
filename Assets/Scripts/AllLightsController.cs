@@ -15,26 +15,11 @@ public class AllLightsController : MonoBehaviour
         else if (instance != this) Destroy(gameObject);
     }
 
-    void Start()
-    {
-        setupJunctionControllers();
-        Debug.Log(reportHighestX());
-        Debug.Log(reportHighestY());
-    }
+    void Start() => setupJunctionControllers();
 
-    public void switchNS(int x, int y)
-    {
-        var junction = findJunction(x, y);
+    public void switchNS(int x, int y) => findJunction(x, y).Controller.goGreenNorthSouth(true);
 
-        junction.Controller.goGreenNorthSouth(true);
-    }
-
-    public void switchEW(int x, int y)
-    {
-        var junction = findJunction(x, y);
-
-        junction.Controller.goGreenNorthSouth(false);
-    }
+    public void switchEW(int x, int y) => findJunction(x, y).Controller.goGreenNorthSouth(false);
 
     public int reportHighestX() => junctions.Max(x => x.XLocus);
 
