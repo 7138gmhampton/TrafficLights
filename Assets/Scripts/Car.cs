@@ -193,4 +193,17 @@ public class Car : MonoBehaviour
 
         return opposites[directionForward];
     }
+
+    private void setDriveDirection(Direction direction)
+    {
+        switch (direction) {
+            case Direction.EAST: transform.Rotate(new Vector3(0, 0, 90)); break;
+            case Direction.NONE: transform.Rotate(new Vector3(0, 0, transform.rotation.z + 180)); break;
+            case Direction.NORTH: transform.Rotate(new Vector3(0, 0, 0)); break;
+            case Direction.SOUTH: transform.Rotate(new Vector3(0, 0, 180)); break;
+            case Direction.WEST: transform.Rotate(new Vector3(0, 0, 270)); break;
+        }
+
+        driveDirection = direction;
+    }
 }
