@@ -166,7 +166,7 @@ public class Car : MonoBehaviour
 
     private Direction getOpposite(Direction directionForward)
     {
-        Dictionary<Direction, Direction> opposites = new Dictionary<Direction, Direction>() 
+        var opposites = new Dictionary<Direction, Direction>() 
         {
             { Direction.NORTH, Direction.SOUTH },
             { Direction.EAST, Direction.WEST },
