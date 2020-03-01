@@ -23,9 +23,11 @@ public class EnvironmentManager : MonoBehaviour
     public GameObject roadTile;
     public GameObject junctionTile;
     public CarManager carManager;
+    public float saturation;
 
     private int[,] environment;
     [HideInInspector] public List<GameObject> junctions = new List<GameObject>();
+    private int noOfRoadTiles = 0;
 
     private void Awake()
     {
@@ -39,6 +41,10 @@ public class EnvironmentManager : MonoBehaviour
     {
         carManager.XEnd = xSize - 1;
         carManager.YEnd = ySize - 1;
+        carManager.MaxCars = (int)Mathf.Floor(noOfRoadTiles * saturation);
+        //Debug.Log(noOfRoadTiles);
+        //Debug.Log((int)Mathf.Floor(noOfRoadTiles * saturation));
+        //Debug.Log(carManager.MaxCars.ToString());
         carManager.placeZones();
     }
 
@@ -48,11 +54,11 @@ public class EnvironmentManager : MonoBehaviour
             for (int column = 0; column < xSize; ++column) {
                 var locus = new Vector2(column, row);
                 switch (environment[row, column]) {
-                    case UP: Instantiate(roadTile, locus, Quaternion.identity); break;
-                    case DOWN: Instantiate(roadTile, locus, Quaternion.Euler(0, 0, 180f)); break;
-                    case LEFT: Instantiate(roadTile, locus, Quaternion.Euler(0, 0, 270f)); break;
-                    case RIGHT: Instantiate(roadTile, locus, Quaternion.Euler(0, 0, 90f)); break;
-                    case TERRAIN: Instantiate(terrainTile, locus, Quaternion.identity); break;
+                    case UP: Instantiate(roadTile, locus, Quaternion.identity); ++noOfRoadTiles; break;
+                    case DOWN: Instantiate(roadTile, locus, Quaternion.Euler(0, 0, 180f)); ++noOfRoadTiles; break;
+                    case LEFT: Instantiate(roadTile, locus, Quaternion.Euler(0, 0, 270f)); ++noOfRoadTiles; break;
+                    case RIGHT: Instantiate(roadTile, locus, Quaternion.Euler(0, 0, 90f)); ++noOfRoadTiles; break;
+                    case TERRAIN: Instantiate(terrainTile, locus, Quaternion.identity); ++noOfRoadTiles; break;
                     default: layJunctionTile(locus); break;
                 }
             }

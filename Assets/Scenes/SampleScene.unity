@@ -256,6 +256,11 @@ PrefabInstance:
       propertyPath: allLightsController
       value: 
       objectReference: {fileID: 346134391}
+    - target: {fileID: 4932003814706730739, guid: fcfb427a71b33474c824beea1345de29,
+        type: 3}
+      propertyPath: saturation
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4932003814706730748, guid: fcfb427a71b33474c824beea1345de29,
         type: 3}
       propertyPath: m_LocalPosition.x

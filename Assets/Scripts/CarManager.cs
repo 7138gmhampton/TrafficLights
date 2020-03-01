@@ -75,6 +75,7 @@ public partial class CarManager : MonoBehaviour
 
     private void spawnCar()
     {
+        //Debug.Log(maxCars);
         if (noOfCars >= maxCars) return;
 
         var spawnPoint = selectRandomSpawner();
