@@ -43,14 +43,20 @@ public class EnvironmentManager : MonoBehaviour
             for (int column = 0; column < xSize; ++column) {
                 var locus = new Vector2(column, row);
                 switch (environment[row, column]) {
-                    case UP: Instantiate(roadTile, locus, Quaternion.identity); ++noOfRoadTiles; break;
-                    case DOWN: Instantiate(roadTile, locus, Quaternion.Euler(0, 0, 180f)); ++noOfRoadTiles; break;
-                    case LEFT: Instantiate(roadTile, locus, Quaternion.Euler(0, 0, 270f)); ++noOfRoadTiles; break;
-                    case RIGHT: Instantiate(roadTile, locus, Quaternion.Euler(0, 0, 90f)); ++noOfRoadTiles; break;
-                    case TERRAIN: Instantiate(terrainTile, locus, Quaternion.identity); ++noOfRoadTiles; break;
+                    case UP: placeRoadTile(locus, Quaternion.identity); break;
+                    case DOWN: placeRoadTile(locus, Quaternion.Euler(0, 0, 180)); break;
+                    case LEFT: placeRoadTile(locus, Quaternion.Euler(0, 0, 270)); break;
+                    case RIGHT: placeRoadTile(locus, Quaternion.Euler(0, 0, 90)); break;
+                    case TERRAIN: Instantiate(terrainTile, locus, Quaternion.identity); break;
                     default: layJunctionTile(locus); break;
                 }
             }
+    }
+
+    private void placeRoadTile(Vector2 locus, Quaternion orientation)
+    {
+        Instantiate(roadTile, locus, orientation);
+        ++noOfRoadTiles;
     }
 
     private void layJunctionTile(Vector2 locus)
