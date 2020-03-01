@@ -129,6 +129,7 @@ public class Car : MonoBehaviour
         }
 
         var corner = determineCorner(collision.transform.eulerAngles.z);
+        //Debug.Log(corner);
 
         navigateJunction(corner);
     }
@@ -153,20 +154,20 @@ public class Car : MonoBehaviour
     {
         switch (corner) {
             case Corner.TOP_LEFT:
-                if (turnDirection == Direction.NORTH) driveDirection = Direction.NORTH;
-                else driveDirection = Direction.EAST;
+                if (turnDirection == Direction.NORTH) setDriveDirection(Direction.NORTH);
+                else setDriveDirection(Direction.EAST);
                 break;
             case Corner.TOP_RIGHT:
-                if (turnDirection == Direction.EAST) driveDirection = Direction.EAST;
-                else driveDirection = Direction.SOUTH;
+                if (turnDirection == Direction.EAST) setDriveDirection(Direction.EAST);
+                else setDriveDirection(Direction.SOUTH);
                 break;
             case Corner.BOTTOM_RIGHT:
-                if (turnDirection == Direction.SOUTH) driveDirection = Direction.SOUTH;
-                else driveDirection = Direction.WEST;
+                if (turnDirection == Direction.SOUTH) setDriveDirection(Direction.SOUTH);
+                else setDriveDirection(Direction.WEST);
                 break;
             case Corner.BOTTOM_LEFT:
-                if (turnDirection == Direction.WEST) driveDirection = Direction.WEST;
-                else driveDirection = Direction.NORTH;
+                if (turnDirection == Direction.WEST) setDriveDirection(Direction.WEST);
+                else setDriveDirection(Direction.NORTH);
                 break;
         }
     }
@@ -196,16 +197,24 @@ public class Car : MonoBehaviour
 
     private void setDriveDirection(Direction direction)
     {
-        if (direction == driveDirection) return;
+        //if (direction == driveDirection) return;
 
-        switch (direction) {
-            case Direction.EAST: transform.Rotate(new Vector3(0, 0, 90)); break;
-            case Direction.NONE: transform.Rotate(new Vector3(0, 0, transform.rotation.z + 180)); break;
-            case Direction.NORTH: transform.Rotate(new Vector3(0, 0, 0)); break;
-            case Direction.SOUTH: transform.Rotate(new Vector3(0, 0, 180)); break;
-            case Direction.WEST: transform.Rotate(new Vector3(0, 0, 270)); break;
-        }
+        if (direction != driveDirection)
+            switch (direction) {
+                case Direction.EAST: transform.rotation = Quaternion.Euler(0, 0, -90); break;
+                    //if (transform.rotation.z > 100 || transform.rotation.z < 80)
+                    //    transform.rotation = Quaternion.Euler(0,0,90f);
+                    //break;
+                //case Direction.NONE:
+                //    transform.Rotate(new Vector3(0, 0, transform.rotation.z + 180), 
+                //        Space.World);
+                //    break;
+                case Direction.NORTH: transform.rotation = Quaternion.Euler(0, 0, 0); break;
+                case Direction.SOUTH: transform.rotation = Quaternion.Euler(0, 0, 0180); break;
+                case Direction.WEST: transform.rotation = Quaternion.Euler(0, 0, 90); break;
+            }
 
         driveDirection = direction;
+        //Debug.Log(driveDirection);
     }
 }
