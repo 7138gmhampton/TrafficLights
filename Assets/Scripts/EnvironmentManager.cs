@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class EnvironmentManager : MonoBehaviour
 {
-    private enum Corner
-    {
-        TOP_LEFT,
-        TOP_RIGHT,
-        BOTTOM_LEFT,
-        BOTTOM_RIGHT
-    }
+    //private enum Corner
+    //{
+    //    TOP_LEFT,
+    //    TOP_RIGHT,
+    //    BOTTOM_LEFT,
+    //    BOTTOM_RIGHT
+    //}
 
     private const int TERRAIN = 0;
     private const int UP = 6;

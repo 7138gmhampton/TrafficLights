@@ -13,14 +13,14 @@ public class Car : MonoBehaviour
         NONE
     }
 
-    private enum Corner
-    {
-        TOP_LEFT,
-        TOP_RIGHT,
-        BOTTOM_LEFT,
-        BOTTOM_RIGHT,
-        ERROR
-    }
+    //private enum Corner
+    //{
+    //    TOP_LEFT,
+    //    TOP_RIGHT,
+    //    BOTTOM_LEFT,
+    //    BOTTOM_RIGHT,
+    //    ERROR
+    //}
 
     public float moveTime;
     public LayerMask blockingLayer;
