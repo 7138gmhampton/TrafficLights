@@ -109,8 +109,16 @@ public class Car : MonoBehaviour
         switch (collision.tag) {
             case "Road": travelAlongRoad(collision); break;
             case "Junction": traverseJunction(collision); break;
-            case "Despawner": Destroy(gameObject); break;
+            case "Despawner": despawn(); break;
         }
+    }
+
+    private void despawn()
+    {
+        var manager = transform.parent.gameObject.GetComponent<CarManager>();
+        --manager.NoOfCars;
+
+        Destroy(gameObject);
     }
 
     private void traverseJunction(Collider2D collision)
