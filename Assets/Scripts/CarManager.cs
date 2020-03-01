@@ -22,7 +22,7 @@ public partial class CarManager : MonoBehaviour
     public int YStart { set { yStart = value; } }
     public int YEnd { set { yEnd = value; } }
     public int MaxCars { set { maxCars = value; } }
-    public int NoOfCars { set { noOfCars = value; } }
+    public int NoOfCars { get { return noOfCars; } set { noOfCars = value; } }
 
     private void Start()
     {
@@ -82,7 +82,7 @@ public partial class CarManager : MonoBehaviour
         if (Physics2D.OverlapBox(spawnPoint, new Vector2(0.4f, 0.4f), 0).gameObject.tag == "Movable")
             return;
 
-        Instantiate(car, spawnPoint, Quaternion.identity);
+        Instantiate(car, spawnPoint, Quaternion.identity).transform.parent = gameObject.transform;
         ++noOfCars;
     }
 
