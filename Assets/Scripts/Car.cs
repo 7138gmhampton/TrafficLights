@@ -143,10 +143,10 @@ public class Car : MonoBehaviour
 
     private void navigateRoad(float roadDirection)
     {
-        if (roadDirection > -45 && roadDirection < 45) driveDirection = Direction.NORTH;
-        else if (roadDirection > 45 && roadDirection < 135) driveDirection = Direction.WEST;
-        else if (roadDirection > 135 && roadDirection < 225) driveDirection = Direction.SOUTH;
-        else driveDirection = Direction.EAST;
+        if (roadDirection > -45 && roadDirection < 45) setDriveDirection(Direction.NORTH);
+        else if (roadDirection > 45 && roadDirection < 135) setDriveDirection(Direction.WEST);
+        else if (roadDirection > 135 && roadDirection < 225) setDriveDirection(Direction.SOUTH);
+        else setDriveDirection(Direction.EAST);
     }
 
     private void navigateJunction(Corner corner)
@@ -196,6 +196,8 @@ public class Car : MonoBehaviour
 
     private void setDriveDirection(Direction direction)
     {
+        if (direction == driveDirection) return;
+
         switch (direction) {
             case Direction.EAST: transform.Rotate(new Vector3(0, 0, 90)); break;
             case Direction.NONE: transform.Rotate(new Vector3(0, 0, transform.rotation.z + 180)); break;
