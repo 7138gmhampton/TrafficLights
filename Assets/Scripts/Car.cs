@@ -43,7 +43,7 @@ public class Car : MonoBehaviour
 
     void Update()
     {
-        if (!moving && driveDirection != Direction.NONE) moveCar();
+        if (!moving) moveCar();
     }
 
     private void moveCar()
@@ -60,6 +60,8 @@ public class Car : MonoBehaviour
                 break;
             case Direction.WEST:
                 AttemptMove(-1, 0);
+                break;
+            case Direction.NONE:
                 break;
         }
     }
