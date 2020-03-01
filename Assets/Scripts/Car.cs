@@ -13,15 +13,6 @@ public class Car : MonoBehaviour
         NONE
     }
 
-    //private enum Corner
-    //{
-    //    TOP_LEFT,
-    //    TOP_RIGHT,
-    //    BOTTOM_LEFT,
-    //    BOTTOM_RIGHT,
-    //    ERROR
-    //}
-
     public float moveTime;
     public LayerMask blockingLayer;
 
@@ -122,7 +113,6 @@ public class Car : MonoBehaviour
         }
 
         var corner = determineCorner(collision.transform.eulerAngles.z);
-        //Debug.Log(corner);
 
         navigateJunction(corner);
     }
@@ -190,24 +180,14 @@ public class Car : MonoBehaviour
 
     private void setDriveDirection(Direction direction)
     {
-        //if (direction == driveDirection) return;
-
         if (direction != driveDirection)
             switch (direction) {
                 case Direction.EAST: transform.rotation = Quaternion.Euler(0, 0, -90); break;
-                    //if (transform.rotation.z > 100 || transform.rotation.z < 80)
-                    //    transform.rotation = Quaternion.Euler(0,0,90f);
-                    //break;
-                //case Direction.NONE:
-                //    transform.Rotate(new Vector3(0, 0, transform.rotation.z + 180), 
-                //        Space.World);
-                //    break;
                 case Direction.NORTH: transform.rotation = Quaternion.Euler(0, 0, 0); break;
                 case Direction.SOUTH: transform.rotation = Quaternion.Euler(0, 0, 0180); break;
                 case Direction.WEST: transform.rotation = Quaternion.Euler(0, 0, 90); break;
             }
 
         driveDirection = direction;
-        //Debug.Log(driveDirection);
     }
 }
