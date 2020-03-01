@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    public enum Direction
+    private enum Direction
     {
         NORTH,
         EAST,
