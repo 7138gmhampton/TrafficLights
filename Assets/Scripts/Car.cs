@@ -51,10 +51,10 @@ public class Car : MonoBehaviour
     private void AttemptMove(int deltaX, int deltaY)
     {
         Vector2 start = transform.position;
-        Vector2 end = start + new Vector2(deltaX, deltaY);
+        var end = start + new Vector2(deltaX, deltaY);
 
         boxCollider.enabled = false;
-        RaycastHit2D blocked = Physics2D.Linecast(start, end, blockingLayer);
+        var blocked = Physics2D.Linecast(start, end, blockingLayer);
         boxCollider.enabled = true;
 
         if (blocked.transform == null)
@@ -99,8 +99,7 @@ public class Car : MonoBehaviour
 
     private void despawn()
     {
-        var manager = transform.parent.gameObject.GetComponent<CarManager>();
-        --manager.NoOfCars;
+        --transform.parent.gameObject.GetComponent<CarManager>().NoOfCars;
 
         Destroy(gameObject);
     }
@@ -112,25 +111,29 @@ public class Car : MonoBehaviour
             turning = true;
         }
 
-        var corner = determineCorner(collision.transform.eulerAngles.z);
-
-        navigateJunction(corner);
+        navigateJunction(determineCorner(collision.transform.eulerAngles.z));
     }
 
     private void travelAlongRoad(Collider2D collision)
     {
         turning = false;
-        float roadDirection = collision.transform.rotation.eulerAngles.z;
 
-        navigateRoad(roadDirection);
+        navigateRoad(collision.transform.rotation.eulerAngles.z);
     }
 
     private void navigateRoad(float roadDirection)
     {
-        if (roadDirection > -45 && roadDirection < 45) setDriveDirection(Direction.NORTH);
-        else if (roadDirection > 45 && roadDirection < 135) setDriveDirection(Direction.WEST);
-        else if (roadDirection > 135 && roadDirection < 225) setDriveDirection(Direction.SOUTH);
-        else setDriveDirection(Direction.EAST);
+        //if (roadDirection > -45 && roadDirection < 45) setDriveDirection(Direction.NORTH);
+        //else if (roadDirection > 45 && roadDirection < 135) setDriveDirection(Direction.WEST);
+        //else if (roadDirection > 135 && roadDirection < 225) setDriveDirection(Direction.SOUTH);
+        //else setDriveDirection(Direction.EAST);
+
+        switch (roadDirection) {
+            case float d when d > -45 && d < 45: setDriveDirection(Direction.NORTH); break;
+            case float d when d > 45 && d < 135: setDriveDirection(Direction.WEST); break;
+            case float d when d > 135 && d < 225: setDriveDirection(Direction.SOUTH); break;
+            case float d when d > 45 && d < 135: setDriveDirection(Direction.EAST); break;
+        }
     }
 
     private void navigateJunction(Corner corner)
