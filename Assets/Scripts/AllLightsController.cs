@@ -7,7 +7,7 @@ public class AllLightsController : MonoBehaviour
     [HideInInspector] public AllLightsController instance = null;
     public EnvironmentManager environmentManager;
     public GameObject junctionController;
-    [HideInInspector] public List<Junction> junctions = new List<Junction>();
+    [HideInInspector] public List<JunctionSwitcher> junctions = new List<JunctionSwitcher>();
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class AllLightsController : MonoBehaviour
 
     public bool checkAlignment(int x, int y) => findJunction(x, y).Controller.northSouthAlign;
 
-    private Junction findJunction(int x, int y) =>
+    private JunctionSwitcher findJunction(int x, int y) =>
         junctions.Single(a => a.XLocus == x && a.YLocus == y);
 
     private void setupJunctionControllers()
@@ -36,11 +36,11 @@ public class AllLightsController : MonoBehaviour
             junctions.Add(createJunction(junction.transform.position));
     }
 
-    private Junction createJunction(Vector2 locus)
+    private JunctionSwitcher createJunction(Vector2 locus)
     {
         var controller = Instantiate(junctionController, locus, Quaternion.identity);
 
-        var junction = new Junction(
+        var junction = new JunctionSwitcher(
             ((int)locus.x) / 6,
             ((int)locus.y) / 6,
             controller,
