@@ -49,20 +49,11 @@ public class Car : MonoBehaviour
     private void moveCar()
     {
         switch (driveDirection) {
-            case Direction.NORTH:
-                AttemptMove(0, 1);
-                break;
-            case Direction.EAST:
-                AttemptMove(1, 0);
-                break;
-            case Direction.SOUTH:
-                AttemptMove(0, -1);
-                break;
-            case Direction.WEST:
-                AttemptMove(-1, 0);
-                break;
-            case Direction.NONE:
-                break;
+            case Direction.NORTH: AttemptMove(0, 1); break;
+            case Direction.EAST: AttemptMove(1, 0); break;
+            case Direction.SOUTH: AttemptMove(0, -1); break;
+            case Direction.WEST: AttemptMove(-1, 0); break;
+            case Direction.NONE: break;
         }
     }
 
