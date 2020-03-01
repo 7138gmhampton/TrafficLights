@@ -3,6 +3,7 @@
 public class RotaryDispatcher : MonoBehaviour
 {
     public AllLightsController lightsController;
+    public float interval;
 
     private float ticker = 0f;
     private int counter = 0;
@@ -11,7 +12,7 @@ public class RotaryDispatcher : MonoBehaviour
     {
         ticker += Time.deltaTime;
 
-        if (ticker > 3f) {
+        if (ticker > interval) {
             ticker = 0f;
 
             var nextJunction = lightsController.junctions[counter++];

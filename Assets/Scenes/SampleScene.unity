@@ -259,7 +259,7 @@ PrefabInstance:
     - target: {fileID: 4932003814706730739, guid: fcfb427a71b33474c824beea1345de29,
         type: 3}
       propertyPath: saturation
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4932003814706730748, guid: fcfb427a71b33474c824beea1345de29,
         type: 3}
@@ -491,6 +491,11 @@ PrefabInstance:
       propertyPath: lightsController
       value: 
       objectReference: {fileID: 346134391}
+    - target: {fileID: 2417494257329596053, guid: 2f1a27e2281fa54468cb5ef5b961225c,
+        type: 3}
+      propertyPath: interval
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7403992780249629729, guid: 2f1a27e2281fa54468cb5ef5b961225c,
         type: 3}
       propertyPath: m_Name
