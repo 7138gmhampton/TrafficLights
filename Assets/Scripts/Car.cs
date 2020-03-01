@@ -155,12 +155,20 @@ public class Car : MonoBehaviour
 
     private Corner determineCorner(float cornerRotation)
     {
-        if (cornerRotation > -45 && cornerRotation < 45) return Corner.BOTTOM_LEFT;
-        else if (cornerRotation > 45 && cornerRotation < 135) return Corner.BOTTOM_RIGHT;
-        else if (cornerRotation > 135 && cornerRotation < 225) return Corner.TOP_RIGHT;
-        else if (cornerRotation > 225 && cornerRotation < 315) return Corner.TOP_LEFT;
+        //if (cornerRotation > -45 && cornerRotation < 45) return Corner.BOTTOM_LEFT;
+        //else if (cornerRotation > 45 && cornerRotation < 135) return Corner.BOTTOM_RIGHT;
+        //else if (cornerRotation > 135 && cornerRotation < 225) return Corner.TOP_RIGHT;
+        //else if (cornerRotation > 225 && cornerRotation < 315) return Corner.TOP_LEFT;
 
-        return Corner.ERROR;
+        //return Corner.ERROR;
+
+        switch (cornerRotation) {
+            case float r when r > -45 && r < 45: return Corner.BOTTOM_LEFT;
+            case float r when r > 45 && r < 135: return Corner.BOTTOM_RIGHT;
+            case float r when r > 135 && r < 225: return Corner.TOP_RIGHT;
+            case float r when r > 225 && r < 315: return Corner.TOP_LEFT;
+            default: return Corner.ERROR;
+        }
     }
 
     private Direction getOpposite(Direction directionForward)
