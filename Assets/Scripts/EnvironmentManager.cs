@@ -3,14 +3,6 @@ using UnityEngine;
 
 public class EnvironmentManager : MonoBehaviour
 {
-    //private enum Corner
-    //{
-    //    TOP_LEFT,
-    //    TOP_RIGHT,
-    //    BOTTOM_LEFT,
-    //    BOTTOM_RIGHT
-    //}
-
     private const int TERRAIN = 0;
     private const int UP = 6;
     private const int RIGHT = 7;
@@ -42,9 +34,6 @@ public class EnvironmentManager : MonoBehaviour
         carManager.XEnd = xSize - 1;
         carManager.YEnd = ySize - 1;
         carManager.MaxCars = (int)Mathf.Floor(noOfRoadTiles * saturation);
-        //Debug.Log(noOfRoadTiles);
-        //Debug.Log((int)Mathf.Floor(noOfRoadTiles * saturation));
-        //Debug.Log(carManager.MaxCars.ToString());
         carManager.placeZones();
     }
 
