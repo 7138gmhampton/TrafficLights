@@ -155,13 +155,6 @@ public class Car : MonoBehaviour
 
     private Corner determineCorner(float cornerRotation)
     {
-        //if (cornerRotation > -45 && cornerRotation < 45) return Corner.BOTTOM_LEFT;
-        //else if (cornerRotation > 45 && cornerRotation < 135) return Corner.BOTTOM_RIGHT;
-        //else if (cornerRotation > 135 && cornerRotation < 225) return Corner.TOP_RIGHT;
-        //else if (cornerRotation > 225 && cornerRotation < 315) return Corner.TOP_LEFT;
-
-        //return Corner.ERROR;
-
         switch (cornerRotation) {
             case float r when r > -45 && r < 45: return Corner.BOTTOM_LEFT;
             case float r when r > 45 && r < 135: return Corner.BOTTOM_RIGHT;
