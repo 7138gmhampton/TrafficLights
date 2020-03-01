@@ -123,11 +123,6 @@ public class Car : MonoBehaviour
 
     private void navigateRoad(float roadDirection)
     {
-        //if (roadDirection > -45 && roadDirection < 45) setDriveDirection(Direction.NORTH);
-        //else if (roadDirection > 45 && roadDirection < 135) setDriveDirection(Direction.WEST);
-        //else if (roadDirection > 135 && roadDirection < 225) setDriveDirection(Direction.SOUTH);
-        //else setDriveDirection(Direction.EAST);
-
         switch (roadDirection) {
             case float d when d > -45 && d < 45: setDriveDirection(Direction.NORTH); break;
             case float d when d > 45 && d < 135: setDriveDirection(Direction.WEST); break;
