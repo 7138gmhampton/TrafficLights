@@ -33,7 +33,7 @@ public class Car : MonoBehaviour
     private bool moving;
     private bool turning;
 
-    void Start()
+    private void Start()
     {
         carRigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
@@ -41,7 +41,7 @@ public class Car : MonoBehaviour
         driveDirection = Direction.NONE;
     }
 
-    void Update()
+    private void Update()
     {
         if (!moving) moveCar();
     }
