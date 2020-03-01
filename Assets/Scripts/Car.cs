@@ -127,7 +127,7 @@ public class Car : MonoBehaviour
             case float d when d > -45 && d < 45: setDriveDirection(Direction.NORTH); break;
             case float d when d > 45 && d < 135: setDriveDirection(Direction.WEST); break;
             case float d when d > 135 && d < 225: setDriveDirection(Direction.SOUTH); break;
-            case float d when d > 45 && d < 135: setDriveDirection(Direction.EAST); break;
+            case float d when d > -135 && d < -45: setDriveDirection(Direction.EAST); break;
         }
     }
 
