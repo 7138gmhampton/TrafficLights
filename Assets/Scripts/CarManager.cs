@@ -14,11 +14,15 @@ public partial class CarManager : MonoBehaviour
     private int yEnd;
     private List<GameObject> spawners = new List<GameObject>();
     private List<GameObject> despawners = new List<GameObject>();
+    private int maxCars;
+    private int noOfCars;
 
     public int XStart { set { xStart = value; } }
     public int XEnd { set { xEnd = value; } }
     public int YStart { set { yStart = value; } }
     public int YEnd { set { yEnd = value; } }
+    public int MaxCars { set { maxCars = value; } }
+    public int NoOfCars { set { noOfCars = value; } }
 
     private void Start()
     {
@@ -71,11 +75,14 @@ public partial class CarManager : MonoBehaviour
 
     private void spawnCar()
     {
+        if (noOfCars >= maxCars) return;
+
         var spawnPoint = selectRandomSpawner();
         if (Physics2D.OverlapBox(spawnPoint, new Vector2(0.4f, 0.4f), 0).gameObject.tag == "Movable")
             return;
 
         Instantiate(car, spawnPoint, Quaternion.identity);
+        ++noOfCars;
     }
 
     private Vector3 selectRandomSpawner()
