@@ -6,3 +6,12 @@
     BOTTOM_RIGHT,
     ERROR
 }
+
+public enum Direction
+{
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST,
+    NONE
+}

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    private enum Direction
-    {
-        NORTH,
-        EAST,
-        SOUTH,
-        WEST,
-        NONE
-    }
+    //private enum Direction
+    //{
+    //    NORTH,
+    //    EAST,
+    //    SOUTH,
+    //    WEST,
+    //    NONE
+    //}
 
     public float moveTime;
     public LayerMask blockingLayer;
