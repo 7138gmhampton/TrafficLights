@@ -51,3 +51,7 @@ MonoBehaviour:
     type: 3}
   trafficLightWest: {fileID: 1860362127515620239, guid: 7422be34360fb6345b25861d7c20f238,
     type: 3}
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  northSouthAlign: 0
