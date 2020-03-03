@@ -16,6 +16,7 @@ public partial class CarManager : MonoBehaviour
     private List<GameObject> despawners = new List<GameObject>();
     private int maxCars;
     private int noOfCars;
+    private List<GameObject> cars = new List<GameObject>();
 
     public int XStart { set { xStart = value; } }
     public int XEnd { set { xEnd = value; } }
@@ -23,6 +24,7 @@ public partial class CarManager : MonoBehaviour
     public int YEnd { set { yEnd = value; } }
     public int MaxCars { set { maxCars = value; } }
     public int NoOfCars { get { return noOfCars; } set { noOfCars = value; } }
+    public List<GameObject> Cars { get { return cars; } set { cars = value; } }
 
     private void Start()
     {
@@ -30,7 +32,11 @@ public partial class CarManager : MonoBehaviour
         yStart = 0;
     }
 
-    void Update() => spawnCar();
+    void Update()
+    {
+        spawnCar();
+        Debug.Log(cars.Count);
+    }
 
     public void placeZones()
     {
@@ -82,8 +88,16 @@ public partial class CarManager : MonoBehaviour
         if (Physics2D.OverlapBox(spawnPoint, new Vector2(0.4f, 0.4f), 0).gameObject.tag == "Vehicle")
             return;
 
-        Instantiate(car, spawnPoint, Quaternion.identity).transform.parent = gameObject.transform;
+        //Instantiate(car, spawnPoint, Quaternion.identity).transform.parent = gameObject.transform;
+        var nextCar = Instantiate(car, spawnPoint, Quaternion.identity);
+        nextCar.transform.parent = gameObject.transform;
+        cars.Add(nextCar);
         ++noOfCars;
+    }
+
+    public void removeCar(GameObject car)
+    {
+        cars.Remove(car);
     }
 
     private Vector3 selectRandomSpawner()
