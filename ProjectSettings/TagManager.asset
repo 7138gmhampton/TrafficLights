@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Untravellable
   - Traversible
-  - Movable
   - Stationary
   - Road
   - Junction
@@ -14,6 +13,7 @@ TagManager:
   - Despawner
   - TrafficLight
   - TrafficControl
+  - Vehicle
   layers:
   - Default
   - TransparentFX
