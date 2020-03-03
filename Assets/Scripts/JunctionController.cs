@@ -36,7 +36,15 @@ public class JunctionController : MonoBehaviour
         westLight = Instantiate(trafficLightWest, origin, Quaternion.identity);
         northLight = Instantiate(trafficLightNorth, origin + new Vector3(1, 0, 0), Quaternion.identity);
         eastLight = Instantiate(trafficLightEast, origin + new Vector3(1, -1, 0), Quaternion.identity);
-        southLight = Instantiate(trafficLightSouth, origin + new Vector3(0, -1, 0), Quaternion.identity);
+        southLight = createLight(origin, new Vector2(0, 1));
+    }
+
+    private GameObject createLight(Vector3 origin, Vector2 offset)
+    {
+        var light = Instantiate(trafficLightSouth, origin + (Vector3)offset, Quaternion.identity);
+        light.transform.parent = gameObject.transform;
+
+        return light;
     }
 
     public void goGreenNorthSouth(bool northSouth)
