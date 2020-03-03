@@ -12,8 +12,12 @@ public class Car : MonoBehaviour
     private float inverseMoveTime;
     private Direction driveDirection;
     private Direction turnDirection;
-    private bool moving;
+    private bool moving = false;
     private bool turning;
+    private Vector2 nextMovement;
+
+    public bool Moving { get { return moving; } }
+    public Vector2 NextMovement { get { return nextMovement; } }
 
     private void Start()
     {
@@ -25,17 +29,25 @@ public class Car : MonoBehaviour
 
     private void Update()
     {
-        if (!moving) moveCar();
+        //if (!moving) moveCar();
     }
 
-    private void moveCar()
+    public void moveCar()
     {
+        //switch (driveDirection) {
+        //    case Direction.NORTH: AttemptMove(0, 1); break;
+        //    case Direction.EAST: AttemptMove(1, 0); break;
+        //    case Direction.SOUTH: AttemptMove(0, -1); break;
+        //    case Direction.WEST: AttemptMove(-1, 0); break;
+        //    case Direction.NONE: break;
+        //}
+
         switch (driveDirection) {
-            case Direction.NORTH: AttemptMove(0, 1); break;
-            case Direction.EAST: AttemptMove(1, 0); break;
-            case Direction.SOUTH: AttemptMove(0, -1); break;
-            case Direction.WEST: AttemptMove(-1, 0); break;
-            case Direction.NONE: break;
+            case Direction.EAST: setNextMovement(1, 0); break;
+            case Direction.NORTH: setNextMovement(0, 1); break;
+            case Direction.SOUTH: setNextMovement(0, -1); break;
+            case Direction.WEST: setNextMovement(-1, 0); break;
+            case Direction.NONE: setNextMovement(0, 0); break;
         }
     }
 
@@ -58,13 +70,47 @@ public class Car : MonoBehaviour
             StartCoroutine(smoothMovement(end));
     }
 
+    public bool checkNextMovement(int deltaX, int deltaY)
+    {
+        Vector2 start = transform.position;
+        var end = start + new Vector2(deltaX, deltaY);
+
+        var collisions = Physics2D.LinecastAll(start, end, blockingLayer);
+        var realCollisions = new List<RaycastHit2D>();
+        foreach (var hit in collisions)
+            if (hit.collider != boxCollider)
+                realCollisions.Add(hit);
+
+        if (realCollisions.Count == 0) return true;
+        else return false;
+    }
+
+    public void setNextMovement(int deltaX, int deltaY)
+    {
+        Vector2 start = transform.position;
+        var end = start + new Vector2(deltaX, deltaY);
+
+        //return end;
+        if (checkNextMovement(deltaX, deltaY)) {
+            nextMovement = end;
+            //moving = true;
+        }
+        else nextMovement = start;
+        //Debug.Log(transform.position + " -> " + nextMovement + " going " + driveDirection);
+    }
+
+    public void doMovement()
+    {
+        StartCoroutine(smoothMovement(nextMovement));
+    }
+
     private IEnumerator smoothMovement(Vector3 end)
     {
         float sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 
         while (sqrRemainingDistance > float.Epsilon) {
             moving = true;
-            carRigidbody.MovePosition(Vector3.MoveTowards(carRigidbody.position, end, 
+            carRigidbody.MovePosition(Vector3.MoveTowards(carRigidbody.position, end,
                 inverseMoveTime * Time.deltaTime));
             sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 
