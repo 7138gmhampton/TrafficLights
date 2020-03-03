@@ -33,9 +33,9 @@ public class JunctionController : MonoBehaviour
     {
         var origin = transform.position;
 
-        westLight = Instantiate(trafficLightWest, origin, Quaternion.identity);
-        northLight = Instantiate(trafficLightNorth, origin + new Vector3(1, 0, 0), Quaternion.identity);
-        eastLight = Instantiate(trafficLightEast, origin + new Vector3(1, -1, 0), Quaternion.identity);
+        westLight = createLight(trafficLightWest, origin, new Vector2(0, 0));
+        northLight = createLight(trafficLightNorth, origin, new Vector2(1, 0));
+        eastLight = createLight(trafficLightEast, origin, new Vector2(1, -1));
         southLight = createLight(trafficLightSouth, origin, new Vector2(0, -1));
     }
 
