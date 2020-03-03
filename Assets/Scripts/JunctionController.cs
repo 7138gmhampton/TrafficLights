@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class JunctionController : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class JunctionController : MonoBehaviour
     public GameObject trafficLightEast;
     public GameObject trafficLightSouth;
     public GameObject trafficLightWest;
+    public LayerMask blockingLayer;
     [HideInInspector] public bool northSouthAlign;
 
     private GameObject westLight;
@@ -27,6 +29,11 @@ public class JunctionController : MonoBehaviour
         southControl = southLight.GetComponent<TrafficLight>();
 
         goGreenNorthSouth(true);
+    }
+
+    private void Update()
+    {
+        Debug.Log(transform.position + ":" + countQueue());
     }
 
     private void createTrafficLights()
@@ -55,5 +62,25 @@ public class JunctionController : MonoBehaviour
         southControl.setLightMode(northSouth);
         eastControl.setLightMode(!northSouth);
         westControl.setLightMode(!northSouth);
+    }
+
+    private int countQueue()
+    {
+        var controllerPosition = (Vector2)transform.position;
+
+        var colliders = Physics2D.OverlapAreaAll(controllerPosition + new Vector2(-0.5f, -1.5f),
+            controllerPosition + new Vector2(0.5f, -5.5f), blockingLayer);
+
+        List<Collider2D> cars = new List<Collider2D>();
+
+        foreach (var collider in colliders)
+            if (collider.tag == "Vehicle")
+                cars.Add(collider);
+
+        //Debug.Log(transform.position + ":" + cars);
+        //foreach (var car in colliders)
+        //    Debug.Log("> " + transform.position + " - " + car.tag);
+
+        return cars.Count;
     }
 }
