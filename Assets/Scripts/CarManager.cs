@@ -79,7 +79,7 @@ public partial class CarManager : MonoBehaviour
         if (noOfCars >= maxCars) return;
 
         var spawnPoint = selectRandomSpawner();
-        if (Physics2D.OverlapBox(spawnPoint, new Vector2(0.4f, 0.4f), 0).gameObject.tag == "Movable")
+        if (Physics2D.OverlapBox(spawnPoint, new Vector2(0.4f, 0.4f), 0).gameObject.tag == "Vehicle")
             return;
 
         Instantiate(car, spawnPoint, Quaternion.identity).transform.parent = gameObject.transform;
