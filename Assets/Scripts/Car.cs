@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    //private enum Direction
-    //{
-    //    NORTH,
-    //    EAST,
-    //    SOUTH,
-    //    WEST,
-    //    NONE
-    //}
-
     public float moveTime;
     public LayerMask blockingLayer;
 
@@ -52,13 +43,6 @@ public class Car : MonoBehaviour
     {
         Vector2 start = transform.position;
         var end = start + new Vector2(deltaX, deltaY);
-
-        //boxCollider.enabled = false;
-        //var blocked = Physics2D.Linecast(start, end, blockingLayer);
-        //boxCollider.enabled = true;
-
-        //if (blocked.transform == null)
-        //    StartCoroutine(smoothMovement(end));
 
         var collisions = Physics2D.LinecastAll(start, end, blockingLayer);
         var realCollisions = new List<RaycastHit2D>();
