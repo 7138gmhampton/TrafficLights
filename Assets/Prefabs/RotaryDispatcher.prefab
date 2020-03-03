@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2417494257329596053}
   m_Layer: 0
   m_Name: RotaryDispatcher
-  m_TagString: Untagged
+  m_TagString: TrafficControl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightsController: {fileID: 0}
+  interval: 0

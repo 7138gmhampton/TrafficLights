@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2438275104745564169}
   m_Layer: 0
   m_Name: AllLightsController
-  m_TagString: GameController
+  m_TagString: TrafficControl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instance: {fileID: 0}
+  environmentManager: {fileID: 0}
+  junctionController: {fileID: 0}

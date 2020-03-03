@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8273361157563214237}
   m_Layer: 8
   m_Name: Car
-  m_TagString: Movable
+  m_TagString: Vehicle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,4 +145,3 @@ MonoBehaviour:
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256
-  direction: 0
