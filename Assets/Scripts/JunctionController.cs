@@ -33,11 +33,6 @@ public class JunctionController : MonoBehaviour
         goGreenNorthSouth(true);
     }
 
-    private void Update()
-    {
-        //Debug.Log(transform.position + ":" + countQueue(Direction.EAST));
-    }
-
     private void createTrafficLights()
     {
         var origin = transform.position;
@@ -70,45 +65,7 @@ public class JunctionController : MonoBehaviour
     {
         var controllerPosition = (Vector2)transform.position;
 
-        //Collider2D[] colliders = new Collider2D[];
-        //= Physics2D.OverlapAreaAll(controllerPosition + new Vector2(-0.5f, -1.5f),
-        //    controllerPosition + new Vector2(0.5f, -5.5f), blockingLayer);
-
-        //var offsetA = new Vector2(-0.5f, -1.5f);
-        //var offsetB = new Vector2(0.5f, -5.5f);
-        //switch (approach) {
-        //    case Direction.NORTH:
-        //        offsetA = new Vector2(-0.5f, -1.5f);
-        //        offsetB = new Vector2(0.5f, -5.5f);
-        //        break;
-        //    case Direction.EAST:
-        //        offsetA = new Vector2(-4.5f, 0.5f);
-        //        offsetB = new Vector2(-0.5f, -0.5f);
-        //        break;
-        //    case Direction.SOUTH:
-        //        offsetA = new Vector2(0.5f, 4.5f);
-        //        offsetB = new Vector2(1.5f, 0.5f);
-        //        break;
-        //    case Direction.WEST:
-        //        offsetA = new Vector2(1.5f, -0.5f);
-        //        offsetB = new Vector2(5.5f, -1.5f);
-        //        break;
-        //    //case Direction.NONE:
-        //    //    break;
-        //}
-
-        //var colliders = Physics2D.OverlapAreaAll(controllerPosition + offsetA,
-        //            controllerPosition + offsetB, blockingLayer);
-
         List<Collider2D> cars = getQueueOfCars(controllerPosition, direction);
-
-        //foreach (var collider in colliders)
-        //    if (collider.tag == "Vehicle")
-        //        cars.Add(collider);
-
-        //Debug.Log(transform.position + ":" + cars);
-        //foreach (var car in colliders)
-        //    Debug.Log("> " + transform.position + " - " + car.tag);
 
         return cars.Count;
     }
@@ -127,27 +84,6 @@ public class JunctionController : MonoBehaviour
     {
         var offsetA = getOffSetA(direction);
         var offsetB = getOffSetB(direction);
-        //switch (direction) {
-        //    case Direction.NORTH:
-        //        offsetA = new Vector2(-0.5f, -1.5f);
-        //        offsetB = new Vector2(0.5f, -5.5f);
-        //        break;
-        //    case Direction.EAST:
-        //        offsetA = new Vector2(-4.5f, 0.5f);
-        //        offsetB = new Vector2(-0.5f, -0.5f);
-        //        break;
-        //    case Direction.SOUTH:
-        //        offsetA = new Vector2(0.5f, 4.5f);
-        //        offsetB = new Vector2(1.5f, 0.5f);
-        //        break;
-        //    case Direction.WEST:
-        //        offsetA = new Vector2(1.5f, -0.5f);
-        //        offsetB = new Vector2(5.5f, -1.5f);
-        //        break;
-        //        //case Direction.NONE:
-        //        //    break;
-        //}
-
         var colliders = Physics2D.OverlapAreaAll(controllerPosition + offsetA,
                     controllerPosition + offsetB, blockingLayer);
 
