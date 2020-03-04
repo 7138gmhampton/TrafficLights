@@ -110,8 +110,7 @@ public class Car : MonoBehaviour
     private void despawn()
     {
         transform.parent.gameObject.GetComponent<CarManager>().removeCar(gameObject);
-        var watchers = GameObject.FindGameObjectsWithTag("Metrics");
-        foreach (var watcher in watchers)
+        foreach (var watcher in GameObject.FindGameObjectsWithTag("Metrics"))
             watcher.SendMessage("addJourneyTime", lifetime);
 
         Destroy(gameObject);
