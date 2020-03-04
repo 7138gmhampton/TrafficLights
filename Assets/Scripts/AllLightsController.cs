@@ -16,12 +16,6 @@ public class AllLightsController : MonoBehaviour
         else if (instance != this) Destroy(gameObject);
     }
 
-    private void Update()
-    {
-        //Debug.Log(junctions[0].Controller.countQueue(Direction.WEST));
-        //Debug.Log(junctions[0].Controller.reportTotalWaitTimeInQueue(Direction.WEST));
-    }
-
     private void Start() => setupJunctionControllers();
 
     public void switchNS(int x, int y) => findJunction(x, y).Controller.setGreenAlignment(true);
