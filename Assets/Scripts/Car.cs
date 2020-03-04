@@ -15,6 +15,7 @@ public class Car : MonoBehaviour
     private bool moving = false;
     private bool turning;
     private Vector2 nextMovement;
+    private float lifetime;
 
     public bool Moving { get { return moving; } }
     public Vector2 NextMovement { get { return nextMovement; } }
@@ -25,11 +26,13 @@ public class Car : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         inverseMoveTime = 1f / moveTime;
         driveDirection = Direction.NONE;
+        lifetime = 0f;
     }
 
     private void Update()
     {
         //if (!moving) moveCar();
+        lifetime += Time.deltaTime;
     }
 
     public void moveCar()
@@ -144,6 +147,7 @@ public class Car : MonoBehaviour
     {
         //--transform.parent.gameObject.GetComponent<CarManager>().NoOfCars;
         transform.parent.gameObject.GetComponent<CarManager>().removeCar(gameObject);
+        Debug.Log(lifetime);
 
         Destroy(gameObject);
     }
