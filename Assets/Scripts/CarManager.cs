@@ -60,12 +60,7 @@ public partial class CarManager : MonoBehaviour
         else despawners.Add(zone);
     }
 
-    public void placeZones()
-    {
-        var zoneCreator = new ZoneCreator(spawner, despawner, xEnd, yEnd, this);
-
-        zoneCreator.placeZones();
-    }
+    public void placeZones() => new ZoneCreator(spawner, despawner, xEnd, yEnd, this).placeZones();
 
     private void spawnCar()
     {
