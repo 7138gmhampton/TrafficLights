@@ -65,8 +65,10 @@ public class ZoneCreator : MonoBehaviour
     {
         for (int x = 0; x < xEnd; ++x)
             if (x % 6 == column) {
-                var zone = Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation));
-                manager.addZone(zone);
+                manager.addZone(Instantiate(
+                    zoneTile, 
+                    new Vector3(x, yAxis, 0f), 
+                    Quaternion.Euler(0, 0, rotation)));
             }
     }
 
@@ -74,10 +76,10 @@ public class ZoneCreator : MonoBehaviour
     {
         for (int y = 0; y < yEnd; ++y)
             if (y % 6 == row) {
-                var locus = new Vector3(xAxis, y, 0f);
-                var rotation = Quaternion.Euler(0, 0, azimuth);
-                var zone = Instantiate(zoneTile, locus, rotation);
-                manager.addZone(zone);
+                manager.addZone(Instantiate(
+                    zoneTile, 
+                    new Vector3(xAxis, y, 0f), 
+                    Quaternion.Euler(0, 0, azimuth)));
             }
     }
 }
