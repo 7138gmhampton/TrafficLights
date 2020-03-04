@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class JunctionController : MonoBehaviour
 {
@@ -124,28 +125,28 @@ public class JunctionController : MonoBehaviour
 
     private List<Collider2D> getQueueOfCars(Vector2 controllerPosition, Direction direction)
     {
-        var offsetA = new Vector2(0f, 0f);
-        var offsetB = new Vector2(0f, 0f);
-        switch (direction) {
-            case Direction.NORTH:
-                offsetA = new Vector2(-0.5f, -1.5f);
-                offsetB = new Vector2(0.5f, -5.5f);
-                break;
-            case Direction.EAST:
-                offsetA = new Vector2(-4.5f, 0.5f);
-                offsetB = new Vector2(-0.5f, -0.5f);
-                break;
-            case Direction.SOUTH:
-                offsetA = new Vector2(0.5f, 4.5f);
-                offsetB = new Vector2(1.5f, 0.5f);
-                break;
-            case Direction.WEST:
-                offsetA = new Vector2(1.5f, -0.5f);
-                offsetB = new Vector2(5.5f, -1.5f);
-                break;
-                //case Direction.NONE:
-                //    break;
-        }
+        var offsetA = getOffSetA(direction);
+        var offsetB = getOffSetB(direction);
+        //switch (direction) {
+        //    case Direction.NORTH:
+        //        offsetA = new Vector2(-0.5f, -1.5f);
+        //        offsetB = new Vector2(0.5f, -5.5f);
+        //        break;
+        //    case Direction.EAST:
+        //        offsetA = new Vector2(-4.5f, 0.5f);
+        //        offsetB = new Vector2(-0.5f, -0.5f);
+        //        break;
+        //    case Direction.SOUTH:
+        //        offsetA = new Vector2(0.5f, 4.5f);
+        //        offsetB = new Vector2(1.5f, 0.5f);
+        //        break;
+        //    case Direction.WEST:
+        //        offsetA = new Vector2(1.5f, -0.5f);
+        //        offsetB = new Vector2(5.5f, -1.5f);
+        //        break;
+        //        //case Direction.NONE:
+        //        //    break;
+        //}
 
         var colliders = Physics2D.OverlapAreaAll(controllerPosition + offsetA,
                     controllerPosition + offsetB, blockingLayer);
@@ -157,5 +158,27 @@ public class JunctionController : MonoBehaviour
                 cars.Add(collider);
 
         return cars;
+    }
+
+    private Vector2 getOffSetA(Direction direction)
+    {
+        switch (direction) {
+            case Direction.EAST: return new Vector2(-4.5f, 0.5f);
+            case Direction.NORTH: return new Vector2(-0.5f, -1.5f);
+            case Direction.SOUTH: return new Vector2(0.5f, 4.5f);
+            case Direction.WEST: return new Vector2(1.5f, -0.5f);
+            default: throw new ArgumentOutOfRangeException("direction");
+        }
+    }
+
+    private Vector2 getOffSetB(Direction direction)
+    {
+        switch (direction) {
+            case Direction.EAST: return new Vector2(-0.5f, -0.5f);
+            case Direction.NORTH: return new Vector2(0.5f, -5.5f);
+            case Direction.SOUTH: return new Vector2(1.5f, 0.5f);
+            case Direction.WEST: return new Vector2(5.5f, -1.5f);
+            default: throw new ArgumentOutOfRangeException("direction");
+        }
     }
 }
