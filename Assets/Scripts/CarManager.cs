@@ -102,7 +102,7 @@ public partial class CarManager : MonoBehaviour
 
     private void spawnCar()
     {
-        if (noOfCars >= maxCars) return;
+        if (cars.Count >= maxCars) return;
 
         var spawnPoint = selectRandomSpawner();
         if (Physics2D.OverlapBox(spawnPoint, new Vector2(0.4f, 0.4f), 0).gameObject.tag == "Vehicle")
