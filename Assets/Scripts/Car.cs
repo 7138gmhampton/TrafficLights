@@ -147,7 +147,10 @@ public class Car : MonoBehaviour
     {
         //--transform.parent.gameObject.GetComponent<CarManager>().NoOfCars;
         transform.parent.gameObject.GetComponent<CarManager>().removeCar(gameObject);
-        Debug.Log(lifetime);
+        //Debug.Log(lifetime);
+        var watchers = GameObject.FindGameObjectsWithTag("Metrics");
+        foreach (var watcher in watchers)
+            watcher.SendMessage("addJourneyTime", lifetime);
 
         Destroy(gameObject);
     }
