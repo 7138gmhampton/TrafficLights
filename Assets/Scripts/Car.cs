@@ -142,7 +142,7 @@ public class Car : MonoBehaviour
 
     private void despawn()
     {
-        --transform.parent.gameObject.GetComponent<CarManager>().NoOfCars;
+        //--transform.parent.gameObject.GetComponent<CarManager>().NoOfCars;
         transform.parent.gameObject.GetComponent<CarManager>().removeCar(gameObject);
 
         Destroy(gameObject);

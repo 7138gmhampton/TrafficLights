@@ -16,7 +16,7 @@ public partial class CarManager : MonoBehaviour
     private List<GameObject> spawners = new List<GameObject>();
     private List<GameObject> despawners = new List<GameObject>();
     private int maxCars;
-    private int noOfCars;
+    //private int noOfCars;
     private List<GameObject> cars = new List<GameObject>();
 
     public int XStart { set { xStart = value; } }
@@ -24,7 +24,7 @@ public partial class CarManager : MonoBehaviour
     public int YStart { set { yStart = value; } }
     public int YEnd { set { yEnd = value; } }
     public int MaxCars { set { maxCars = value; } }
-    public int NoOfCars { get { return noOfCars; } set { noOfCars = value; } }
+    //public int NoOfCars { get { return noOfCars; } set { noOfCars = value; } }
     public List<GameObject> Cars { get { return cars; } set { cars = value; } }
 
     private void Start()
@@ -111,7 +111,7 @@ public partial class CarManager : MonoBehaviour
         var nextCar = Instantiate(car, spawnPoint, Quaternion.identity);
         nextCar.transform.parent = gameObject.transform;
         cars.Add(nextCar);
-        ++noOfCars;
+        //++noOfCars;
     }
 
     public void removeCar(GameObject car)
