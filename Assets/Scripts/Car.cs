@@ -46,10 +46,10 @@ public class Car : MonoBehaviour
         }
     }
 
-    public bool checkNextMovement(int deltaX, int deltaY)
+    private bool checkNextMovement(Vector2 start, Vector2 end)
     {
-        Vector2 start = transform.position;
-        var end = start + new Vector2(deltaX, deltaY);
+        //Vector2 start = transform.position;
+        //var end = start + new Vector2(deltaX, deltaY);
 
         var collisions = Physics2D.LinecastAll(start, end, blockingLayer);
         var realCollisions = new List<RaycastHit2D>();
@@ -66,7 +66,7 @@ public class Car : MonoBehaviour
         Vector2 start = transform.position;
         var end = start + new Vector2(deltaX, deltaY);
 
-        if (checkNextMovement(deltaX, deltaY)) {
+        if (checkNextMovement(start, end)) {
             NextMovement = end;
         }
         else NextMovement = start;
