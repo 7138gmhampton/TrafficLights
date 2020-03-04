@@ -61,31 +61,20 @@ public class JunctionController : MonoBehaviour
         westControl.setLightMode(!northSouth);
     }
 
-    public int countQueue(Direction direction)
-    {
-        var controllerPosition = (Vector2)transform.position;
-
-        List<Collider2D> cars = getQueueOfCars(controllerPosition, direction);
-
-        return cars.Count;
-    }
+    public int countQueue(Direction direction) =>
+        getQueueOfCars(transform.position, direction).Count;
 
     public float reportTotalWaitTimeInQueue(Direction direction)
     {
-        var controllerPosition = transform.position;
-        var cars = getQueueOfCars(controllerPosition, direction);
+        var cars = getQueueOfCars(transform.position, direction);
 
-        float totalWaitTime = cars.Sum(x => x.gameObject.GetComponent<Car>().TimeSinceLastMove);
-
-        return totalWaitTime;
+        return cars.Sum(x => x.gameObject.GetComponent<Car>().TimeSinceLastMove);
     }
 
     private List<Collider2D> getQueueOfCars(Vector2 controllerPosition, Direction direction)
     {
-        var offsetA = getOffSetA(direction);
-        var offsetB = getOffSetB(direction);
-        var colliders = Physics2D.OverlapAreaAll(controllerPosition + offsetA,
-                    controllerPosition + offsetB, blockingLayer);
+        var colliders = Physics2D.OverlapAreaAll(controllerPosition + getOffSetA(direction),
+                    controllerPosition + getOffSetB(direction), blockingLayer);
 
         var cars = new List<Collider2D>();
         foreach (var collider in colliders)
