@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -15,17 +16,35 @@ public class AllLightsController : MonoBehaviour
         else if (instance != this) Destroy(gameObject);
     }
 
+    private void Update()
+    {
+        //Debug.Log(junctions[0].Controller.countQueue(Direction.WEST));
+        Debug.Log(junctions[0].Controller.reportTotalWaitTimeInQueue(Direction.WEST));
+    }
+
     private void Start() => setupJunctionControllers();
 
-    public void switchNS(int x, int y) => findJunction(x, y).Controller.goGreenNorthSouth(true);
+    public void switchNS(int x, int y) => findJunction(x, y).Controller.setGreenAlignment(true);
 
-    public void switchEW(int x, int y) => findJunction(x, y).Controller.goGreenNorthSouth(false);
+    public void switchEW(int x, int y) => findJunction(x, y).Controller.setGreenAlignment(false);
 
     public int reportHighestX() => junctions.Max(x => x.XLocus);
 
     public int reportHighestY() => junctions.Max(x => x.YLocus);
 
     public bool checkAlignment(int x, int y) => findJunction(x, y).Controller.northSouthAlign;
+
+    public Tuple<float, float, float, float> reportWaitTimes(int x, int y)
+    {
+        var junction = findJunction(x, y);
+
+        float northTime = junction.Controller.reportTotalWaitTimeInQueue(Direction.NORTH);
+        float eastTime = junction.Controller.reportTotalWaitTimeInQueue(Direction.EAST);
+        float southTime = junction.Controller.reportTotalWaitTimeInQueue(Direction.SOUTH);
+        float westTime = junction.Controller.reportTotalWaitTimeInQueue(Direction.WEST);
+
+        return new Tuple<float, float, float, float>(northTime, eastTime, southTime, westTime);
+    }
 
     private JunctionSwitcher findJunction(int x, int y) =>
         junctions.Single(a => a.XLocus == x && a.YLocus == y);
