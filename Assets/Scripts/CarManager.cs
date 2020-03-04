@@ -58,9 +58,11 @@ public partial class CarManager : MonoBehaviour
                     Cars[jjj].GetComponent<Car>().setNextMovement(0, 0);
     }
 
-    public void addZone(List<GameObject> zones, GameObject zone)
+    public void addZone(GameObject zone)
     {
-        zones.Add(zone);
+        //zones.Add(zone);
+        if (zone.tag == "Spawner") spawners.Add(zone);
+        else despawners.Add(zone);
     }
 
     public void placeZones()
@@ -87,9 +89,9 @@ public partial class CarManager : MonoBehaviour
         for (int x = 0; x < xEnd; ++x)
             if (x % 6 == column) {
                 var zone = Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation));
-                if (zoneTile.tag == "Spawner") addZone(spawners, zone);
+                if (zoneTile.tag == "Spawner") addZone(zone);
                 //spawners.Add(Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation)));
-                else addZone(despawners, zone);
+                else addZone(zone);
                     //despawners.Add(Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation)));
             }
     }
