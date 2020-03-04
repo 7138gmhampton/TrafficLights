@@ -48,12 +48,9 @@ public class Car : MonoBehaviour
 
     private bool isSpaceInFrontClear(Vector2 start, Vector2 end)
     {
-        //Vector2 start = transform.position;
-        //var end = start + new Vector2(deltaX, deltaY);
-
-        var collisions = Physics2D.LinecastAll(start, end, blockingLayer);
         var realCollisions = new List<RaycastHit2D>();
-        foreach (var hit in collisions)
+
+        foreach (var hit in Physics2D.LinecastAll(start, end, blockingLayer))
             if (hit.collider != boxCollider)
                 realCollisions.Add(hit);
 
