@@ -87,29 +87,29 @@ public partial class CarManager : MonoBehaviour
         zoneCreator.placeZones();
     }
 
-    private void placeZonesHorizontal(GameObject zoneTile, int yAxis, int column, int rotation)
-    {
-        for (int x = 0; x < xEnd; ++x)
-            if (x % 6 == column) {
-                var zone = Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation));
-                if (zoneTile.tag == "Spawner") addZone(zone);
-                //spawners.Add(Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation)));
-                else addZone(zone);
-                    //despawners.Add(Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation)));
-            }
-    }
+    //private void placeZonesHorizontal(GameObject zoneTile, int yAxis, int column, int rotation)
+    //{
+    //    for (int x = 0; x < xEnd; ++x)
+    //        if (x % 6 == column) {
+    //            var zone = Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation));
+    //            if (zoneTile.tag == "Spawner") addZone(zone);
+    //            //spawners.Add(Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation)));
+    //            else addZone(zone);
+    //                //despawners.Add(Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation)));
+    //        }
+    //}
 
-    private void placeZonesVertical(GameObject zoneTile, int xAxis, int row, int azimuth)
-    {
-        for (int y = 0; y < yEnd; ++y)
-            if (y % 6 == row) {
-                var locus = new Vector3(xAxis, y, 0f);
-                var rotation = Quaternion.Euler(0, 0, azimuth);
-                if (zoneTile.tag == "Spawner")
-                    spawners.Add(Instantiate(zoneTile, locus, rotation));
-                else despawners.Add(Instantiate(zoneTile, locus, rotation));
-            }
-    }
+    //private void placeZonesVertical(GameObject zoneTile, int xAxis, int row, int azimuth)
+    //{
+    //    for (int y = 0; y < yEnd; ++y)
+    //        if (y % 6 == row) {
+    //            var locus = new Vector3(xAxis, y, 0f);
+    //            var rotation = Quaternion.Euler(0, 0, azimuth);
+    //            if (zoneTile.tag == "Spawner")
+    //                spawners.Add(Instantiate(zoneTile, locus, rotation));
+    //            else despawners.Add(Instantiate(zoneTile, locus, rotation));
+    //        }
+    //}
 
     private void spawnCar()
     {
