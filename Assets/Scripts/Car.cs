@@ -46,25 +46,6 @@ public class Car : MonoBehaviour
         }
     }
 
-    private void AttemptMove(int deltaX, int deltaY)
-    {
-        Vector2 start = transform.position;
-        var end = start + new Vector2(deltaX, deltaY);
-
-        var collisions = Physics2D.LinecastAll(start, end, blockingLayer);
-        var realCollisions = new List<RaycastHit2D>();
-
-        foreach (RaycastHit2D hit in collisions)
-            Debug.Log(hit.collider.tag);
-
-        foreach (var hit in collisions)
-            if (hit.collider != boxCollider)
-                realCollisions.Add(hit);
-
-        if (realCollisions.Count == 0)
-            StartCoroutine(smoothMovement(end));
-    }
-
     public bool checkNextMovement(int deltaX, int deltaY)
     {
         Vector2 start = transform.position;
