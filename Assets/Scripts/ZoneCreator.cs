@@ -44,7 +44,15 @@ public class ZoneCreator : MonoBehaviour
 
     public void placeZones()
     {
-        var deploymentRules = new List<Rule>()
+        var deploymentRules = getRules();
+
+        foreach (var rule in deploymentRules)
+            rule.Method(rule.ZoneTile, rule.Axis, rule.Position, rule.Azimuth);
+    }
+
+    private List<Rule> getRules()
+    {
+        return new List<Rule>()
         {
             new Rule(placeZonesHorizontal, spawner, 0, 2, 0),
             new Rule(placeZonesHorizontal, spawner, yEnd, 3, 180),
@@ -56,9 +64,6 @@ public class ZoneCreator : MonoBehaviour
             new Rule(placeZonesVertical, despawner, 0, 2, 270),
             new Rule(placeZonesVertical, despawner, xEnd, 3, 90)
         };
-
-        foreach (var rule in deploymentRules)
-            rule.Method(rule.ZoneTile, rule.Axis, rule.Position, rule.Azimuth);
     }
 
     private void placeZonesHorizontal(GameObject zoneTile, int yAxis, int column, int rotation)
