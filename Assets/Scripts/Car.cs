@@ -16,6 +16,7 @@ public class Car : MonoBehaviour
     private bool turning;
     private Vector2 nextMovement;
     private float lifetime;
+    private float lastMove;
 
     public bool Moving { get { return moving; } }
     public Vector2 NextMovement { get { return nextMovement; } }
@@ -27,12 +28,17 @@ public class Car : MonoBehaviour
         inverseMoveTime = 1f / moveTime;
         driveDirection = Direction.NONE;
         lifetime = 0f;
+        lastMove = 0f;
     }
 
     private void Update()
     {
         //if (!moving) moveCar();
         lifetime += Time.deltaTime;
+        lastMove += Time.deltaTime;
+        //Debug.Log(lastMove);
+        //if (lastMove > 1)
+        //    Debug.Log(transform.position + " - " + lastMove);
     }
 
     public void moveCar()
@@ -104,6 +110,8 @@ public class Car : MonoBehaviour
 
     public void doMovement()
     {
+        if (nextMovement != (Vector2)transform.position)
+            lastMove = 0f;
         StartCoroutine(smoothMovement(nextMovement));
     }
 
