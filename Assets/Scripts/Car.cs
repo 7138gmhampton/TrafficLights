@@ -67,8 +67,7 @@ public class Car : MonoBehaviour
 
     public void doMovement()
     {
-        if (NextMovement != (Vector2)transform.position)
-            TimeSinceLastMove = 0f;
+        if (NextMovement != (Vector2)transform.position) TimeSinceLastMove = 0f;
         StartCoroutine(smoothMovement(NextMovement));
     }
 
