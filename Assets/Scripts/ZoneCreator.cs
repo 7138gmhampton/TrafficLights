@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public partial class ZoneCreator : MonoBehaviour
+public partial class ZoneCreator
 {
     private readonly GameObject spawner;
     private readonly GameObject despawner;
@@ -46,7 +46,7 @@ public partial class ZoneCreator : MonoBehaviour
     {
         for (int x = 0; x < xEnd; ++x)
             if (x % 6 == column) {
-                manager.addZone(Instantiate(
+                manager.addZone(Object.Instantiate(
                     zoneTile, 
                     new Vector3(x, yAxis, 0f), 
                     Quaternion.Euler(0, 0, rotation)));
@@ -57,7 +57,7 @@ public partial class ZoneCreator : MonoBehaviour
     {
         for (int y = 0; y < yEnd; ++y)
             if (y % 6 == row) {
-                manager.addZone(Instantiate(
+                manager.addZone(Object.Instantiate(
                     zoneTile, 
                     new Vector3(xAxis, y, 0f), 
                     Quaternion.Euler(0, 0, azimuth)));
