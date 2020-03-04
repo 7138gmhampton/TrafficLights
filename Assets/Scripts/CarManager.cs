@@ -47,10 +47,7 @@ public partial class CarManager : MonoBehaviour
             eachCar.GetComponent<Car>().doMovement();
     }
 
-    private bool isMovementOccuring()
-    {
-        return Cars.Any(x => x.GetComponent<Car>().Moving);
-    }
+    private bool isMovementOccuring() => Cars.Any(x => x.GetComponent<Car>().Moving);
 
     private void resolveConflicts()
     {
@@ -120,10 +117,6 @@ public partial class CarManager : MonoBehaviour
         Cars.Remove(car);
     }
 
-    private Vector3 selectRandomSpawner()
-    {
-        var spawnPoint = spawners[Random.Range(0, spawners.Count)];
-
-        return spawnPoint.transform.position;
-    }
+    private Vector3 selectRandomSpawner() => 
+        spawners[Random.Range(0, spawners.Count)].transform.position;
 }
