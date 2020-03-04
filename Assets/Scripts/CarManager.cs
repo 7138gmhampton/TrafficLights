@@ -36,44 +36,14 @@ public partial class CarManager : MonoBehaviour
     void Update()
     {
         spawnCar();
-        //Debug.Log(cars.Count);
-
-        //if (cars.All(x => x.GetComponent<Car>().Moving == false)) {
-        //    //var script = car.GetComponent<Car>();
-        //    foreach (var eachCar in cars)
-        //        //var script = car.GetComponent<Car>();
-        //        eachCar.GetComponent<Car>().moveCar();
-        //    // TODO - Resolve Conflicts
-        //    //foreach (var car in cars)
-        //    //    Debug.Log(car.transform.position + "->" + car.GetComponent<Car>().NextMovement);
-        //    foreach (var eachCar in cars)
-        //        //car.GetComponent<Car>().StartCoroutine(smoothMovement())
-        //        eachCar.GetComponent<Car>().doMovement();
-        //}
-        //foreach (var eachCar in cars)
-        //    Debug.Log(eachCar.transform.position + "->" + eachCar.GetComponent<Car>().NextMovement);
-        //foreach (var eachCar in cars) {
-        //    Debug.Log(eachCar.GetComponent<Car>().Moving);
-        //}
-
-        //foreach (var eachCar in cars) {
-        //    Debug.Log(eachCar.transform.position + "->" + eachCar.GetComponent<Car>().NextMovement);
-        //    eachCar.GetComponent<Car>().moveCar();
-        //    Debug.Log(eachCar.transform.position + "->" + eachCar.GetComponent<Car>().NextMovement);
-        //}
-
-        //Debug.Log(isMovementOccuring());
+        
         if (!isMovementOccuring()) {
             foreach (var eachCar in cars)
                 eachCar.GetComponent<Car>().moveCar();
-            // Resolv conflicts
             resolveConflicts();
             foreach (var eachCar in cars)
                 eachCar.GetComponent<Car>().doMovement();
         }
-
-        foreach (var eachCar in cars)
-            Debug.Log(eachCar.transform.position + "->" + eachCar.GetComponent<Car>().NextMovement);
     }
 
     private bool isMovementOccuring()
@@ -132,14 +102,12 @@ public partial class CarManager : MonoBehaviour
 
     private void spawnCar()
     {
-        //Debug.Log(maxCars);
         if (noOfCars >= maxCars) return;
 
         var spawnPoint = selectRandomSpawner();
         if (Physics2D.OverlapBox(spawnPoint, new Vector2(0.4f, 0.4f), 0).gameObject.tag == "Vehicle")
             return;
 
-        //Instantiate(car, spawnPoint, Quaternion.identity).transform.parent = gameObject.transform;
         var nextCar = Instantiate(car, spawnPoint, Quaternion.identity);
         nextCar.transform.parent = gameObject.transform;
         cars.Add(nextCar);
