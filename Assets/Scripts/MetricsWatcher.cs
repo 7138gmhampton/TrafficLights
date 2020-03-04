@@ -14,16 +14,10 @@ public class MetricsWatcher : MonoBehaviour
     {
         journeyTimes.Enqueue(time);
 
-        while (journeyTimes.Count > queueLength)
-            journeyTimes.Dequeue();
+        while (journeyTimes.Count > queueLength) journeyTimes.Dequeue();
     }
 
-    public float reportJourneyTimeMean()
-    {
-        if (journeyTimes.Count == 0) return 1000f;
-
-        return journeyTimes.Average();
-    }
+    public float reportJourneyTimeMean() => journeyTimes.Count == 0 ? 1000f : journeyTimes.Average();
 
     private Tuple<float,float,float,float>[,] getWaitTimes()
     {
