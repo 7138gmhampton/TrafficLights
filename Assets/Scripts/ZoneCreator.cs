@@ -27,10 +27,10 @@ public class ZoneCreator : MonoBehaviour
         }
     }
 
-    private GameObject spawner;
-    private GameObject despawner;
-    private int xEnd;
-    private int yEnd;
+    private readonly GameObject spawner;
+    private readonly GameObject despawner;
+    private readonly int xEnd;
+    private readonly int yEnd;
     private CarManager manager;
 
     public ZoneCreator(GameObject spawner, GameObject despawner, int xEnd, int yEnd, CarManager manager)
