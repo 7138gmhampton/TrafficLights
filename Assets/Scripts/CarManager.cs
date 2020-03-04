@@ -16,8 +16,6 @@ public partial class CarManager : MonoBehaviour
     private List<GameObject> spawners = new List<GameObject>();
     private List<GameObject> despawners = new List<GameObject>();
     private int maxCars;
-    //private int noOfCars;
-    private List<GameObject> cars = new List<GameObject>();
 
     public int XStart { set { xStart = value; } }
     public int XEnd { set { xEnd = value; } }
@@ -25,7 +23,7 @@ public partial class CarManager : MonoBehaviour
     public int YEnd { set { yEnd = value; } }
     public int MaxCars { set { maxCars = value; } }
     //public int NoOfCars { get { return noOfCars; } set { noOfCars = value; } }
-    public List<GameObject> Cars { get { return cars; } set { cars = value; } }
+    public List<GameObject> Cars { get; set; } = new List<GameObject>();
 
     private void Start()
     {
@@ -38,25 +36,25 @@ public partial class CarManager : MonoBehaviour
         spawnCar();
         
         if (!isMovementOccuring()) {
-            foreach (var eachCar in cars)
+            foreach (var eachCar in Cars)
                 eachCar.GetComponent<Car>().moveCar();
             resolveConflicts();
-            foreach (var eachCar in cars)
+            foreach (var eachCar in Cars)
                 eachCar.GetComponent<Car>().doMovement();
         }
     }
 
     private bool isMovementOccuring()
     {
-        return cars.Any(x => x.GetComponent<Car>().Moving);
+        return Cars.Any(x => x.GetComponent<Car>().Moving);
     }
 
     private void resolveConflicts()
     {
-        for (int iii = 0; iii < cars.Count; ++iii)
-            for (int jjj = iii + 1; jjj < cars.Count; ++jjj)
-                if (cars[jjj].GetComponent<Car>().NextMovement == cars[iii].GetComponent<Car>().NextMovement)
-                    cars[jjj].GetComponent<Car>().setNextMovement(0, 0);
+        for (int iii = 0; iii < Cars.Count; ++iii)
+            for (int jjj = iii + 1; jjj < Cars.Count; ++jjj)
+                if (Cars[jjj].GetComponent<Car>().NextMovement == Cars[iii].GetComponent<Car>().NextMovement)
+                    Cars[jjj].GetComponent<Car>().setNextMovement(0, 0);
     }
 
     public void placeZones()
@@ -102,7 +100,7 @@ public partial class CarManager : MonoBehaviour
 
     private void spawnCar()
     {
-        if (cars.Count >= maxCars) return;
+        if (Cars.Count >= maxCars) return;
 
         var spawnPoint = selectRandomSpawner();
         if (Physics2D.OverlapBox(spawnPoint, new Vector2(0.4f, 0.4f), 0).gameObject.tag == "Vehicle")
@@ -110,13 +108,13 @@ public partial class CarManager : MonoBehaviour
 
         var nextCar = Instantiate(car, spawnPoint, Quaternion.identity);
         nextCar.transform.parent = gameObject.transform;
-        cars.Add(nextCar);
+        Cars.Add(nextCar);
         //++noOfCars;
     }
 
     public void removeCar(GameObject car)
     {
-        cars.Remove(car);
+        Cars.Remove(car);
     }
 
     private Vector3 selectRandomSpawner()
