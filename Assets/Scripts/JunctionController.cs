@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class JunctionController : MonoBehaviour
 {
@@ -109,6 +110,16 @@ public class JunctionController : MonoBehaviour
         //    Debug.Log("> " + transform.position + " - " + car.tag);
 
         return cars.Count;
+    }
+
+    public float reportTotalWaitTimeInQueue(Direction direction)
+    {
+        var controllerPosition = transform.position;
+        var cars = getQueueOfCars(controllerPosition, direction);
+
+        float totalWaitTime = cars.Sum(x => x.gameObject.GetComponent<Car>().TimeSinceLastMove);
+
+        return totalWaitTime;
     }
 
     private List<Collider2D> getQueueOfCars(Vector2 controllerPosition, Direction direction)
