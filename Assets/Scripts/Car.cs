@@ -54,8 +54,7 @@ public class Car : MonoBehaviour
             if (hit.collider != boxCollider)
                 realCollisions.Add(hit);
 
-        if (realCollisions.Count == 0) return true;
-        else return false;
+        return realCollisions.Count == 0 ? true : false;
     }
 
     public void setNextMovement(int deltaX, int deltaY)
