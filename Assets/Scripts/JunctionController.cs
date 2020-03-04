@@ -30,7 +30,7 @@ public class JunctionController : MonoBehaviour
         northControl = northLight.GetComponent<TrafficLight>();
         southControl = southLight.GetComponent<TrafficLight>();
 
-        goGreenNorthSouth(true);
+        setGreenAlignment(true);
     }
 
     private void createTrafficLights()
@@ -51,7 +51,7 @@ public class JunctionController : MonoBehaviour
         return light;
     }
 
-    public void goGreenNorthSouth(bool northSouth)
+    public void setGreenAlignment(bool northSouth)
     {
         northSouthAlign = northSouth;
 
