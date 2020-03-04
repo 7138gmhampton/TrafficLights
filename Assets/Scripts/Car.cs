@@ -46,7 +46,7 @@ public class Car : MonoBehaviour
         }
     }
 
-    private bool checkNextMovement(Vector2 start, Vector2 end)
+    private bool isSpaceInFrontClear(Vector2 start, Vector2 end)
     {
         //Vector2 start = transform.position;
         //var end = start + new Vector2(deltaX, deltaY);
@@ -66,7 +66,7 @@ public class Car : MonoBehaviour
         Vector2 start = transform.position;
         var end = start + new Vector2(deltaX, deltaY);
 
-        if (checkNextMovement(start, end)) {
+        if (isSpaceInFrontClear(start, end)) {
             NextMovement = end;
         }
         else NextMovement = start;
