@@ -67,21 +67,24 @@ public partial class CarManager : MonoBehaviour
 
     public void placeZones()
     {
-        var deploymentRules = new List<Rule>()
-        {
-            new Rule(placeZonesHorizontal, spawner, 0, 2, 0),
-            new Rule(placeZonesHorizontal, spawner, yEnd, 3, 180),
-            new Rule(placeZonesVertical, spawner, 0, 3, 270),
-            new Rule(placeZonesVertical, spawner, xEnd, 2, 90),
+        //var deploymentRules = new List<Rule>()
+        //{
+        //    new Rule(placeZonesHorizontal, spawner, 0, 2, 0),
+        //    new Rule(placeZonesHorizontal, spawner, yEnd, 3, 180),
+        //    new Rule(placeZonesVertical, spawner, 0, 3, 270),
+        //    new Rule(placeZonesVertical, spawner, xEnd, 2, 90),
 
-            new Rule(placeZonesHorizontal, despawner, 0, 3, 0),
-            new Rule(placeZonesHorizontal, despawner, yEnd, 2, 180),
-            new Rule(placeZonesVertical, despawner, 0, 2, 270),
-            new Rule(placeZonesVertical, despawner, xEnd, 3, 90)
-        };
+        //    new Rule(placeZonesHorizontal, despawner, 0, 3, 0),
+        //    new Rule(placeZonesHorizontal, despawner, yEnd, 2, 180),
+        //    new Rule(placeZonesVertical, despawner, 0, 2, 270),
+        //    new Rule(placeZonesVertical, despawner, xEnd, 3, 90)
+        //};
 
-        foreach (var rule in deploymentRules)
-            rule.Method(rule.ZoneTile, rule.Axis, rule.Position, rule.Azimuth);
+        //foreach (var rule in deploymentRules)
+        //    rule.Method(rule.ZoneTile, rule.Axis, rule.Position, rule.Azimuth);
+        var zoneCreator = new ZoneCreator(spawner, despawner, xEnd, yEnd, this);
+
+        zoneCreator.placeZones();
     }
 
     private void placeZonesHorizontal(GameObject zoneTile, int yAxis, int column, int rotation)
