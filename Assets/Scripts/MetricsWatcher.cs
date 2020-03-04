@@ -23,7 +23,6 @@ public class MetricsWatcher : MonoBehaviour
     {
         int width = lightsController.reportHighestX() + 1;
         int height = lightsController.reportHighestY() + 1;
-
         var waitTimes = new Tuple<float, float, float, float>[height, width];
 
         for (int y = 0; y < height; ++y)
