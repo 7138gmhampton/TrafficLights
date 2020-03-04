@@ -62,10 +62,7 @@ public class Car : MonoBehaviour
         Vector2 start = transform.position;
         var end = start + new Vector2(deltaX, deltaY);
 
-        if (isSpaceInFrontClear(start, end)) {
-            NextMovement = end;
-        }
-        else NextMovement = start;
+        NextMovement = isSpaceInFrontClear(start, end) ? end : start;
     }
 
     public void doMovement()
