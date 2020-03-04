@@ -107,6 +107,7 @@ public partial class CarManager : MonoBehaviour
 
         var nextCar = Instantiate(car, spawnPoint, Quaternion.identity);
         nextCar.transform.parent = gameObject.transform;
+
         Cars.Add(nextCar);
     }
 
