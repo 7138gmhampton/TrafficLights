@@ -16,7 +16,7 @@ public class MetricsWatcher : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(reportJourneyTimeMean());
+        //Debug.Log(reportJourneyTimeMean());
     }
 
     public void addJourneyTime(float time)
