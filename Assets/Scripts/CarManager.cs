@@ -37,6 +37,8 @@ public partial class CarManager : MonoBehaviour
         if (!isMovementOccuring()) moveCars();
     }
 
+
+
     private void moveCars()
     {
         foreach (var eachCar in Cars)
@@ -54,6 +56,11 @@ public partial class CarManager : MonoBehaviour
             for (int jjj = iii + 1; jjj < Cars.Count; ++jjj)
                 if (Cars[jjj].GetComponent<Car>().NextMovement == Cars[iii].GetComponent<Car>().NextMovement)
                     Cars[jjj].GetComponent<Car>().setNextMovement(0, 0);
+    }
+
+    public void addZone(List<GameObject> zones, GameObject zone)
+    {
+        zones.Add(zone);
     }
 
     public void placeZones()
@@ -79,9 +86,11 @@ public partial class CarManager : MonoBehaviour
     {
         for (int x = 0; x < xEnd; ++x)
             if (x % 6 == column) {
-                if (zoneTile.tag == "Spawner")
-                    spawners.Add(Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation)));
-                else despawners.Add(Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation)));
+                var zone = Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation));
+                if (zoneTile.tag == "Spawner") addZone(spawners, zone);
+                //spawners.Add(Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation)));
+                else addZone(despawners, zone);
+                    //despawners.Add(Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation)));
             }
     }
 
