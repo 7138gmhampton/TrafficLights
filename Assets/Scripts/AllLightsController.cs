@@ -19,7 +19,7 @@ public class AllLightsController : MonoBehaviour
     private void Update()
     {
         //Debug.Log(junctions[0].Controller.countQueue(Direction.WEST));
-        Debug.Log(junctions[0].Controller.reportTotalWaitTimeInQueue(Direction.WEST));
+        //Debug.Log(junctions[0].Controller.reportTotalWaitTimeInQueue(Direction.WEST));
     }
 
     private void Start() => setupJunctionControllers();
