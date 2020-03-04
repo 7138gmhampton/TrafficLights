@@ -30,7 +30,7 @@ public partial class CarManager : MonoBehaviour
         yStart = 0;
     }
 
-    void Update()
+    private void Update()
     {
         spawnCar();
         
