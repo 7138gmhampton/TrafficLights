@@ -66,10 +66,6 @@ public class ZoneCreator : MonoBehaviour
         for (int x = 0; x < xEnd; ++x)
             if (x % 6 == column) {
                 var zone = Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation));
-                //if (zoneTile.tag == "Spawner") manager.addZone(spawners, zone);
-                //spawners.Add(Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation)));
-                //else manager.addZone(despawners, zone);
-                //despawners.Add(Instantiate(zoneTile, new Vector3(x, yAxis, 0f), Quaternion.Euler(0, 0, rotation)));
                 manager.addZone(zone);
             }
     }
@@ -82,9 +78,6 @@ public class ZoneCreator : MonoBehaviour
                 var rotation = Quaternion.Euler(0, 0, azimuth);
                 var zone = Instantiate(zoneTile, locus, rotation);
                 manager.addZone(zone);
-                //if (zoneTile.tag == "Spawner") manager.addZone()
-                    //spawners.Add(Instantiate(zoneTile, locus, rotation));
-                //else despawners.Add(Instantiate(zoneTile, locus, rotation));
             }
     }
 }
