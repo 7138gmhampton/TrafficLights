@@ -67,6 +67,7 @@ public partial class CarManager : MonoBehaviour
             foreach (var eachCar in cars)
                 eachCar.GetComponent<Car>().moveCar();
             // Resolv conflicts
+            resolveConflicts();
             foreach (var eachCar in cars)
                 eachCar.GetComponent<Car>().doMovement();
         }
@@ -78,6 +79,14 @@ public partial class CarManager : MonoBehaviour
     private bool isMovementOccuring()
     {
         return cars.Any(x => x.GetComponent<Car>().Moving);
+    }
+
+    private void resolveConflicts()
+    {
+        for (int iii = 0; iii < cars.Count; ++iii)
+            for (int jjj = iii + 1; jjj < cars.Count; ++jjj)
+                if (cars[jjj].GetComponent<Car>().NextMovement == cars[iii].GetComponent<Car>().NextMovement)
+                    cars[jjj].GetComponent<Car>().setNextMovement(0, 0);
     }
 
     public void placeZones()
