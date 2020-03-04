@@ -111,10 +111,7 @@ public partial class CarManager : MonoBehaviour
         Cars.Add(nextCar);
     }
 
-    public void removeCar(GameObject car)
-    {
-        Cars.Remove(car);
-    }
+    public void removeCar(GameObject car) => Cars.Remove(car);
 
     private Vector3 selectRandomSpawner() => 
         spawners[Random.Range(0, spawners.Count)].transform.position;
