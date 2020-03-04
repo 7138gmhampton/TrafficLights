@@ -34,24 +34,12 @@ public class Car : MonoBehaviour
 
     private void Update()
     {
-        //if (!moving) moveCar();
         lifetime += Time.deltaTime;
         lastMove += Time.deltaTime;
-        //Debug.Log(lastMove);
-        //if (lastMove > 1)
-        //    Debug.Log(transform.position + " - " + lastMove);
     }
 
     public void moveCar()
     {
-        //switch (driveDirection) {
-        //    case Direction.NORTH: AttemptMove(0, 1); break;
-        //    case Direction.EAST: AttemptMove(1, 0); break;
-        //    case Direction.SOUTH: AttemptMove(0, -1); break;
-        //    case Direction.WEST: AttemptMove(-1, 0); break;
-        //    case Direction.NONE: break;
-        //}
-
         switch (driveDirection) {
             case Direction.EAST: setNextMovement(1, 0); break;
             case Direction.NORTH: setNextMovement(0, 1); break;
@@ -100,13 +88,10 @@ public class Car : MonoBehaviour
         Vector2 start = transform.position;
         var end = start + new Vector2(deltaX, deltaY);
 
-        //return end;
         if (checkNextMovement(deltaX, deltaY)) {
             nextMovement = end;
-            //moving = true;
         }
         else nextMovement = start;
-        //Debug.Log(transform.position + " -> " + nextMovement + " going " + driveDirection);
     }
 
     public void doMovement()
@@ -154,9 +139,7 @@ public class Car : MonoBehaviour
 
     private void despawn()
     {
-        //--transform.parent.gameObject.GetComponent<CarManager>().NoOfCars;
         transform.parent.gameObject.GetComponent<CarManager>().removeCar(gameObject);
-        //Debug.Log(lifetime);
         var watchers = GameObject.FindGameObjectsWithTag("Metrics");
         foreach (var watcher in watchers)
             watcher.SendMessage("addJourneyTime", lifetime);
