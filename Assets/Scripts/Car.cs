@@ -20,6 +20,7 @@ public class Car : MonoBehaviour
 
     public bool Moving { get { return moving; } }
     public Vector2 NextMovement { get { return nextMovement; } }
+    public float TimeSinceLastMove { get { return lastMove; } }
 
     private void Start()
     {
