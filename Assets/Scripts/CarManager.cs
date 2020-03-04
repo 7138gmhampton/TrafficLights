@@ -35,13 +35,16 @@ public partial class CarManager : MonoBehaviour
     {
         spawnCar();
         
-        if (!isMovementOccuring()) {
-            foreach (var eachCar in Cars)
-                eachCar.GetComponent<Car>().moveCar();
-            resolveConflicts();
-            foreach (var eachCar in Cars)
-                eachCar.GetComponent<Car>().doMovement();
-        }
+        if (!isMovementOccuring()) moveCars();
+    }
+
+    private void moveCars()
+    {
+        foreach (var eachCar in Cars)
+            eachCar.GetComponent<Car>().moveCar();
+        resolveConflicts();
+        foreach (var eachCar in Cars)
+            eachCar.GetComponent<Car>().doMovement();
     }
 
     private bool isMovementOccuring()
