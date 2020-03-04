@@ -12,15 +12,12 @@ public class Car : MonoBehaviour
     private float inverseMoveTime;
     private Direction driveDirection;
     private Direction turnDirection;
-    private bool moving = false;
     private bool turning;
-    private Vector2 nextMovement;
     private float lifetime;
-    private float lastMove;
 
-    public bool Moving { get { return moving; } }
-    public Vector2 NextMovement { get { return nextMovement; } }
-    public float TimeSinceLastMove { get { return lastMove; } }
+    public bool Moving { get; private set; } = false;
+    public Vector2 NextMovement { get; private set; }
+    public float TimeSinceLastMove { get; private set; }
 
     private void Start()
     {
@@ -29,13 +26,13 @@ public class Car : MonoBehaviour
         inverseMoveTime = 1f / moveTime;
         driveDirection = Direction.NONE;
         lifetime = 0f;
-        lastMove = 0f;
+        TimeSinceLastMove = 0f;
     }
 
     private void Update()
     {
         lifetime += Time.deltaTime;
-        lastMove += Time.deltaTime;
+        TimeSinceLastMove += Time.deltaTime;
     }
 
     public void moveCar()
@@ -89,16 +86,16 @@ public class Car : MonoBehaviour
         var end = start + new Vector2(deltaX, deltaY);
 
         if (checkNextMovement(deltaX, deltaY)) {
-            nextMovement = end;
+            NextMovement = end;
         }
-        else nextMovement = start;
+        else NextMovement = start;
     }
 
     public void doMovement()
     {
-        if (nextMovement != (Vector2)transform.position)
-            lastMove = 0f;
-        StartCoroutine(smoothMovement(nextMovement));
+        if (NextMovement != (Vector2)transform.position)
+            TimeSinceLastMove = 0f;
+        StartCoroutine(smoothMovement(NextMovement));
     }
 
     private IEnumerator smoothMovement(Vector3 end)
@@ -106,7 +103,7 @@ public class Car : MonoBehaviour
         float sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 
         while (sqrRemainingDistance > float.Epsilon) {
-            moving = true;
+            Moving = true;
             carRigidbody.MovePosition(Vector3.MoveTowards(carRigidbody.position, end,
                 inverseMoveTime * Time.deltaTime));
             sqrRemainingDistance = (transform.position - end).sqrMagnitude;
@@ -114,7 +111,7 @@ public class Car : MonoBehaviour
             yield return null;
         }
 
-        moving = false;
+        Moving = false;
     }
 
     private Direction pickAnotherDirection(Direction previousDirection)
