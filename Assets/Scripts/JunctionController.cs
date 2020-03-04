@@ -87,8 +87,7 @@ public class JunctionController : MonoBehaviour
         var colliders = Physics2D.OverlapAreaAll(controllerPosition + offsetA,
                     controllerPosition + offsetB, blockingLayer);
 
-        List<Collider2D> cars = new List<Collider2D>();
-
+        var cars = new List<Collider2D>();
         foreach (var collider in colliders)
             if (collider.tag == "Vehicle")
                 cars.Add(collider);
