@@ -6,13 +6,14 @@ using MLAgents;
 public class DispatcherAgent : Agent
 {
     public AllLightsController lightsController;
+    public CarManager carManager;
     public MetricsWatcher watcher;
     public TextMesh rewardDisplay;
     public TextMesh timeDisplay;
 
     private float lastMeanJourneyTime = 1000f;
 
-    public override void InitializeAgent() => base.InitializeAgent();
+    //public override void InitializeAgent() => base.InitializeAgent();
 
     public override void AgentAction(float[] vectorAction)
     {
@@ -69,6 +70,14 @@ public class DispatcherAgent : Agent
         }
 
         return alignments.ToArray();
+    }
+
+    public override void AgentReset()
+    {
+        //base.AgentReset();
+        Debug.Log("Reset Agent");
+        carManager.resetCars();
+        watcher.resetMetrics();
     }
 
     private void unacceptableWait()
