@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using MLAgents;
 
@@ -13,11 +12,8 @@ public class DispatcherAgent : Agent
 
     private float lastMeanJourneyTime = 1000f;
 
-    //public override void InitializeAgent() => base.InitializeAgent();
-
     public override void AgentAction(float[] vectorAction)
     {
-        //base.AgentAction(vectorAction);
         for (int iii = 0; iii < vectorAction.Length; iii++) {
             if ((int)vectorAction[iii] == 1)
                 lightsController.junctions[iii].Controller.setGreenAlignment(true);
@@ -30,10 +26,7 @@ public class DispatcherAgent : Agent
 
     public override void CollectObservations()
     {
-        //base.CollectObservations();
         float currentMeanJourneyTime = watcher.reportJourneyTimeMean();
-        //if (currentMeanJourneyTime < lastMeanJourneyTime) AddReward(1f);
-        //else if (currentMeanJourneyTime > lastMeanJourneyTime) AddReward(-1f);
         lastMeanJourneyTime = currentMeanJourneyTime;
 
         AddVectorObs(currentMeanJourneyTime);
@@ -53,7 +46,6 @@ public class DispatcherAgent : Agent
 
     public override float[] Heuristic()
     {
-        //return base.Heuristic();
         var alignments = new List<float>();
 
         foreach (var junction in lightsController.junctions) {
@@ -74,7 +66,6 @@ public class DispatcherAgent : Agent
 
     public override void AgentReset()
     {
-        //base.AgentReset();
         Debug.Log("Reset Agent");
         carManager.resetCars();
         watcher.resetMetrics();
