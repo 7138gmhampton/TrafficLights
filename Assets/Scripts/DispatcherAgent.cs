@@ -7,6 +7,8 @@ public class DispatcherAgent : Agent
 {
     public AllLightsController lightsController;
     public MetricsWatcher watcher;
+    public TextMesh rewardDisplay;
+    public TextMesh timeDisplay;
 
     private float lastMeanJourneyTime = 1000f;
 
@@ -20,6 +22,9 @@ public class DispatcherAgent : Agent
                 lightsController.junctions[iii].Controller.setGreenAlignment(true);
             else lightsController.junctions[iii].Controller.setGreenAlignment(false);
         }
+
+        rewardDisplay.text = this.GetCumulativeReward().ToString("0.00");
+        timeDisplay.text = watcher.reportJourneyTimeMean().ToString("0.00s");
     }
 
     public override void CollectObservations()
@@ -27,7 +32,7 @@ public class DispatcherAgent : Agent
         //base.CollectObservations();
         float currentMeanJourneyTime = watcher.reportJourneyTimeMean();
         if (currentMeanJourneyTime < lastMeanJourneyTime) AddReward(1f);
-        else AddReward(-1f);
+        else if (currentMeanJourneyTime > lastMeanJourneyTime) AddReward(-1f);
         lastMeanJourneyTime = currentMeanJourneyTime;
 
         AddVectorObs(currentMeanJourneyTime);
