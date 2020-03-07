@@ -31,8 +31,8 @@ public class DispatcherAgent : Agent
     {
         //base.CollectObservations();
         float currentMeanJourneyTime = watcher.reportJourneyTimeMean();
-        if (currentMeanJourneyTime < lastMeanJourneyTime) AddReward(1f);
-        else if (currentMeanJourneyTime > lastMeanJourneyTime) AddReward(-1f);
+        //if (currentMeanJourneyTime < lastMeanJourneyTime) AddReward(1f);
+        //else if (currentMeanJourneyTime > lastMeanJourneyTime) AddReward(-1f);
         lastMeanJourneyTime = currentMeanJourneyTime;
 
         AddVectorObs(currentMeanJourneyTime);
@@ -78,6 +78,6 @@ public class DispatcherAgent : Agent
 
     private void finishCar()
     {
-        AddReward(0.1f);
+        AddReward(1f);
     }
 }
