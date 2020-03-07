@@ -31,4 +31,6 @@ public class MetricsWatcher : MonoBehaviour
 
         return waitTimes;
     }
+
+    public void resetMetrics() => journeyTimes.Clear();
 }
