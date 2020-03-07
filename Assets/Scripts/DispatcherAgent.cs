@@ -16,7 +16,7 @@ public class DispatcherAgent : Agent
     {
         //base.AgentAction(vectorAction);
         for (int iii = 0; iii < vectorAction.Length; iii++) {
-            if (vectorAction[iii] > 0.5f)
+            if ((int)vectorAction[iii] == 1)
                 lightsController.junctions[iii].Controller.setGreenAlignment(true);
             else lightsController.junctions[iii].Controller.setGreenAlignment(false);
         }
@@ -43,5 +43,26 @@ public class DispatcherAgent : Agent
                 AddVectorObs(waitTimes[y, x].Item4);
             }
 
+    }
+
+    public override float[] Heuristic()
+    {
+        //return base.Heuristic();
+        var alignments = new List<float>();
+
+        foreach (var junction in lightsController.junctions) {
+            if (junction.Controller.northSouthAlign)
+                alignments.Add(1f);
+            else alignments.Add(2f);
+        }
+
+        switch (Input.inputString) {
+            case "0": alignments[0] = alignments[0] == 1f ? 2f : 1f; break;
+            case "1": alignments[1] = alignments[1] == 1f ? 2f : 1f; break;
+            case "2": alignments[2] = alignments[2] == 1f ? 2f : 1f; break;
+            case "3": alignments[3] = alignments[3] == 1f ? 2f : 1f; break;
+        }
+
+        return alignments.ToArray();
     }
 }
