@@ -15,12 +15,14 @@ public class DispatcherAgent : Agent
     public override void AgentAction(float[] vectorAction)
     {
         for (int iii = 0; iii < vectorAction.Length; iii++) {
-            if ((int)vectorAction[iii] == 1)
-                lightsController.junctions[iii].Controller.setGreenAlignment(true);
-            else lightsController.junctions[iii].Controller.setGreenAlignment(false);
+            bool northSouth = (int)vectorAction[iii] == 1;
+            //if ((int)vectorAction[iii] == 1)
+            //    lightsController.junctions[iii].Controller.setGreenAlignment(true);
+            //else lightsController.junctions[iii].Controller.setGreenAlignment(false);
+            lightsController.junctions[iii].Controller.setGreenAlignment(northSouth);
         }
 
-        rewardDisplay.text = this.GetCumulativeReward().ToString("0.00");
+        rewardDisplay.text = GetCumulativeReward().ToString("0.00");
         timeDisplay.text = watcher.reportJourneyTimeMean().ToString("0.00s");
     }
 
