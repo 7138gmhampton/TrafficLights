@@ -6,6 +6,9 @@ using MLAgents;
 public class DispatcherAgent : Agent
 {
     public AllLightsController lightsController;
+    public MetricsWatcher watcher;
+
+    private float lastMeanJourneyTime = 1000f;
 
     public override void InitializeAgent() => base.InitializeAgent();
 
@@ -19,5 +22,26 @@ public class DispatcherAgent : Agent
         }
     }
 
-    public override void CollectObservations() => base.CollectObservations();
+    public override void CollectObservations()
+    {
+        //base.CollectObservations();
+        float currentMeanJourneyTime = watcher.reportJourneyTimeMean();
+        if (currentMeanJourneyTime < lastMeanJourneyTime) AddReward(1f);
+        else AddReward(-1f);
+        lastMeanJourneyTime = currentMeanJourneyTime;
+
+        AddVectorObs(currentMeanJourneyTime);
+
+        var waitTimes = watcher.getWaitTimes();
+        var queueTimes = new List<float>();
+        
+        for (int y = 0; y < waitTimes.GetLength(0); ++y)
+            for (int x = 0; x < waitTimes.GetLength(1); ++x) {
+                AddVectorObs(waitTimes[y, x].Item1);
+                AddVectorObs(waitTimes[y, x].Item2);
+                AddVectorObs(waitTimes[y, x].Item3);
+                AddVectorObs(waitTimes[y, x].Item4);
+            }
+
+    }
 }
