@@ -15,9 +15,6 @@ public class DispatcherAgent : Agent
     public override void AgentAction(float[] vectorAction)
     {
         for (int iii = 0; iii < vectorAction.Length; iii++) 
-            //if ((int)vectorAction[iii] == 1)
-            //    lightsController.junctions[iii].Controller.setGreenAlignment(true);
-            //else lightsController.junctions[iii].Controller.setGreenAlignment(false);
             lightsController.junctions[iii].Controller.setGreenAlignment((int)vectorAction[iii] == 1);
 
         rewardDisplay.text = GetCumulativeReward().ToString("0.00");
@@ -32,7 +29,6 @@ public class DispatcherAgent : Agent
         AddVectorObs(currentMeanJourneyTime);
 
         var waitTimes = watcher.getWaitTimes();
-        //var queueTimes = new List<float>();
         
         for (int y = 0; y < waitTimes.GetLength(0); ++y)
             for (int x = 0; x < waitTimes.GetLength(1); ++x) {
