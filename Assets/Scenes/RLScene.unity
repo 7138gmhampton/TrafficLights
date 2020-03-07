@@ -875,5 +875,15 @@ PrefabInstance:
       propertyPath: rewardDisplay
       value: 
       objectReference: {fileID: 1301546697}
+    - target: {fileID: 3359172800800697681, guid: 84270be01c8095f42abf5d1eb2d6ae08,
+        type: 3}
+      propertyPath: timeDisplay
+      value: 
+      objectReference: {fileID: 1000876504}
+    - target: {fileID: 3359172800800697681, guid: 84270be01c8095f42abf5d1eb2d6ae08,
+        type: 3}
+      propertyPath: agentParameters.maxStep
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84270be01c8095f42abf5d1eb2d6ae08, type: 3}
