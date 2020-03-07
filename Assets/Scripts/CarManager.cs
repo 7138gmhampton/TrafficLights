@@ -36,6 +36,14 @@ public partial class CarManager : MonoBehaviour
         if (!isMovementOccuring()) moveCars();
     }
 
+    public void resetCars()
+    {
+        foreach (var car in Cars) {
+            removeCar(car);
+            Destroy(car);
+        }
+    }
+
     private void moveCars()
     {
         foreach (var eachCar in Cars) eachCar.GetComponent<Car>().moveCar();
