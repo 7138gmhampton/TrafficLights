@@ -70,4 +70,14 @@ public class DispatcherAgent : Agent
 
         return alignments.ToArray();
     }
+
+    private void unacceptableWait()
+    {
+        AddReward(-1f);
+    }
+
+    private void finishCar()
+    {
+        AddReward(0.1f);
+    }
 }
