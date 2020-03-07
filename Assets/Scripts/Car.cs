@@ -6,6 +6,7 @@ public class Car : MonoBehaviour
 {
     public float moveTime;
     public LayerMask blockingLayer;
+    //private float unacceptableWaitTime;
 
     private Rigidbody2D carRigidbody;
     private BoxCollider2D boxCollider;
@@ -18,6 +19,7 @@ public class Car : MonoBehaviour
     public bool Moving { get; private set; } = false;
     public Vector2 NextMovement { get; private set; }
     public float TimeSinceLastMove { get; private set; }
+    public float UnacceptableWaitTime { get; set; }
 
     private void Start()
     {
@@ -33,6 +35,11 @@ public class Car : MonoBehaviour
     {
         lifetime += Time.deltaTime;
         TimeSinceLastMove += Time.deltaTime;
+
+        if (TimeSinceLastMove > UnacceptableWaitTime) {
+            FindObjectOfType<DispatcherAgent>().SendMessage("unacceptableWait");
+            TimeSinceLastMove = 0f;
+        }
     }
 
     public void moveCar()
@@ -112,6 +119,7 @@ public class Car : MonoBehaviour
         transform.parent.gameObject.GetComponent<CarManager>().removeCar(gameObject);
         foreach (var watcher in GameObject.FindGameObjectsWithTag("Metrics"))
             watcher.SendMessage("addJourneyTime", lifetime);
+        FindObjectOfType<DispatcherAgent>().SendMessage("finishCar");
 
         Destroy(gameObject);
     }
