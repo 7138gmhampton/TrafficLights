@@ -8,6 +8,7 @@ public partial class CarManager : MonoBehaviour
     public GameObject car;
     public GameObject spawner;
     public GameObject despawner;
+    public float unacceptableWaitTime;
 
     private int xStart;
     private int xEnd;
@@ -89,6 +90,7 @@ public partial class CarManager : MonoBehaviour
 
         var nextCar = Instantiate(car, spawnPoint, Quaternion.identity);
         nextCar.transform.parent = gameObject.transform;
+        nextCar.GetComponent<Car>().UnacceptableWaitTime = unacceptableWaitTime;
 
         Cars.Add(nextCar);
     }
