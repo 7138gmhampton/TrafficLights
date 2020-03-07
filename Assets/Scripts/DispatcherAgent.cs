@@ -32,7 +32,7 @@ public class DispatcherAgent : Agent
         AddVectorObs(currentMeanJourneyTime);
 
         var waitTimes = watcher.getWaitTimes();
-        var queueTimes = new List<float>();
+        //var queueTimes = new List<float>();
         
         for (int y = 0; y < waitTimes.GetLength(0); ++y)
             for (int x = 0; x < waitTimes.GetLength(1); ++x) {
