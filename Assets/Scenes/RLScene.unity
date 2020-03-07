@@ -343,6 +343,7 @@ MonoBehaviour:
   environment: {fileID: 472109251}
   carManager: {fileID: 1560073351}
   metricsWatcher: {fileID: 344014885}
+  lightsController: {fileID: 855895646}
 --- !u!1001 &855895645
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class AllLightsController : MonoBehaviour
         else if (instance != this) Destroy(gameObject);
     }
 
-    private void Start() => setupJunctionControllers();
+    //private void Start() => setupJunctionControllers();
 
     public void switchNS(int x, int y) => findJunction(x, y).Controller.setGreenAlignment(true);
 
@@ -43,7 +43,7 @@ public class AllLightsController : MonoBehaviour
     private JunctionSwitcher findJunction(int x, int y) =>
         junctions.Single(a => a.XLocus == x && a.YLocus == y);
 
-    private void setupJunctionControllers()
+    public void setupJunctionControllers()
     {
         foreach (var junction in environmentManager.junctions)
             junctions.Add(createJunction(junction.transform.position));
