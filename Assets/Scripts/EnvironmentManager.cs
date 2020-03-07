@@ -16,6 +16,7 @@ public class EnvironmentManager : MonoBehaviour
     public GameObject junctionTile;
     public CarManager carManager;
     public float saturation;
+    public bool selfInitialised;
 
     private int[,] environment;
     [HideInInspector] public List<GameObject> junctions = new List<GameObject>();
@@ -23,13 +24,23 @@ public class EnvironmentManager : MonoBehaviour
 
     private void Awake()
     {
+        if (selfInitialised) setupEnvironment();
+    }
+
+    private void Start()
+    {
+        if (selfInitialised) prepareCarManager();
+    }
+
+    public void setupEnvironment()
+    {
         initialiseEnviroment();
         drawAllRoads();
 
         layTiles();
     }
 
-    private void Start()
+    public void prepareCarManager()
     {
         carManager.XEnd = xSize - 1;
         carManager.YEnd = ySize - 1;

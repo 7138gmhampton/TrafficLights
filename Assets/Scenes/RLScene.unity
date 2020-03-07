@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b193cfe3a7c7f8347a495de2056f0530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  environment: {fileID: 472109251}
   carManager: {fileID: 1560073351}
   metricsWatcher: {fileID: 344014885}
 --- !u!1001 &855895645
