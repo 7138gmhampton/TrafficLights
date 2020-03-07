@@ -41,7 +41,6 @@ public class DispatcherAgent : Agent
                 AddVectorObs(waitTimes[y, x].Item3);
                 AddVectorObs(waitTimes[y, x].Item4);
             }
-
     }
 
     public override float[] Heuristic()
@@ -71,13 +70,7 @@ public class DispatcherAgent : Agent
         watcher.resetMetrics();
     }
 
-    private void unacceptableWait()
-    {
-        AddReward(-1f);
-    }
+    private void unacceptableWait() => AddReward(-1f);
 
-    private void finishCar()
-    {
-        AddReward(1f);
-    }
+    private void finishCar() => AddReward(1f);
 }
