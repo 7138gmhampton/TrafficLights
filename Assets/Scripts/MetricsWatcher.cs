@@ -19,7 +19,7 @@ public class MetricsWatcher : MonoBehaviour
 
     public float reportJourneyTimeMean() => journeyTimes.Count == 0 ? 1000f : journeyTimes.Average();
 
-    private Tuple<float,float,float,float>[,] getWaitTimes()
+    public Tuple<float,float,float,float>[,] getWaitTimes()
     {
         int width = lightsController.reportHighestX() + 1;
         int height = lightsController.reportHighestY() + 1;
