@@ -15,6 +15,7 @@ public class Car : MonoBehaviour
     private Direction turnDirection;
     private bool turning;
     private float lifetime;
+    private float reportTime;
 
     public bool Moving { get; private set; } = false;
     public Vector2 NextMovement { get; private set; }
@@ -29,16 +30,18 @@ public class Car : MonoBehaviour
         driveDirection = Direction.NONE;
         lifetime = 0f;
         TimeSinceLastMove = 0f;
+        reportTime = 0f;
     }
 
     private void Update()
     {
         lifetime += Time.deltaTime;
         TimeSinceLastMove += Time.deltaTime;
+        reportTime += Time.deltaTime;
 
-        if (TimeSinceLastMove > UnacceptableWaitTime) {
+        if (reportTime > UnacceptableWaitTime) {
             FindObjectOfType<DispatcherAgent>().SendMessage("unacceptableWait");
-            TimeSinceLastMove = 0f;
+            reportTime = 0f;
         }
     }
 
@@ -74,7 +77,10 @@ public class Car : MonoBehaviour
 
     public void doMovement()
     {
-        if (NextMovement != (Vector2)transform.position) TimeSinceLastMove = 0f;
+        if (NextMovement != (Vector2)transform.position) {
+            TimeSinceLastMove = 0f;
+            reportTime = 0f;
+        }
         StartCoroutine(smoothMovement(NextMovement));
     }
 
