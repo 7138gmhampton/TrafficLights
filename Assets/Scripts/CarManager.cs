@@ -17,7 +17,6 @@ public partial class CarManager : MonoBehaviour
     private List<GameObject> spawners = new List<GameObject>();
     private List<GameObject> despawners = new List<GameObject>();
     private int maxCars;
-    //private float timer = 0f;
 
     public int XStart { set { xStart = value; } }
     public int XEnd { set { xEnd = value; } }
@@ -34,22 +33,14 @@ public partial class CarManager : MonoBehaviour
 
     private void Update()
     {
-        //timer += Time.deltaTime;
-
         spawnCar();
         if (!isMovementOccuring()) moveCars();
-
-        //if (timer > 10f) {
-        //    resetCars();
-        //    timer = 0f;
-        //}
     }
 
     public void resetCars()
     {
         for (int iii = 0; iii < Cars.Count; iii++) {
             var car = Cars[iii];
-            //removeCar(car);
             Destroy(car);
         }
 
