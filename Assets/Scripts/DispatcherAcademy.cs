@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using MLAgents;
+﻿using MLAgents;
 
 public class DispatcherAcademy : Academy
 {
@@ -12,16 +9,8 @@ public class DispatcherAcademy : Academy
 
     public override void InitializeAcademy()
     {
-        //base.InitializeAcademy();
         environment.setupEnvironment();
         lightsController.setupJunctionControllers();
         environment.prepareCarManager();
     }
-
-    //public override void AcademyReset()
-    //{
-    //    //base.AcademyReset();
-    //    //carManager.resetCars();
-    //    //metricsWatcher.resetMetrics();
-    //}
 }
