@@ -71,8 +71,7 @@ public class DispatcherAgent : Agent
     private void finishCar()
     {
         AddReward(0.1f);
-        ++carsPassed;
 
-        if (carsPassed > carsPerEpisode) Done();
+        if (++carsPassed > carsPerEpisode) Done();
     }
 }
