@@ -9,8 +9,10 @@ public class DispatcherAgent : Agent
     public MetricsWatcher watcher;
     public TextMesh rewardDisplay;
     public TextMesh timeDisplay;
+    public int carsPerEpisode;
 
     private float lastMeanJourneyTime = 1000f;
+    private int carsPassed = 0;
 
     public override void AgentAction(float[] vectorAction)
     {
@@ -64,9 +66,17 @@ public class DispatcherAgent : Agent
         //Debug.Log("Reset Agent");
         carManager.resetCars();
         watcher.resetMetrics();
+        carsPassed = 0;
     }
 
     private void unacceptableWait() => AddReward(-1f);
 
-    private void finishCar() => AddReward(0.1f);
+    private void finishCar()
+    {
+        AddReward(0.1f);
+        ++carsPassed;
+        Debug.Log(carsPassed);
+
+        if (carsPassed > carsPerEpisode) Done();
+    }
 }
