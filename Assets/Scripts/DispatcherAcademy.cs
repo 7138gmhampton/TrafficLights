@@ -18,10 +18,10 @@ public class DispatcherAcademy : Academy
         environment.prepareCarManager();
     }
 
-    public override void AcademyReset()
-    {
-        //base.AcademyReset();
-        carManager.resetCars();
-        metricsWatcher.resetMetrics();
-    }
+    //public override void AcademyReset()
+    //{
+    //    //base.AcademyReset();
+    //    //carManager.resetCars();
+    //    //metricsWatcher.resetMetrics();
+    //}
 }
