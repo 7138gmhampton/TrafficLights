@@ -68,5 +68,5 @@ public class DispatcherAgent : Agent
 
     private void unacceptableWait() => AddReward(-1f);
 
-    private void finishCar() => AddReward(1f);
+    private void finishCar() => AddReward(0.1f);
 }
