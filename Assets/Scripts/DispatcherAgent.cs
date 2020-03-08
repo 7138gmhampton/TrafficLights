@@ -28,8 +28,6 @@ public class DispatcherAgent : Agent
         float currentMeanJourneyTime = watcher.reportJourneyTimeMean();
         lastMeanJourneyTime = currentMeanJourneyTime;
 
-        //AddVectorObs(currentMeanJourneyTime);
-
         var waitTimes = watcher.getWaitTimes();
         
         for (int y = 0; y < waitTimes.GetLength(0); ++y)
@@ -63,7 +61,6 @@ public class DispatcherAgent : Agent
 
     public override void AgentReset()
     {
-        //Debug.Log("Reset Agent");
         carManager.resetCars();
         watcher.resetMetrics();
         carsPassed = 0;
@@ -75,7 +72,6 @@ public class DispatcherAgent : Agent
     {
         AddReward(0.1f);
         ++carsPassed;
-        Debug.Log(carsPassed);
 
         if (carsPassed > carsPerEpisode) Done();
     }
