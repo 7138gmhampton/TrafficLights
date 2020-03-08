@@ -49,9 +49,11 @@ public partial class CarManager : MonoBehaviour
     {
         for (int iii = 0; iii < Cars.Count; iii++) {
             var car = Cars[iii];
-            removeCar(car);
+            //removeCar(car);
             Destroy(car);
         }
+
+        Cars.Clear();
     }
 
     private void moveCars()
