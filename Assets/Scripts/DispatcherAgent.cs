@@ -26,7 +26,7 @@ public class DispatcherAgent : Agent
         float currentMeanJourneyTime = watcher.reportJourneyTimeMean();
         lastMeanJourneyTime = currentMeanJourneyTime;
 
-        AddVectorObs(currentMeanJourneyTime);
+        //AddVectorObs(currentMeanJourneyTime);
 
         var waitTimes = watcher.getWaitTimes();
         
