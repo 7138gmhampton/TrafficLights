@@ -68,10 +68,14 @@ public partial class CarManager : MonoBehaviour
 
     private void resolveConflicts()
     {
-        for (int iii = 0; iii < Cars.Count; ++iii)
-            for (int jjj = iii + 1; jjj < Cars.Count; ++jjj)
-                if (Cars[jjj].GetComponent<Car>().NextMovement == Cars[iii].GetComponent<Car>().NextMovement)
-                    Cars[jjj].GetComponent<Car>().setNextMovement(0, 0);
+        for (int iii = 0; iii < Cars.Count; ++iii) 
+            for (int jjj = iii + 1; jjj < Cars.Count; ++jjj) {
+                var firstCar = Cars[iii].GetComponent<Car>();
+                var secondCar = Cars[jjj].GetComponent<Car>();
+
+                if (secondCar.NextMovement == firstCar.NextMovement)
+                    secondCar.setNextMovement(0, 0);
+            }
     }
 
     public void addZone(GameObject zone)
