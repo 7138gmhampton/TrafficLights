@@ -6,7 +6,6 @@ public class Car : MonoBehaviour
 {
     public float moveTime;
     public LayerMask blockingLayer;
-    //private float unacceptableWaitTime;
 
     private Rigidbody2D carRigidbody;
     private BoxCollider2D boxCollider;
