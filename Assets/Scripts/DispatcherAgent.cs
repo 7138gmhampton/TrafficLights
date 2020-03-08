@@ -61,7 +61,7 @@ public class DispatcherAgent : Agent
 
     public override void AgentReset()
     {
-        Debug.Log("Reset Agent");
+        //Debug.Log("Reset Agent");
         carManager.resetCars();
         watcher.resetMetrics();
     }
