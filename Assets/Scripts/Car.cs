@@ -49,11 +49,11 @@ public class Car : MonoBehaviour
         FindObjectOfType<DispatcherAgent>().SendMessage("unacceptableWait");
         reportTime = 0f;
 
-        Debug.Log(transform.position);
-        Debug.Log("Before: " + driveDirection + " & " + turnDirection);
+        //Debug.Log(transform.position);
+        //Debug.Log("Before: " + driveDirection + " & " + turnDirection);
         if (turning) immediateTurnOff();
-        else travelAlongRoad(Physics2D.OverlapPoint(transform.position, traversibleLayer));
-        Debug.Log(driveDirection + " & " + turnDirection);
+        //else travelAlongRoad(Physics2D.OverlapPoint(transform.position, traversibleLayer));
+        //Debug.Log(driveDirection + " & " + turnDirection);
     }
 
     public void moveCar()
