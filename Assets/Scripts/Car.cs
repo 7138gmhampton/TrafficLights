@@ -39,9 +39,14 @@ public class Car : MonoBehaviour
         reportTime += Time.deltaTime;
 
         if (reportTime > UnacceptableWaitTime) {
-            FindObjectOfType<DispatcherAgent>().SendMessage("unacceptableWait");
-            reportTime = 0f;
+            reportWaitTooLong();
         }
+    }
+
+    private void reportWaitTooLong()
+    {
+        FindObjectOfType<DispatcherAgent>().SendMessage("unacceptableWait");
+        reportTime = 0f;
     }
 
     public void moveCar()
