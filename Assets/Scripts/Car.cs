@@ -47,6 +47,7 @@ public class Car : MonoBehaviour
     {
         FindObjectOfType<DispatcherAgent>().SendMessage("unacceptableWait");
         reportTime = 0f;
+        if (turning) turnDirection = pickAnotherDirection(getOpposite(turnDirection));
     }
 
     public void moveCar()
