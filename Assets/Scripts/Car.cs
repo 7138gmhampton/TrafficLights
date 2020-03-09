@@ -6,6 +6,7 @@ public class Car : MonoBehaviour
 {
     public float moveTime;
     public LayerMask blockingLayer;
+    public LayerMask traversibleLayer;
 
     private Rigidbody2D carRigidbody;
     private BoxCollider2D boxCollider;
@@ -47,7 +48,12 @@ public class Car : MonoBehaviour
     {
         FindObjectOfType<DispatcherAgent>().SendMessage("unacceptableWait");
         reportTime = 0f;
-        if (turning) turnDirection = pickAnotherDirection(getOpposite(turnDirection));
+
+        Debug.Log(transform.position);
+        Debug.Log("Before: " + driveDirection + " & " + turnDirection);
+        if (turning) immediateTurnOff();
+        else travelAlongRoad(Physics2D.OverlapPoint(transform.position, traversibleLayer));
+        Debug.Log(driveDirection + " & " + turnDirection);
     }
 
     public void moveCar()
@@ -219,5 +225,19 @@ public class Car : MonoBehaviour
             }
 
         driveDirection = direction;
+    }
+
+    private void immediateTurnOff()
+    {
+        switch (driveDirection) {
+            case Direction.EAST: turnDirection = Direction.NORTH; break;
+            case Direction.NORTH: turnDirection = Direction.WEST; break;
+            case Direction.SOUTH: turnDirection = Direction.EAST; break;
+            case Direction.WEST: turnDirection = Direction.SOUTH; break;
+        }
+
+        //moveCar();
+        navigateJunction(determineCorner(Physics2D.OverlapPoint(transform.position,
+            traversibleLayer).transform.rotation.eulerAngles.z));
     }
 }
