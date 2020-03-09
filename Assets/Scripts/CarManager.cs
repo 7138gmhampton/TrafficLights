@@ -9,6 +9,7 @@ public partial class CarManager : MonoBehaviour
     public GameObject spawner;
     public GameObject despawner;
     public float unacceptableWaitTime;
+    public LayerMask blockingLayer;
 
     private int xStart;
     private int xEnd;
@@ -82,8 +83,9 @@ public partial class CarManager : MonoBehaviour
         if (Cars.Count >= maxCars) return;
 
         var spawnPoint = selectRandomSpawner();
-        if (Physics2D.OverlapBox(spawnPoint, new Vector2(0.4f, 0.4f), 0).gameObject.tag == "Vehicle")
-            return;
+        //if (Physics2D.OverlapBox(spawnPoint, new Vector2(0.4f, 0.4f), 0, blockingLayer).gameObject.tag == "Vehicle")
+        //    return;
+        if (isBlocked(spawnPoint)) return;
 
         var nextCar = Instantiate(car, spawnPoint, Quaternion.identity);
         nextCar.transform.parent = gameObject.transform;
@@ -96,4 +98,12 @@ public partial class CarManager : MonoBehaviour
 
     private Vector3 selectRandomSpawner() => 
         spawners[Random.Range(0, spawners.Count)].transform.position;
+
+    private bool isBlocked(Vector2 locus)
+    {
+        var collider = Physics2D.OverlapPoint(locus, blockingLayer);
+
+        if (collider != null) return true;
+        else return false;
+    }
 }
