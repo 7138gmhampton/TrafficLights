@@ -10,6 +10,8 @@ public class AllLightsController : MonoBehaviour
     public GameObject junctionController;
     [HideInInspector] public List<JunctionSwitcher> junctions = new List<JunctionSwitcher>();
 
+    public List<JunctionSwitcher> Junctions { get { return junctions; } }
+
     private void Awake()
     {
         if (instance == null) instance = this;
