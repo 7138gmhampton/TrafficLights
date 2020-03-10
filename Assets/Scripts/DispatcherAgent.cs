@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using MLAgents;
+using System;
 
 public class DispatcherAgent : Agent
 {
@@ -13,6 +14,7 @@ public class DispatcherAgent : Agent
 
     private float lastMeanJourneyTime = 1000f;
     private int carsPassed = 0;
+    private Tuple<float,float,float,float>[,] lastWaitTimes;
 
     public override void AgentAction(float[] vectorAction)
     {
@@ -21,6 +23,7 @@ public class DispatcherAgent : Agent
 
         rewardDisplay.text = GetCumulativeReward().ToString("0.00");
         timeDisplay.text = watcher.reportJourneyTimeMean().ToString("0.00s");
+        lastWaitTimes = watcher.getWaitTimes();
     }
 
     public override void CollectObservations()
@@ -37,6 +40,13 @@ public class DispatcherAgent : Agent
                 AddVectorObs(waitTimes[y, x].Item3);
                 AddVectorObs(waitTimes[y, x].Item4);
             }
+
+        if (lastWaitTimes != null)
+            for (int y = 0; y < waitTimes.GetLength(0); ++y)
+                for (int x = 0; x < waitTimes.GetLength(1); ++x)
+                    checkWaitTime(waitTimes[y, x], lastWaitTimes[y, x]);
+
+        lastWaitTimes = waitTimes;
     }
 
     public override float[] Heuristic()
@@ -73,5 +83,25 @@ public class DispatcherAgent : Agent
         AddReward(0.1f);
 
         if (++carsPassed > carsPerEpisode) Done();
+    }
+
+    private void checkWaitTime(Tuple<float, float, float, float> current,
+        Tuple<float, float, float, float> previous)
+    {
+        float sumNorthSouthTimePrevious = previous.Item1 + previous.Item3;
+        float sumEastWestTimePrevious = previous.Item2 + previous.Item4;
+        float sumNorthSouthTimeCurrent = current.Item1 + current.Item3;
+        float sumEastWestTimeCurrent = current.Item2 + current.Item4;
+
+        //Debug.Log("Checking");
+        //Debug.Log("NS: " + sumNorthSouthTimePrevious + " -> " + sumNorthSouthTimeCurrent);
+        if (sumNorthSouthTimePrevious > 1f && sumNorthSouthTimeCurrent < 1f) AddReward(1f);
+        if (sumEastWestTimePrevious > 1f && sumEastWestTimeCurrent < 1f) AddReward(1f);
+    }
+
+    private void clearQueue()
+    {
+        Debug.Log("Reward for clearing queue");
+        AddReward(1f);
     }
 }
