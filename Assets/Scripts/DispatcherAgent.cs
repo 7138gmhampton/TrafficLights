@@ -104,4 +104,14 @@ public class DispatcherAgent : Agent
         Debug.Log("Reward for clearing queue");
         AddReward(1f);
     }
+
+    private void changeLights(int index, bool nextAlignment)
+    {
+        bool previousAlignment = lightsController.checkAlignment(index);
+
+        if (nextAlignment != previousAlignment) {
+            lightsController.Junctions[index].Controller.setGreenAlignment(nextAlignment);
+            AddReward(-0.01f);
+        }
+    }
 }
