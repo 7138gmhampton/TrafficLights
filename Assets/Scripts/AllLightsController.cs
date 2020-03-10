@@ -26,6 +26,8 @@ public class AllLightsController : MonoBehaviour
 
     public bool checkAlignment(int x, int y) => findJunction(x, y).Controller.northSouthAlign;
 
+    public bool checkAlignment(int index) => junctions[index].Controller.northSouthAlign;
+
     public Tuple<float, float, float, float> reportWaitTimes(int x, int y)
     {
         var junction = findJunction(x, y);
