@@ -13,6 +13,7 @@ public class ExpertSystem : MonoBehaviour
     {
         environment.setupEnvironment();
         lightsController.setupJunctionControllers();
+        ruleBase = RulesBuilder.buildRules(lightsController.Junctions);
     }
 
     private void Start()
