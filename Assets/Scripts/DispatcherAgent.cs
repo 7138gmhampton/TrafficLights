@@ -18,9 +18,13 @@ public class DispatcherAgent : Agent
 
     public override void AgentAction(float[] vectorAction)
     {
-        for (int iii = 0; iii < vectorAction.Length; iii++)
+        for (int iii = 0; iii < vectorAction.Length; iii++) {
+            int action = Mathf.RoundToInt(vectorAction[iii]);
+            if (action == 1) changeLights(iii, true);
+            else if (action == 2) changeLights(iii, false);
+        }
             //lightsController.junctions[iii].Controller.setGreenAlignment((int)vectorAction[iii] == 1);
-            changeLights(iii, Mathf.RoundToInt(vectorAction[iii]) == 1);
+            //changeLights(iii, Mathf.RoundToInt(vectorAction[iii]) == 1);
 
         if (lastWaitTimes != null) {
             var waitTimes = watcher.getWaitTimes();
