@@ -16,7 +16,12 @@ internal class NumberRuleNS : Rule
 
     //public Func<int, int, Tuple<int, int, int, int>> DataMethod { get { return dataMethod; } }
 
-    public override void fire() => throw new System.NotImplementedException();
+    public override void fire()
+    {
+        //throw new System.NotImplementedException();
+        Object.FindObjectOfType<AllLightsController>().switchNS(xPosition, yPosition);
+    }
+
     public override bool match(params object[] args)
     {
         //throw new System.NotImplementedException();
@@ -39,7 +44,12 @@ internal class NumberRuleEW : Rule
         this.priority = priority;
     }
 
-    public override void fire() => throw new System.NotImplementedException();
+    public override void fire()
+    {
+        //throw new System.NotImplementedException();
+        Object.FindObjectOfType<AllLightsController>().switchEW(xPosition, yPosition);
+    }
+
     public override bool match(params object[] args)
     {
         //throw new System.NotImplementedException();
