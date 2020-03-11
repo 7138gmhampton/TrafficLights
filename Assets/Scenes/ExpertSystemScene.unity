@@ -307,6 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   environment: {fileID: 1744649213}
+  lightsController: {fileID: 1825485189}
 --- !u!4 &694061139
 Transform:
   m_ObjectHideFlags: 0
