@@ -46,7 +46,8 @@ public class Car : MonoBehaviour
 
     private void reportWaitTooLong()
     {
-        FindObjectOfType<DispatcherAgent>().SendMessage("unacceptableWait");
+        if (FindObjectOfType<DispatcherAgent>() != null)
+            FindObjectOfType<DispatcherAgent>().SendMessage("unacceptableWait");
         reportTime = 0f;
 
         //Debug.Log(transform.position);
@@ -136,7 +137,8 @@ public class Car : MonoBehaviour
         transform.parent.gameObject.GetComponent<CarManager>().removeCar(gameObject);
         foreach (var watcher in GameObject.FindGameObjectsWithTag("Metrics"))
             watcher.SendMessage("addJourneyTime", lifetime);
-        FindObjectOfType<DispatcherAgent>().SendMessage("finishCar");
+        if (FindObjectOfType<DispatcherAgent>() != null)
+            FindObjectOfType<DispatcherAgent>().SendMessage("finishCar");
 
         Destroy(gameObject);
     }
