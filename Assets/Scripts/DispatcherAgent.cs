@@ -108,12 +108,12 @@ public class DispatcherAgent : Agent
         //if (sumNorthSouthTimePrevious > 1f && sumNorthSouthTimeCurrent < 1f) AddReward(1f);
         //if (sumEastWestTimePrevious > 1f && sumEastWestTimeCurrent < 1f) AddReward(1f);
         if (sumNorthSouthTimeCurrent < sumNorthSouthTimePrevious) {
-            float reward = (sumNorthSouthTimePrevious - sumNorthSouthTimeCurrent > 1f) ? 1f : sumNorthSouthTimePrevious - sumNorthSouthTimeCurrent;
-            AddReward(reward);
+            //float reward = (sumNorthSouthTimePrevious - sumNorthSouthTimeCurrent > 1f) ? 1f : sumNorthSouthTimePrevious - sumNorthSouthTimeCurrent;
+            AddReward(0.1f);
         }
         if (sumEastWestTimeCurrent < sumEastWestTimePrevious) {
-            float reward = (sumEastWestTimePrevious - sumEastWestTimeCurrent > 1f) ? 1f : sumEastWestTimePrevious - sumEastWestTimeCurrent;
-            AddReward(reward);
+            //float reward = (sumEastWestTimePrevious - sumEastWestTimeCurrent > 1f) ? 1f : sumEastWestTimePrevious - sumEastWestTimeCurrent;
+            AddReward(0.1f);
         }
     }
 
