@@ -4,16 +4,16 @@ using Object = UnityEngine.Object;
 
 internal class TimeRuleNS : Rule
 {
-    private Func<int, int, Tuple<float, float, float, float>> dataMethod;
+    //private Func<int, int, Tuple<float, float, float, float>> dataMethod;
 
-    public Func<int, int, Tuple<float, float, float, float>> DataMethod { get { return dataMethod; } }
+    //public Func<int, int, Tuple<float, float, float, float>> DataMethod { get { return dataMethod; } }
 
     public TimeRuleNS(int x, int y, int priority)
     {
         xPosition = x;
         yPosition = y;
         this.priority = priority;
-        dataMethod = Object.FindObjectOfType<AllLightsController>().reportWaitTimes;
+        //dataMethod = Object.FindObjectOfType<AllLightsController>().reportWaitTimes;
     }
 
     public override void fire()
