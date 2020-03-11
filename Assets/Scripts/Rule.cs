@@ -5,6 +5,8 @@
     protected int yPosition;
 
     public int Priority { get { return priority; } }
+    public int XPosition { get { return xPosition; } }
+    public int YPosition { get { return yPosition; } }
 
     public abstract bool match(params object[] args);
     public abstract void fire();
