@@ -6,6 +6,6 @@
 
     public int Priority { get { return priority; } }
 
-    public abstract bool match(object args);
+    public abstract bool match(params object[] args);
     public abstract void fire();
 }
