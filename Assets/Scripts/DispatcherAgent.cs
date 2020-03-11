@@ -29,8 +29,10 @@ public class DispatcherAgent : Agent
                     checkWaitTime(waitTimes[y, x], lastWaitTimes[y, x]);
         }
 
-        rewardDisplay.text = GetCumulativeReward().ToString("0.00");
-        timeDisplay.text = watcher.reportJourneyTimeMean().ToString("0.00s");
+        if (rewardDisplay != null)
+            rewardDisplay.text = GetCumulativeReward().ToString("0.00");
+        if (timeDisplay != null)
+            timeDisplay.text = watcher.reportJourneyTimeMean().ToString("0.00s");
         lastWaitTimes = watcher.getWaitTimes();
     }
 
