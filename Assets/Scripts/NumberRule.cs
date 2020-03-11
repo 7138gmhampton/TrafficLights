@@ -17,7 +17,17 @@ internal class NumberRuleNS : Rule
     //public Func<int, int, Tuple<int, int, int, int>> DataMethod { get { return dataMethod; } }
 
     public override void fire() => throw new System.NotImplementedException();
-    public override bool match(params object[] args) => throw new System.NotImplementedException();
+    public override bool match(params object[] args)
+    {
+        //throw new System.NotImplementedException();
+        int northwardQueue = (int)args[0];
+        int eastwardQueue = (int)args[0];
+        int southwardQueue = (int)args[0];
+        int westwardQueue = (int)args[0];
+
+        if (northwardQueue + southwardQueue > eastwardQueue + westwardQueue) return true;
+        else return false;
+    }
 }
 
 internal class NumberRuleEW : Rule
