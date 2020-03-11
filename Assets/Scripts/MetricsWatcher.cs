@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 
@@ -7,14 +8,28 @@ public class MetricsWatcher : MonoBehaviour
 {
     public int queueLength;
     public AllLightsController lightsController;
+    public string logName;
 
     private Queue<float> journeyTimes = new Queue<float>();
+    private StreamWriter timesLog;
+
+    private void Awake()
+    {
+        timesLog = new StreamWriter(logName, true);
+    }
+
+    private void OnDestroy()
+    {
+        while (journeyTimes.Count > 0) appendTimeToLog(journeyTimes.Dequeue());
+        timesLog.Flush();
+        timesLog.Dispose();
+    }
 
     public void addJourneyTime(float time)
     {
         journeyTimes.Enqueue(time);
 
-        while (journeyTimes.Count > queueLength) journeyTimes.Dequeue();
+        while (journeyTimes.Count > queueLength) appendTimeToLog(journeyTimes.Dequeue());
     }
 
     public float reportJourneyTimeMean() => journeyTimes.Count == 0 ? 1000f : journeyTimes.Average();
@@ -33,4 +48,9 @@ public class MetricsWatcher : MonoBehaviour
     }
 
     public void resetMetrics() => journeyTimes.Clear();
+
+    private void appendTimeToLog(float time)
+    {
+        timesLog.WriteLine(time.ToString("0.000"));
+    }
 }
