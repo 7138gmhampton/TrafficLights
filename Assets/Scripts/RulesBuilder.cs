@@ -9,6 +9,8 @@ internal static class RulesBuilder
         foreach (var junction in junctions) {
             builtRules.Add(new TimeRuleNS(junction.XLocus, junction.YLocus, 0));
             builtRules.Add(new TimeRuleEW(junction.XLocus, junction.YLocus, 0));
+            builtRules.Add(new NumberRuleNS(junction.XLocus,junction.YLocus, 1));
+            builtRules.Add(new NumberRuleEW(junction.XLocus,junction.YLocus, 1));
         }
 
         return builtRules;
