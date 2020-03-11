@@ -42,6 +42,18 @@ public class AllLightsController : MonoBehaviour
         return new Tuple<float, float, float, float>(northTime, eastTime, southTime, westTime);
     }
 
+    public Tuple<int,int,int,int> reportQueueNumbers(int x, int y)
+    {
+        var junction = findJunction(x, y);
+
+        int northwardQueue = junction.Controller.countQueue(Direction.NORTH);
+        int eastwardQueue = junction.Controller.countQueue(Direction.EAST);
+        int southwardQueue = junction.Controller.countQueue(Direction.SOUTH);
+        int westwardQueue = junction.Controller.countQueue(Direction.WEST);
+
+        return new Tuple<int, int, int, int>(northwardQueue, eastwardQueue, southwardQueue, westwardQueue);
+    }
+
     private JunctionSwitcher findJunction(int x, int y) =>
         junctions.Single(a => a.XLocus == x && a.YLocus == y);
 
