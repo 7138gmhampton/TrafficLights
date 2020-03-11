@@ -320,6 +320,11 @@ PrefabInstance:
       propertyPath: carManager
       value: 
       objectReference: {fileID: 1484629461}
+    - target: {fileID: 4932003814706730739, guid: fcfb427a71b33474c824beea1345de29,
+        type: 3}
+      propertyPath: saturation
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4932003814706730748, guid: fcfb427a71b33474c824beea1345de29,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -785,5 +790,20 @@ PrefabInstance:
       propertyPath: watcher
       value: 
       objectReference: {fileID: 1240600591}
+    - target: {fileID: 3359172800800697681, guid: 84270be01c8095f42abf5d1eb2d6ae08,
+        type: 3}
+      propertyPath: carsPerEpisode
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3359172800800697681, guid: 84270be01c8095f42abf5d1eb2d6ae08,
+        type: 3}
+      propertyPath: agentParameters.maxStep
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3359172800800697681, guid: 84270be01c8095f42abf5d1eb2d6ae08,
+        type: 3}
+      propertyPath: agentParameters.resetOnDone
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84270be01c8095f42abf5d1eb2d6ae08, type: 3}
