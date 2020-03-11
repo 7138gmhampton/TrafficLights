@@ -2,6 +2,13 @@
 
 internal class TimeRuleNS : Rule
 {
+    public TimeRuleNS(int x, int y, int priority)
+    {
+        xPosition = x;
+        yPosition = y;
+        this.priority = priority;
+    }
+
     public override void fire()
     {
         //throw new System.NotImplementedException();
@@ -24,6 +31,13 @@ internal class TimeRuleNS : Rule
 
 internal class TimeRuleEW : Rule
 {
+    public TimeRuleEW(int x, int y, int priority)
+    {
+        xPosition = x;
+        yPosition = y;
+        this.priority = priority;
+    }
+
     public override void fire()
     {
         //throw new System.NotImplementedException();
