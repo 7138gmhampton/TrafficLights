@@ -22,6 +22,13 @@ public class DispatcherAgent : Agent
             //lightsController.junctions[iii].Controller.setGreenAlignment((int)vectorAction[iii] == 1);
             changeLights(iii, Mathf.RoundToInt(vectorAction[iii]) == 1);
 
+        if (lastWaitTimes != null) {
+            var waitTimes = watcher.getWaitTimes();
+            for (int y = 0; y < waitTimes.GetLength(0); ++y)
+                for (int x = 0; x < waitTimes.GetLength(1); ++x)
+                    checkWaitTime(waitTimes[y, x], lastWaitTimes[y, x]);
+        }
+
         rewardDisplay.text = GetCumulativeReward().ToString("0.00");
         timeDisplay.text = watcher.reportJourneyTimeMean().ToString("0.00s");
         lastWaitTimes = watcher.getWaitTimes();
@@ -42,12 +49,12 @@ public class DispatcherAgent : Agent
                 AddVectorObs(waitTimes[y, x].Item4);
             }
 
-        if (lastWaitTimes != null)
-            for (int y = 0; y < waitTimes.GetLength(0); ++y)
-                for (int x = 0; x < waitTimes.GetLength(1); ++x)
-                    checkWaitTime(waitTimes[y, x], lastWaitTimes[y, x]);
+        //if (lastWaitTimes != null)
+        //    for (int y = 0; y < waitTimes.GetLength(0); ++y)
+        //        for (int x = 0; x < waitTimes.GetLength(1); ++x)
+        //            checkWaitTime(waitTimes[y, x], lastWaitTimes[y, x]);
 
-        lastWaitTimes = waitTimes;
+        //lastWaitTimes = waitTimes;
     }
 
     public override float[] Heuristic()
