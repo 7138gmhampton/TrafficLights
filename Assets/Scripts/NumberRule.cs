@@ -40,5 +40,15 @@ internal class NumberRuleEW : Rule
     }
 
     public override void fire() => throw new System.NotImplementedException();
-    public override bool match(params object[] args) => throw new System.NotImplementedException();
+    public override bool match(params object[] args)
+    {
+        //throw new System.NotImplementedException();
+        int northwardQueue = (int)args[0];
+        int eastwardQueue = (int)args[0];
+        int southwardQueue = (int)args[0];
+        int westwardQueue = (int)args[0];
+
+        if (eastwardQueue + westwardQueue > northwardQueue + southwardQueue) return true;
+        else return false;
+    }
 }
