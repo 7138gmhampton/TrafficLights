@@ -39,7 +39,8 @@ public class ExpertSystem : MonoBehaviour
             }
             if (rule.GetType() == typeof(NumberRuleEW) || rule.GetType() == typeof(NumberRuleNS)) {
                 var queueLengths = lightsController.reportQueueNumbers(rule.XPosition, rule.YPosition);
-                if (rule.match(queueLengths)) triggeredRules.Add(rule);
+                if (rule.match(queueLengths.Item1, queueLengths.Item2, queueLengths.Item3, queueLengths.Item4))
+                    triggeredRules.Add(rule);
             }
         }
 
