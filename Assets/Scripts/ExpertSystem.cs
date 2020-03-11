@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ExpertSystem : MonoBehaviour
 {
@@ -27,9 +29,18 @@ public class ExpertSystem : MonoBehaviour
 
         foreach (var rule in ruleBase) {
             //var junction = lightsController.findJunction(rule.XPosition, rule.YPosition);
-            var waitTimes = lightsController.reportWaitTimes(rule.XPosition, rule.YPosition);
-            if (rule.match(waitTimes.Item1, waitTimes.Item2, waitTimes.Item3, waitTimes.Item4))
-                triggeredRules.Add(rule);
+            //var waitTimes = lightsController.reportWaitTimes(rule.XPosition, rule.YPosition);
+            //if (rule.match(waitTimes.Item1, waitTimes.Item2, waitTimes.Item3, waitTimes.Item4))
+            //    triggeredRules.Add(rule);
+            if (rule.GetType() == typeof(TimeRuleEW) || rule.GetType() == typeof(TimeRuleNS)) {
+                var waitTimes = lightsController.reportWaitTimes(rule.XPosition, rule.YPosition);
+                if (rule.match(waitTimes.Item1, waitTimes.Item2, waitTimes.Item3, waitTimes.Item4))
+                    triggeredRules.Add(rule);
+            }
+            if (rule.GetType() == typeof(NumberRuleEW) || rule.GetType() == typeof(NumberRuleNS)) {
+                var queueLengths = lightsController.reportQueueNumbers(rule.XPosition, rule.YPosition);
+                if (rule.match(queueLengths)) triggeredRules.Add(rule);
+            }
         }
 
         int lowestPriority = 1000;
