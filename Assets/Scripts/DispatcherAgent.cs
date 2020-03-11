@@ -55,6 +55,9 @@ public class DispatcherAgent : Agent
                 AddVectorObs(waitTimes[y, x].Item4);
             }
 
+        for (int iii = 0; iii < lightsController.Junctions.Count; ++iii)
+            AddVectorObs(lightsController.checkAlignment(iii));
+
         //if (lastWaitTimes != null)
         //    for (int y = 0; y < waitTimes.GetLength(0); ++y)
         //        for (int x = 0; x < waitTimes.GetLength(1); ++x)
