@@ -855,27 +855,27 @@ PrefabInstance:
     - target: {fileID: 3359172800800697678, guid: 84270be01c8095f42abf5d1eb2d6ae08,
         type: 3}
       propertyPath: m_BrainParameters.vectorActionSize.Array.data[0]
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3359172800800697678, guid: 84270be01c8095f42abf5d1eb2d6ae08,
         type: 3}
       propertyPath: m_BrainParameters.vectorActionSize.Array.data[1]
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3359172800800697678, guid: 84270be01c8095f42abf5d1eb2d6ae08,
         type: 3}
       propertyPath: m_BrainParameters.vectorActionSize.Array.data[2]
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3359172800800697678, guid: 84270be01c8095f42abf5d1eb2d6ae08,
         type: 3}
       propertyPath: m_BrainParameters.vectorActionSize.Array.data[3]
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3359172800800697678, guid: 84270be01c8095f42abf5d1eb2d6ae08,
         type: 3}
       propertyPath: m_BrainParameters.vectorObservationSize
-      value: 16
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3359172800800697679, guid: 84270be01c8095f42abf5d1eb2d6ae08,
         type: 3}
