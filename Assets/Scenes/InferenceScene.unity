@@ -548,6 +548,11 @@ PrefabInstance:
       propertyPath: lightsController
       value: 
       objectReference: {fileID: 312733263}
+    - target: {fileID: 3614781217834018575, guid: 188684a4c9b382e41a513b22de46ac75,
+        type: 3}
+      propertyPath: logName
+      value: TrainedReinforcement
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 188684a4c9b382e41a513b22de46ac75, type: 3}
 --- !u!114 &1240600591 stripped
