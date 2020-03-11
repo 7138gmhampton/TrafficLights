@@ -1,6 +1,13 @@
-﻿internal class TimeRuleNS : Rule
+﻿using UnityEngine;
+
+internal class TimeRuleNS : Rule
 {
-    public override void fire() => throw new System.NotImplementedException();
+    public override void fire()
+    {
+        //throw new System.NotImplementedException();
+        Object.FindObjectOfType<AllLightsController>().switchNS(xPosition, yPosition);
+    }
+
     public override bool match(params object[] args)
     {
         //throw new System.NotImplementedException();
