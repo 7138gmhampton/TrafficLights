@@ -22,6 +22,13 @@ internal class NumberRuleNS : Rule
 
 internal class NumberRuleEW : Rule
 {
+    public NumberRuleEW(int x, int y, int priority)
+    {
+        xPosition = x;
+        yPosition = y;
+        this.priority = priority;
+    }
+
     public override void fire() => throw new System.NotImplementedException();
     public override bool match(params object[] args) => throw new System.NotImplementedException();
 }
