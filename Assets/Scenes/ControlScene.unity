@@ -318,6 +318,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcfb427a71b33474c824beea1345de29, type: 3}
+--- !u!1 &1551396484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1551396485}
+  m_Layer: 0
+  m_Name: Experiment
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1551396485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551396484}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.152079, y: 5.226981, z: -0.10058233}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1904356579 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1553960476599571356, guid: ce9ce2b15aafe624ebb29b9b30ebd553,
@@ -471,6 +501,11 @@ PrefabInstance:
       propertyPath: lightsController
       value: 
       objectReference: {fileID: 346134391}
+    - target: {fileID: 3614781217834018575, guid: 188684a4c9b382e41a513b22de46ac75,
+        type: 3}
+      propertyPath: logName
+      value: Control
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 188684a4c9b382e41a513b22de46ac75, type: 3}
 --- !u!1001 &6885399416676218317
