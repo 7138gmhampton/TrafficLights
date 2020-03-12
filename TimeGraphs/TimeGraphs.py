@@ -31,7 +31,7 @@ for pair in file_to_list_map:
 ranksum_expert = stats.ranksums(control,expert)
 ranksum_reinforcement = stats.ranksums(control,reinforcement)
 
-comparison = [control, expert, reinforcement]
+comparison = [control, expert]
 
 figure_comparison = plots.figure(1,figsize=(5,6))
 
