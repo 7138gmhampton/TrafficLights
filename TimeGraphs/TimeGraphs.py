@@ -20,7 +20,7 @@ reinforcement = []
 
 file_to_list_map = [('TimeLogControl.txt', control),
                     ('TimeLogExpert.txt', expert),
-                    ('TimeLogTrainedReinforcement.txt'), reinforcement]
+                    ('TimeLogTrainedReinforcement.txt', reinforcement)]
 
 median_times = dict()
 
@@ -37,10 +37,10 @@ figure_comparison = plots.figure(1,figsize=(5,6))
 
 axes_comparison = figure_comparison.add_subplot(111)
 
-boxplot_comparison = axes_comparison.boxplot(data_comparison_small)
-axes_comparison_small.set_xticklabels(['Control','Rule-based','Reinforcement Learning'])
-axes_comparison_small.set_ylabel('Time (s)')
-figure_comparison_small.suptitle('Journey Times Comparison', fontsize=14, fontWeight='bold')
+boxplot_comparison = axes_comparison.boxplot(comparison)
+axes_comparison.set_xticklabels(['Control','Rule-based','Reinforcement Learning'])
+axes_comparison.set_ylabel('Time (s)')
+figure_comparison.suptitle('Journey Times Comparison', fontsize=14, fontWeight='bold')
 
 figure_comparison.savefig('comparison.png', bbox_inches='tight')
 
