@@ -15,7 +15,7 @@ public class MetricsWatcher : MonoBehaviour
 
     private void Awake()
     {
-        timesLog = new StreamWriter("TimeLog" + logName + ".txt", true);
+        timesLog = new StreamWriter("TimeLog" + logName + ".txt", false);
     }
 
     private void OnDestroy()
