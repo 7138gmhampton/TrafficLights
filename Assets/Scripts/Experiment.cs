@@ -11,6 +11,7 @@ public class Experiment : MonoBehaviour
 
     private void finishCar()
     {
-        if (++carsPassed >= maxCarsInExperiment) SceneManager.LoadScene("MenuScene");
+        if (maxCarsInExperiment > 0 && ++carsPassed >= maxCarsInExperiment)
+            SceneManager.LoadScene("MenuScene");
     }
 }
