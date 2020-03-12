@@ -93,7 +93,7 @@ public class DispatcherAgent : Agent
         carsPassed = 0;
     }
 
-    private void unacceptableWait() => AddReward(-1f);
+    private void unacceptableWait() => AddReward(0f);
 
     private void finishCar()
     {
