@@ -8,7 +8,19 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/RLScene.unity
     guid: 074f6a054a1f17046ba38b0ab3cc986a
+  - enabled: 1
+    path: Assets/Scenes/MenuScene.unity
+    guid: cde4bca0d7deaa646bee3008ebc45b54
+  - enabled: 1
+    path: Assets/Scenes/InferenceScene.unity
+    guid: 169adfe5fb2acc847ad027683ac693d2
+  - enabled: 1
+    path: Assets/Scenes/ControlScene.unity
+    guid: f9f6dec6590eaf54da63d6c0822f298c
+  - enabled: 1
+    path: Assets/Scenes/ExpertSystemScene.unity
+    guid: 06dae802023ebb348aaeb6e0726114f1
   m_configObjects: {}
