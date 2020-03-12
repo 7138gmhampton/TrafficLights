@@ -143,7 +143,7 @@ public class DispatcherAgent : Agent
 
         if (nextAlignment != previousAlignment) {
             lightsController.Junctions[index].Controller.setGreenAlignment(nextAlignment);
-            //AddReward(-0.01f);
+            AddReward(-0.01f);
         }
     }
 }
