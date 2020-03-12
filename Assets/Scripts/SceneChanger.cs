@@ -12,7 +12,7 @@ public class SceneChanger : MonoBehaviour
 
     public void startExpert()
     {
-        SceneManager.LoadScene("ExpertScene");
+        SceneManager.LoadScene("ExpertSystemScene");
     }
 
     public void startReinforcement()
