@@ -139,6 +139,8 @@ public class Car : MonoBehaviour
             watcher.SendMessage("addJourneyTime", lifetime);
         if (FindObjectOfType<DispatcherAgent>() != null)
             FindObjectOfType<DispatcherAgent>().SendMessage("finishCar");
+        if (FindObjectOfType<Experiment>() != null)
+            FindObjectOfType<Experiment>().SendMessage("finishCar");
 
         Destroy(gameObject);
     }
