@@ -334,6 +334,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3334703092988295940, guid: f6f579bb4fc386744bf9f0879c78724e,
+        type: 3}
+      propertyPath: maxCarsInExperiment
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 3334703092988295942, guid: f6f579bb4fc386744bf9f0879c78724e,
         type: 3}
       propertyPath: m_Name
