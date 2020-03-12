@@ -371,6 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4c6812e454aeb742821a118ad5fa1ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxCarsInExperiment: 10
 --- !u!114 &1904356579 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1553960476599571356, guid: ce9ce2b15aafe624ebb29b9b30ebd553,
