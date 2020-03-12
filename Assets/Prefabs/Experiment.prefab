@@ -43,4 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4c6812e454aeb742821a118ad5fa1ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCarsInExperiment: 10
+  maxCarsInExperiment: 500
