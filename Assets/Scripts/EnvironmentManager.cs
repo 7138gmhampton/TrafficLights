@@ -17,6 +17,7 @@ public class EnvironmentManager : MonoBehaviour
     public CarManager carManager;
     public float saturation;
     public bool selfInitialised;
+    public AllLightsController lightsController;
 
     private int[,] environment;
     [HideInInspector] public List<GameObject> junctions = new List<GameObject>();
@@ -24,7 +25,10 @@ public class EnvironmentManager : MonoBehaviour
 
     private void Awake()
     {
-        if (selfInitialised) setupEnvironment();
+        if (selfInitialised) {
+            setupEnvironment();
+            lightsController.setupJunctionControllers();
+        }
     }
 
     private void Start()
