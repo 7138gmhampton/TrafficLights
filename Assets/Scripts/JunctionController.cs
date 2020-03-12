@@ -87,9 +87,9 @@ public class JunctionController : MonoBehaviour
     private Vector2 getOffSetA(Direction direction)
     {
         switch (direction) {
-            case Direction.EAST: return new Vector2(-4.5f, 0.5f);
+            case Direction.EAST: return new Vector2(-2.5f, 0.5f);
             case Direction.NORTH: return new Vector2(-0.5f, -1.5f);
-            case Direction.SOUTH: return new Vector2(0.5f, 4.5f);
+            case Direction.SOUTH: return new Vector2(0.5f, 2.5f);
             case Direction.WEST: return new Vector2(1.5f, -0.5f);
             default: throw new ArgumentOutOfRangeException("direction");
         }
@@ -99,9 +99,9 @@ public class JunctionController : MonoBehaviour
     {
         switch (direction) {
             case Direction.EAST: return new Vector2(-0.5f, -0.5f);
-            case Direction.NORTH: return new Vector2(0.5f, -5.5f);
+            case Direction.NORTH: return new Vector2(0.5f, -3.5f);
             case Direction.SOUTH: return new Vector2(1.5f, 0.5f);
-            case Direction.WEST: return new Vector2(5.5f, -1.5f);
+            case Direction.WEST: return new Vector2(3.5f, -1.5f);
             default: throw new ArgumentOutOfRangeException("direction");
         }
     }
